@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miquel Markets - Señales Semanales</title>
+<style>
+:root{
+--bg:#070d16; --panel:#121c2b; --panel2:#0f1826; --border:#22324a; --text:#eef2f7;
+--muted:#8294ab; --green:#3fb950; --red:#ef5552; --gold:#d29922; --navy-accent:#7fa1c9;
+--sys-accent:#3fb950; --sys-accent2:#7fa1c9; --sys-accent-soft:rgba(63,185,80,.14);
+}
+html.sys-f4{ --sys-accent:#d29922; --sys-accent2:#e6b955; --sys-accent-soft:rgba(210,153,34,.14); }
+*{box-sizing:border-box;}
+body{
+margin:0; font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+background:var(--bg); color:var(--text); position:relative; min-height:100vh;
+}
+body::before, body::after{
+content:''; position:fixed; border-radius:50%; filter:blur(90px); z-index:0; pointer-events:none;
+transition:background .4s;
+}
+body::before{ top:-180px; right:-150px; width:480px; height:480px; background:var(--sys-accent); opacity:.10; }
+body::after{ bottom:-220px; left:-180px; width:520px; height:520px; background:var(--sys-accent2); opacity:.08; }
+.masthead{
+position:relative; z-index:2;
+background:rgba(18,28,43,.85); backdrop-filter:blur(8px);
+border-bottom:1px solid var(--border);
+padding:16px 24px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.logo-wrap{position:relative; display:flex; align-items:center; gap:12px;}
+.logo-glow{position:absolute; left:-6px; top:-6px; width:56px; height:52px; background:radial-gradient(circle, var(--sys-accent) 0%, transparent 70%); opacity:.45; filter:blur(6px); transition:background .4s;}
+.masthead svg{width:44px; height:40px; flex-shrink:0; position:relative; z-index:1; filter:drop-shadow(0 0 6px rgba(63,185,80,.35));}
+.masthead-text{display:flex; flex-direction:column; line-height:1.2; margin-right:auto;}
+.masthead-name{font-size:17px; font-weight:800; color:var(--text); letter-spacing:.01em;}
+.masthead-name b{
+background:linear-gradient(135deg, var(--sys-accent), var(--sys-accent2));
+-webkit-background-clip:text; background-clip:text; color:transparent; font-weight:800;
+transition:background .4s;
+}
+.masthead-tag{font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin-top:2px;}
+.tab-switch{
+position:relative; display:flex; background:rgba(255,255,255,.04);
+border:1px solid var(--border); border-radius:999px; padding:4px; gap:2px;
+}
+.tab-slider{
+position:absolute; top:4px; left:4px; height:calc(100% - 8px); width:calc(50% - 4px);
+background:linear-gradient(135deg, var(--sys-accent), var(--sys-accent2));
+border-radius:999px; transition:transform .35s cubic-bezier(.4,0,.2,1), background .4s;
+box-shadow:0 4px 18px var(--sys-accent-soft); z-index:1;
+}
+.tab-switch.pos-f4 .tab-slider{ transform:translateX(100%); }
+.tab-btn{
+position:relative; z-index:2; background:transparent; border:none; color:var(--muted);
+font-weight:700; font-size:13px; padding:10px 20px; border-radius:999px; cursor:pointer;
+transition:color .25s; white-space:nowrap;
+}
+.tab-btn.active{ color:#04140a; }
+.tab-btn:focus-visible{ outline:2px solid var(--sys-accent2); outline-offset:2px; }
+header{
+position:relative; z-index:2;
+padding:22px 24px 4px; max-width:1140px; margin:0 auto;
+display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px;
+}
+header h1{margin:0; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; font-weight:700;}
+.updated{color:var(--muted); font-size:12px;}
+main{position:relative; z-index:2; padding:8px 24px 24px; max-width:1140px; margin:0 auto;}
+
+/* ---- HERO (carta de presentación) ---- */
+.hero{
+position:relative; overflow:hidden;
+background:linear-gradient(160deg, var(--panel) 0%, var(--panel2) 100%);
+border:1px solid var(--border); border-radius:20px; padding:32px 32px 28px; margin-bottom:28px;
+}
+.hero::before{
+content:''; position:absolute; inset:0;
+background:radial-gradient(circle at 88% 8%, var(--sys-accent) 0%, transparent 55%);
+opacity:.16; transition:background .4s;
+}
+.hero-top{position:relative; z-index:1; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:18px; margin-bottom:26px;}
+.hero-eyebrow{font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:8px; font-weight:700;}
+.hero-title{font-size:34px; font-weight:800; margin:0 0 6px; letter-spacing:-.01em;}
+.hero-sub{color:var(--muted); font-size:13px; max-width:560px; line-height:1.5;}
+.hero-metric{text-align:right;}
+.hero-metric .big{
+font-size:52px; font-weight:800; line-height:1;
+background:linear-gradient(135deg, var(--sys-accent), var(--sys-accent2));
+-webkit-background-clip:text; background-clip:text; color:transparent;
+transition:background .4s;
+}
+.hero-metric .big-label{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
+.stats-grid{position:relative; z-index:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:18px;}
+.stat-card{
+background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:12px;
+padding:15px 16px; transition:transform .2s, border-color .2s, background .2s;
+border-top:2px solid var(--sys-accent);
+}
+.stat-card:hover{ transform:translateY(-3px); border-color:var(--sys-accent2); background:rgba(255,255,255,.05); }
+.stat-card .label{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;}
+.stat-card .value{font-size:19px; font-weight:800; color:var(--text);}
+.stat-card .value.pos{color:var(--green);}
+.stat-card .value.neg{color:var(--red);}
+.hero-note{position:relative; z-index:1; font-size:12.5px; color:var(--muted); line-height:1.6; border-top:1px solid var(--border); padding-top:16px;}
+.hero-note b{color:var(--text);}
+
+h2.section-title{
+font-size:13px; margin:0 0 14px; color:var(--text); text-transform:uppercase; letter-spacing:.06em;
+display:flex; align-items:center; gap:10px; font-weight:700;
+}
+h2.section-title::before{
+content:''; width:4px; height:16px; border-radius:3px;
+background:linear-gradient(180deg, var(--sys-accent), var(--sys-accent2));
+}
+section{margin-bottom:32px;}
+.note{
+background:var(--panel); border:1px solid var(--border); border-radius:10px;
+padding:14px 16px; font-size:13px; color:var(--muted); margin-bottom:18px; line-height:1.55;
+}
+.note b{color:var(--text);}
+table{width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;}
+th,td{padding:11px 14px; text-align:right; border-bottom:1px solid var(--border); font-size:14px;}
+th:nth-child(1),td:nth-child(1),th:nth-child(2),td:nth-child(2){text-align:left;}
+th{color:var(--muted); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.04em; background:rgba(255,255,255,.02);}
+tbody tr{transition:background .15s;}
+tbody tr:hover{background:rgba(255,255,255,.03);}
+tr:last-child td{border-bottom:none;}
+tr.topN{background:var(--sys-accent-soft);}
+tr.topN td:first-child{border-left:3px solid var(--sys-accent);}
+tr:not(.topN) td:first-child{border-left:3px solid transparent;}
+.badge{
+display:inline-block; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px;
+background:var(--sys-accent); color:#04230b; margin-left:6px; vertical-align:middle;
+}
+.badge.warn{background:var(--red); color:#3a0b0a;}
+.badge.ok{background:var(--green); color:#04230b;}
+.rsc-pos{color:var(--green); font-weight:600;}
+.rsc-neg{color:var(--red); font-weight:600;}
+.pct-pos{color:var(--green); font-weight:600;}
+.pct-neg{color:var(--red); font-weight:600;}
+.ticker{font-weight:700; color:var(--gold); cursor:pointer; text-decoration:underline dotted;}
+.ticker:hover{color:#e6b955;}
+footer{position:relative; z-index:2; padding:26px 24px; text-align:center; color:var(--muted); font-size:12px;}
+.view{display:none;}
+.view.active{display:block;}
+@media(max-width:680px){
+th,td{padding:9px 8px; font-size:12px;}
+.masthead{padding:12px 16px;} header{padding:18px 16px 4px;} main{padding:6px 16px 16px;}
+.hero{padding:22px 18px;}
+.hero-title{font-size:26px;}
+.hero-metric{text-align:left; width:100%;}
+.hero-metric .big{font-size:42px;}
+.hero-top{flex-direction:column; align-items:flex-start;}
+}
+/* modal */
+#tvOverlay{
+display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7);
+z-index:1000; align-items:center; justify-content:center; padding:20px;
+}
+#tvOverlay.open{display:flex;}
+#tvModal{
+background:var(--panel); border:1px solid var(--border); border-radius:14px;
+width:100%; max-width:980px; height:600px; display:flex; flex-direction:column; overflow:hidden;
+}
+#tvModalHeader{
+display:flex; align-items:center; justify-content:space-between;
+padding:12px 16px; border-bottom:1px solid var(--border);
+}
+#tvModalHeader h3{margin:0; font-size:15px;}
+#tvModalHeader span{color:var(--muted); font-size:12px;}
+#tvClose{
+background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer; line-height:1;
+}
+#tvClose:hover{color:var(--text);}
+#tv_chart_container{flex:1;}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+<div class="logo-wrap">
+<div class="logo-glow"></div>
+<svg viewBox="0 0 64 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<rect x="2" y="34" width="6" height="14" fill="var(--green)"/>
+<line x1="5" y1="30" x2="5" y2="50" stroke="var(--red)" stroke-width="1.2"/>
+<rect x="11" y="26" width="6" height="20" fill="var(--gold)"/>
+<line x1="14" y1="22" x2="14" y2="48" stroke="var(--red)" stroke-width="1.2"/>
+<rect x="20" y="14" width="6" height="28" fill="var(--green)"/>
+<line x1="23" y1="10" x2="23" y2="44" stroke="var(--red)" stroke-width="1.2"/>
+<polyline points="4,34 13,26 22,14 31,5" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round"/>
+<polygon points="31,5 25,7 29,12" fill="var(--gold)"/>
+<path d="M33 50 C33 40 37 31 44 27 C42 21 44 15 50 11 C48 17 50 21 54 23 C58 19 60 13 58 7 C57 15 53 19 49 19 C43 19 39 23 37 29 C31 31 27 37 27 45 C27 48 29 50 33 50 Z" fill="var(--navy-accent)"/>
+<circle cx="41" cy="34" r="1.6" fill="var(--panel)"/>
+</svg>
+<div class="masthead-text">
+<span class="masthead-name">Miquel<b> Markets</b></span>
+<span class="masthead-tag">Timing · Strategy · Growth</span>
+</div>
+</div>
+<div class="tab-switch pos-octo" id="tabSwitch" role="tablist" aria-label="Selector de sistema">
+<div class="tab-slider"></div>
+<button class="tab-btn active" data-system="octo" role="tab" aria-selected="true">Octomomentum</button>
+<button class="tab-btn" data-system="f4" role="tab" aria-selected="false">Fantastic 4</button>
+</div>
+</div>
+
+<!-- ===================== OCTOMOMENTUM ===================== -->
+<div class="view active" id="view-octo">
+
+<header>
+<h1>Señales semanales</h1>
+<div class="updated">Actualizado: 18/06/2026</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="hero-top">
+<div>
+<div class="hero-eyebrow">Sistema activo</div>
+<h2 class="hero-title">Octomomentum</h2>
+<div class="hero-sub">Backtest extendido 2000–2026 (27 años), incluyendo acciones deslistadas, sin sesgo de
+supervivencia. Capital inicial 10.000 € · 8 posiciones simultáneas.</div>
+</div>
+<div class="hero-metric">
+<div class="big">+52.480%</div>
+<div class="big-label">Rentabilidad acumulada</div>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="label">Capital final</div><div class="value pos">5.258.001,38 €</div></div>
+<div class="stat-card"><div class="label">Rentabilidad anualizada</div><div class="value pos">26,71%</div></div>
+<div class="stat-card"><div class="label">Operaciones totales</div><div class="value">633</div></div>
+<div class="stat-card"><div class="label">% operaciones ganadoras</div><div class="value pos">51,97%</div></div>
+<div class="stat-card"><div class="label">Profit Factor</div><div class="value">4,25</div></div>
+<div class="stat-card"><div class="label">Payoff Ratio</div><div class="value">3,93</div></div>
+<div class="stat-card"><div class="label">Máx. drawdown sistema</div><div class="value neg">-28,37%</div></div>
+<div class="stat-card"><div class="label">Máx. drawdown operación</div><div class="value neg">-57,52%</div></div>
+<div class="stat-card"><div class="label">Ulcer Index</div><div class="value">12,23</div></div>
+</div>
+<div class="hero-note">
+De los 27 años analizados, <b>22 cerraron en positivo</b> y 5 en negativo (2008, 2011, 2015, 2018, 2022). Mejores
+años: 2020 (+146,2%), 2003 (+70,4%) y 2024 (+66,3%). Peores años: 2015 (-13,6%), 2022 (-13,1%) y 2008 (-10,9%).
+Ganancia media en operaciones ganadoras: +29,16% · pérdida media en perdedoras: -9,03%. Estacionalmente,
+<b>septiembre</b> es el mes más fuerte de media (+4,2%), seguido de noviembre (+3,5%) y agosto (+3,3%); marzo
+(+0,3%) y abril (+1,0%) son los más débiles.
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Cartera actual (posiciones abiertas)</h2>
+<div class="note">
+Resultado del <b>Backtest</b> de AmiBroker sobre <b>Octomomentum</b>. El sistema mantiene <b>8</b> posiciones
+simultáneas. A fecha de la última señal ninguna de las 8 posiciones abiertas muestra señal de venta activa,
+por lo que <b>la cartera está completa (8/8) y no hay huecos</b> disponibles para nuevos candidatos.
+</div>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Entrada</th>
+<th>Precio entrada</th>
+<th>Precio actual</th>
+<th>% Resultado</th>
+<th>Señal de venta</th>
+</tr>
+</thead>
+<tbody id="portfolioBodyOcto"></tbody>
+</table>
+</section>
+
+<section>
+<h2 class="section-title">Candidatos con señal de compra</h2>
+<div class="note">
+Lista de candidatos con señal de <b>compra activa</b> generada por el Screener de AmiBroker sobre la fórmula
+<b>Octomomentum</b>, último cierre semanal. Ordenado por <b>ROC</b> descendente. Las
+<span class="badge">TOP 8</span> filas son las que el sistema seleccionaría según su regla de
+<b>8</b> posiciones si hubiera huecos en cartera (actualmente no hay, ver sección superior). Se excluyen
+los valores que no cumplen la señal de compra por estar demasiado distanciados de su media (marcados como
+"Sell" en el screener), aunque su ROC sea elevado — es el caso de MU, INTC, WDC, AMD y similares. Haz clic en
+un ticker para ver su gráfico semanal.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Nombre</th>
+<th>Fecha señal</th>
+<th>Precio</th>
+<th>ROC</th>
+<th>Distancia a la media</th>
+</tr>
+</thead>
+<tbody id="tbodyOcto"></tbody>
+</table>
+</section>
+
+</main>
+</div>
+
+<!-- ===================== FANTASTIC 4 ===================== -->
+<div class="view" id="view-f4">
+
+<header>
+<h1>Señales semanales</h1>
+<div class="updated">Actualizado: 18/06/2026</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div class="hero-top">
+<div>
+<div class="hero-eyebrow">Sistema activo</div>
+<h2 class="hero-title">Fantastic 4</h2>
+<div class="hero-sub">Backtest extendido 2000–2026 (26 años), incluyendo acciones deslistadas, sin sesgo de
+supervivencia. Capital inicial 10.000 € · 4 posiciones simultáneas.</div>
+</div>
+<div class="hero-metric">
+<div class="big">+67.511%</div>
+<div class="big-label">Rentabilidad acumulada</div>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="label">Capital final</div><div class="value pos">6.761.103,58 €</div></div>
+<div class="stat-card"><div class="label">Rentabilidad anualizada</div><div class="value pos">27,92%</div></div>
+<div class="stat-card"><div class="label">Operaciones totales</div><div class="value">477</div></div>
+<div class="stat-card"><div class="label">% operaciones ganadoras</div><div class="value pos">49,06%</div></div>
+<div class="stat-card"><div class="label">Profit Factor</div><div class="value">3,19</div></div>
+<div class="stat-card"><div class="label">Payoff Ratio</div><div class="value">3,32</div></div>
+<div class="stat-card"><div class="label">Máx. drawdown sistema</div><div class="value neg">-33,69%</div></div>
+<div class="stat-card"><div class="label">Máx. drawdown operación</div><div class="value neg">-51,27%</div></div>
+<div class="stat-card"><div class="label">Ulcer Index</div><div class="value">10,83</div></div>
+</div>
+<div class="hero-note">
+De los 27 años analizados, <b>21 cerraron en positivo</b> y 6 en negativo (2000, 2008, 2011, 2017, 2018, 2022). Mejores
+años: 2013 (+99,1%), 2006 (+93,7%) y 2003 (+87,3%). Ganancia media en operaciones ganadoras: +21,93% · pérdida media
+en perdedoras: -7,16%. Estacionalmente, <b>noviembre</b> es el mes más fuerte de media (+4,0%), seguido de julio
+(+3,4%) y enero (+3,1%); diciembre (+0,7%) y abril (+1,1%) son los más débiles.
+</div>
+</section>
+
+<section>
+<h2 class="section-title">Cartera actual (posiciones abiertas)</h2>
+<div class="note">
+Resultado del <b>Backtest</b> de AmiBroker sobre <b>Fantastic 4</b> (01/01/2020 → última sesión).
+El sistema mantiene <b>4</b> posiciones simultáneas. A fecha de la última señal ninguna de las 4
+posiciones abiertas muestra señal de venta activa, por lo que <b>la cartera está completa (4/4) y no hay huecos</b>
+disponibles para nuevos candidatos.
+</div>
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Entrada</th>
+<th>Precio entrada</th>
+<th>Precio actual</th>
+<th>% Resultado</th>
+<th>Señal de venta</th>
+</tr>
+</thead>
+<tbody id="portfolioBodyF4"></tbody>
+</table>
+</section>
+
+<section>
+<h2 class="section-title">Candidatos con señal de compra</h2>
+<div class="note">
+Lista de candidatos con señal de <b>compra activa</b> generada por el Explorer de AmiBroker sobre la fórmula
+<b>Fantastic 4</b> (universo *Filter, último cierre semanal). Ordenado por <b>RSC Mansfield</b> descendente.
+Las <span class="badge">TOP 4</span> filas son las que el sistema seleccionaría según su regla
+<b>4</b> si hubiera huecos en cartera (actualmente no hay, ver sección superior). El resto son
+candidatos adicionales que también cumplen el filtro de compra. Haz clic en un ticker para ver su gráfico semanal
+con WMA(30). Se excluyen automáticamente los valores con cotización desactualizada.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Nombre</th>
+<th>Fecha señal</th>
+<th>Precio</th>
+<th>RSC</th>
+<th>Distancia a la media</th>
+</tr>
+</thead>
+<tbody id="tbodyF4"></tbody>
+</table>
+</section>
+
+</main>
+</div>
+
+<footer>
+Generado automáticamente cada sábado a partir de AmiBroker · Octomomentum / Fantastic 4 · Miquel Markets
+</footer>
+
+<div id="tvOverlay">
+<div id="tvModal">
+<div id="tvModalHeader">
+<div>
+<h3 id="tvModalTitle">Ticker</h3>
+<span>Gráfico semanal</span>
+</div>
+<button id="tvClose" aria-label="Cerrar">&times;</button>
+</div>
+<div id="tv_chart_container"></div>
+</div>
+</div>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+// ================= Selector de sistema =================
+const tabSwitch = document.getElementById('tabSwitch');
+const tabBtns = tabSwitch.querySelectorAll('.tab-btn');
+const views = { octo: document.getElementById('view-octo'), f4: document.getElementById('view-f4') };
+
+function setSystem(sys){
+Object.values(views).forEach(v => v.classList.remove('active'));
+views[sys].classList.add('active');
+tabBtns.forEach(b => {
+const isActive = b.dataset.system === sys;
+b.classList.toggle('active', isActive);
+b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+});
+tabSwitch.classList.toggle('pos-f4', sys === 'f4');
+tabSwitch.classList.toggle('pos-octo', sys === 'octo');
+document.documentElement.classList.toggle('sys-f4', sys === 'f4');
+}
+
+tabBtns.forEach(b => b.addEventListener('click', () => setSystem(b.dataset.system)));
+
+// ================= OCTOMOMENTUM: Cartera (posiciones abiertas) =================
+const PORTFOLIO_OCTO = [
+{t:"STX", entry:"17/04/2026", pEntry:500.08, pNow:1061.33, pct:112.23, sell:false},
+{t:"MRVL", entry:"17/04/2026", pEntry:129.97, pNow:321.68, pct:147.50, sell:false},
+{t:"GEV", entry:"17/04/2026", pEntry:998.00, pNow:1098.17, pct:10.04, sell:false},
+{t:"TER", entry:"17/04/2026", pEntry:365.94, pNow:429.61, pct:17.40, sell:false},
+{t:"KEYS", entry:"17/04/2026", pEntry:322.56, pNow:365.11, pct:13.19, sell:false},
+{t:"VRT", entry:"17/04/2026", pEntry:294.98, pNow:331.33, pct:12.32, sell:false},
+{t:"GLW", entry:"17/04/2026", pEntry:169.65, pNow:191.83, pct:13.07, sell:false},
+{t:"APA", entry:"17/04/2026", pEntry:39.63, pNow:32.79, pct:-17.26, sell:false},
+];
+
+function renderPortfolio(list, elId){
+const body = document.getElementById(elId);
+list.forEach(r => {
+const tr = document.createElement('tr');
+const pctClass = r.pct >= 0 ? 'pct-pos' : 'pct-neg';
+tr.innerHTML = `
+<td><span class="ticker" data-ticker="${r.t}">${r.t}</span></td>
+<td>${r.entry}</td>
+<td>${r.pEntry.toFixed(2)}</td>
+<td>${r.pNow.toFixed(2)}</td>
+<td class="${pctClass}">${r.pct >= 0 ? '+' : ''}${r.pct.toFixed(2)}%</td>
+<td>${r.sell ? '<span class="badge warn">VENDER</span>' : '<span class="badge ok">Mantener</span>'}</td>
+`;
+body.appendChild(tr);
+});
+}
+renderPortfolio(PORTFOLIO_OCTO, 'portfolioBodyOcto');
+
+// ================= OCTOMOMENTUM: Candidatos con señal de compra =================
+// Solo se incluyen tickers con Buy=1 en el screener (no distanciados de la media).
+// Excluidos por no cumplir la señal de compra (Sell / demasiado distanciados): MU, INTC, WDC, AMD.
+// MRVL y STX se excluyen porque ya están en cartera.
+const DATA_OCTO = [
+{t:"HUM", n:"Humana", d:"18/06/2026", p:366.76, roc:206.24, dist:30.44},
+{t:"ON", n:"ON Semiconductor Corporation (ON)", d:"18/06/2026", p:119.74, roc:192.54, dist:26.05},
+{t:"HPE", n:"Hewlett Packard Enterprise", d:"18/06/2026", p:47.13, roc:191.53, dist:33.78},
+{t:"DDOG", n:"Datadog Inc (DDOG)", d:"18/06/2026", p:223.00, roc:185.28, dist:26.10},
+{t:"LRCX", n:"Lam Research Corp (LRCX)", d:"18/06/2026", p:393.00, roc:179.91, dist:31.26},
+{t:"QCOM", n:"Qualcomm Incorporated (QCOM)", d:"18/06/2026", p:227.01, roc:179.03, dist:22.13},
+{t:"FTNT", n:"Fortinet Inc (FTNT)", d:"18/06/2026", p:146.28, roc:177.24, dist:29.10},
+{t:"AMAT", n:"Applied Materials Inc (AMAT)", d:"18/06/2026", p:614.04, roc:176.21, dist:33.42},
+{t:"CNC", n:"Centene", d:"18/06/2026", p:61.66, roc:175.62, dist:21.01},
+{t:"PANW", n:"Palo Alto Networks", d:"18/06/2026", p:285.89, roc:175.17, dist:27.74},
+{t:"CRWD", n:"Crowdstrike Holdings Inc (CRWD)", d:"18/06/2026", p:679.02, roc:170.13, dist:23.91},
+{t:"TXN", n:"Texas Instruments Incorporated (TXN)", d:"18/06/2026", p:320.67, roc:164.56, dist:21.87},
+{t:"NXPI", n:"NXP", d:"18/06/2026", p:314.29, roc:161.55, dist:18.37},
+{t:"NTAP", n:"NetApp Inc (NTAP)", d:"18/06/2026", p:159.71, roc:154.53, dist:23.46},
+{t:"MCHP", n:"Microchip Technology Inc (MCHP)", d:"18/06/2026", p:99.38, roc:151.49, dist:17.15},
+{t:"CSCO", n:"Cisco Systems Inc (CSCO)", d:"18/06/2026", p:119.68, roc:151.46, dist:19.89},
+{t:"NWL", n:"Newell Brands Inc (NWL)", d:"18/06/2026", p:5.10, roc:150.44, dist:18.77},
+{t:"URI", n:"United Rentals", d:"18/06/2026", p:1083.46, roc:148.00, dist:16.40},
+{t:"GNRC", n:"Generac", d:"18/06/2026", p:285.85, roc:147.28, dist:19.61},
+{t:"OKTA", n:"Okta Inc (OKTA)", d:"18/06/2026", p:118.07, roc:147.24, dist:24.01},
+{t:"AAL", n:"American Airlines Group (AAL)", d:"18/06/2026", p:15.96, roc:147.23, dist:17.47},
+{t:"ENPH", n:"Enphase Energy Inc (ENPH)", d:"18/06/2026", p:51.22, roc:146.68, dist:12.34},
+{t:"ASML", n:"ASML ADR", d:"18/06/2026", p:1917.69, roc:145.59, dist:21.77},
+{t:"UNH", n:"UnitedHealth", d:"18/06/2026", p:403.33, roc:145.47, dist:14.87},
+{t:"DVA", n:"DaVita", d:"18/06/2026", p:209.31, roc:143.78, dist:20.70},
+];
+
+function renderCandidates(list, elId, scoreLabelKey, topN){
+const tbody = document.getElementById(elId);
+list.forEach((r, i) => {
+const tr = document.createElement('tr');
+if (i < topN) tr.className = 'topN';
+const score = r[scoreLabelKey];
+const scoreClass = score >= 0 ? 'rsc-pos' : 'rsc-neg';
+tr.innerHTML = `
+<td><span class="ticker" data-ticker="${r.t}">${r.t}</span>${i < topN ? `<span class="badge">TOP ${topN}</span>` : ''}</td>
+<td>${r.n}</td>
+<td>${r.d}</td>
+<td>${r.p.toFixed(2)}</td>
+<td class="${scoreClass}">${score.toFixed(2)}</td>
+<td>${r.dist.toFixed(2)}</td>
+`;
+tbody.appendChild(tr);
+});
+}
+renderCandidates(DATA_OCTO, 'tbodyOcto', 'roc', 8);
+
+// ================= FANTASTIC 4: Cartera (posiciones abiertas) =================
+const PORTFOLIO_F4 = [
+{t:"TER", entry:"17/04/2026", pEntry:365.94, pNow:429.61, pct:17.40, sell:false},
+{t:"GLW", entry:"17/04/2026", pEntry:169.65, pNow:191.83, pct:13.07, sell:false},
+{t:"GNRC", entry:"08/05/2026", pEntry:259.91, pNow:285.85, pct:9.98, sell:false},
+{t:"AKAM", entry:"15/05/2026", pEntry:149.00, pNow:125.03, pct:-16.09, sell:false},
+];
+renderPortfolio(PORTFOLIO_F4, 'portfolioBodyF4');
+
+// ================= FANTASTIC 4: Candidatos con señal de compra =================
+const DATA_F4 = [
+{t:"MRNA", n:"Moderna Inc (MRNA)", d:"18/06/2026", p:63.80, rsc:5.54, dist:23.13},
+{t:"HWM", n:"Howmet", d:"18/06/2026", p:278.20, rsc:1.71, dist:11.00},
+{t:"APH", n:"Amphenol", d:"18/06/2026", p:165.52, rsc:1.52, dist:14.76},
+{t:"LUV", n:"Southwest Airlines", d:"18/06/2026", p:48.08, rsc:1.40, dist:11.50},
+{t:"AAL", n:"American Airlines Group (AAL)", d:"18/06/2026", p:15.96, rsc:1.09, dist:17.47},
+{t:"IEX", n:"IDEX Corporation", d:"18/06/2026", p:225.44, rsc:1.00, dist:9.02},
+{t:"GE", n:"General Electric", d:"18/06/2026", p:358.80, rsc:0.92, dist:13.43},
+{t:"UAL", n:"United Airlines Holdings Inc (UAL)", d:"18/06/2026", p:118.60, rsc:0.70, dist:13.40},
+{t:"WSM", n:"Williams-Sonoma", d:"18/06/2026", p:227.05, rsc:0.68, dist:13.54},
+{t:"SWK", n:"Stanley Black Decker", d:"18/06/2026", p:86.84, rsc:0.45, dist:9.85},
+{t:"NWL", n:"Newell Brands Inc (NWL)", d:"18/06/2026", p:5.10, rsc:0.15, dist:18.77},
+{t:"KMX", n:"CarMax", d:"18/06/2026", p:52.03, rsc:-0.04, dist:16.67},
+{t:"PKG", n:"Packaging America", d:"18/06/2026", p:231.72, rsc:-0.12, dist:5.27},
+{t:"CCL", n:"Carnival Corp", d:"18/06/2026", p:31.01, rsc:-0.23, dist:10.11},
+{t:"DRI", n:"Darden Restaurants", d:"18/06/2026", p:213.99, rsc:-0.28, dist:5.50},
+{t:"RCL", n:"Royal Caribbean Cruises", d:"18/06/2026", p:314.13, rsc:-0.52, dist:9.69},
+{t:"APO", n:"Apollo Global Management A", d:"18/06/2026", p:137.58, rsc:-0.56, dist:8.70},
+];
+renderCandidates(DATA_F4, 'tbodyF4', 'rsc', 4);
+
+// ================= Modal TradingView =================
+const tvOverlay = document.getElementById('tvOverlay');
+const tvTitle = document.getElementById('tvModalTitle');
+let tvWidget = null;
+
+function openTvModal(ticker){
+tvTitle.textContent = ticker;
+tvOverlay.classList.add('open');
+document.getElementById('tv_chart_container').innerHTML = '';
+tvWidget = new TradingView.widget({
+autosize: true,
+symbol: ticker,
+interval: "W",
+timezone: "Etc/UTC",
+theme: "dark",
+style: "1",
+locale: "es",
+toolbar_bg: "#161b22",
+enable_publishing: false,
+hide_top_toolbar: false,
+withdateranges: true,
+studies: [
+{"id": "MAWeighted@tv-basicstudies", "inputs": {"length": 30}}
+],
+container_id: "tv_chart_container"
+});
+}
+
+function closeTvModal(){
+tvOverlay.classList.remove('open');
+document.getElementById('tv_chart_container').innerHTML = '';
+tvWidget = null;
+}
+
+document.addEventListener('click', (e) => {
+const el = e.target.closest('.ticker');
+if (el) openTvModal(el.dataset.ticker);
+});
+document.getElementById('tvClose').addEventListener('click', closeTvModal);
+tvOverlay.addEventListener('click', (e) => { if (e.target === tvOverlay) closeTvModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTvModal(); });
+</script>
+
+</body>
+</html>
