@@ -466,6 +466,12 @@ b.setAttribute('aria-selected', isActive ? 'true' : 'false');
 tabSwitch.classList.toggle('pos-f4', sys === 'f4');
 tabSwitch.classList.toggle('pos-octo', sys === 'octo');
 document.documentElement.classList.toggle('sys-f4', sys === 'f4');
+if (typeof Chart !== 'undefined') {
+requestAnimationFrame(() => {
+const c = Chart.getChart(sys === 'f4' ? 'chartYtdF4' : 'chartYtdOcto');
+if (c) c.resize();
+});
+}
 }
 
 tabBtns.forEach(b => b.addEventListener('click', () => setSystem(b.dataset.system)));
@@ -657,10 +663,4 @@ const el = e.target.closest('.ticker');
 if (el) openTvModal(el.dataset.ticker);
 });
 document.getElementById('tvClose').addEventListener('click', closeTvModal);
-tvOverlay.addEventListener('click', (e) => { if (e.target === tvOverlay) closeTvModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTvModal(); });
-</script>
-
-</body>
-</html>
-     
+tvOverlay.addEventListener('click', (e) => { if (e.t
