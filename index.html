@@ -223,6 +223,20 @@ background:none; border:none; color:var(--muted); font-size:20px; cursor:pointer
 
 <main>
 
+<section class="ytd-card">
+<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
+<div class="ytd-top">
+<div class="ytd-stat"><div class="label">Octomomentum YTD 2026</div><div class="val pos">+32,0%</div></div>
+<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
+<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+23,9 p.p.</div></div>
+</div>
+<div class="ytd-chart-wrap"><canvas id="chartYtdOcto"></canvas></div>
+<div class="note" style="margin-top:14px; margin-bottom:0;">
+Rentabilidad mensual de <b>Octomomentum</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
+incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
+</div>
+</section>
+
 <section class="hero">
 <div class="hero-top">
 <div>
@@ -253,20 +267,6 @@ años: 2020 (+146,2%), 2003 (+70,4%) y 2024 (+66,3%). Peores años: 2015 (-13,6%
 Ganancia media en operaciones ganadoras: +29,16% · pérdida media en perdedoras: -9,03%. Estacionalmente,
 <b>septiembre</b> es el mes más fuerte de media (+4,2%), seguido de noviembre (+3,5%) y agosto (+3,3%); marzo
 (+0,3%) y abril (+1,0%) son los más débiles.
-</div>
-</section>
-
-<section class="ytd-card">
-<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
-<div class="ytd-top">
-<div class="ytd-stat"><div class="label">Octomomentum YTD 2026</div><div class="val pos">+32,0%</div></div>
-<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
-<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+23,9 p.p.</div></div>
-</div>
-<div class="ytd-chart-wrap"><canvas id="chartYtdOcto"></canvas></div>
-<div class="note" style="margin-top:14px; margin-bottom:0;">
-Rentabilidad mensual de <b>Octomomentum</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
-incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
 </div>
 </section>
 
@@ -332,6 +332,20 @@ un ticker para ver su gráfico semanal.
 
 <main>
 
+<section class="ytd-card">
+<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
+<div class="ytd-top">
+<div class="ytd-stat"><div class="label">Fantastic 4 YTD 2026</div><div class="val pos">+26,1%</div></div>
+<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
+<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+18,0 p.p.</div></div>
+</div>
+<div class="ytd-chart-wrap"><canvas id="chartYtdF4"></canvas></div>
+<div class="note" style="margin-top:14px; margin-bottom:0;">
+Rentabilidad mensual de <b>Fantastic 4</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
+incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
+</div>
+</section>
+
 <section class="hero">
 <div class="hero-top">
 <div>
@@ -361,20 +375,6 @@ De los 27 años analizados, <b>21 cerraron en positivo</b> y 6 en negativo (2000
 años: 2013 (+99,1%), 2006 (+93,7%) y 2003 (+87,3%). Ganancia media en operaciones ganadoras: +21,93% · pérdida media
 en perdedoras: -7,16%. Estacionalmente, <b>noviembre</b> es el mes más fuerte de media (+4,0%), seguido de julio
 (+3,4%) y enero (+3,1%); diciembre (+0,7%) y abril (+1,1%) son los más débiles.
-</div>
-</section>
-
-<section class="ytd-card">
-<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
-<div class="ytd-top">
-<div class="ytd-stat"><div class="label">Fantastic 4 YTD 2026</div><div class="val pos">+26,1%</div></div>
-<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
-<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+18,0 p.p.</div></div>
-</div>
-<div class="ytd-chart-wrap"><canvas id="chartYtdF4"></canvas></div>
-<div class="note" style="margin-top:14px; margin-bottom:0;">
-Rentabilidad mensual de <b>Fantastic 4</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
-incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
 </div>
 </section>
 
@@ -599,12 +599,12 @@ function renderYtdChart(canvasId, sysData, sysLabel, sysColor){
 const ctx = document.getElementById(canvasId);
 if (!ctx || typeof Chart === 'undefined') return;
 new Chart(ctx, {
-type: 'bar',
+type: 'line',
 data: {
 labels: MONTHS_2026,
 datasets: [
-{ label: sysLabel, data: sysData, backgroundColor: sysColor, borderRadius: 4, maxBarThickness: 28 },
-{ label: 'S&P 500', data: SP500_2026, backgroundColor: 'rgba(130,148,171,.55)', borderRadius: 4, maxBarThickness: 28 }
+{ label: sysLabel, data: sysData, borderColor: sysColor, backgroundColor: sysColor, pointBackgroundColor: sysColor, pointBorderColor: sysColor, tension: .3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: false },
+{ label: 'S&P 500', data: SP500_2026, borderColor: 'rgba(130,148,171,.85)', backgroundColor: 'rgba(130,148,171,.85)', pointBackgroundColor: 'rgba(130,148,171,.85)', pointBorderColor: 'rgba(130,148,171,.85)', tension: .3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: false, borderDash: [4,3] }
 ]
 },
 options: {
