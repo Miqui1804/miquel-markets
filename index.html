@@ -469,7 +469,7 @@ document.documentElement.classList.toggle('sys-f4', sys === 'f4');
 if (typeof Chart !== 'undefined') {
 requestAnimationFrame(() => {
 const c = Chart.getChart(sys === 'f4' ? 'chartYtdF4' : 'chartYtdOcto');
-if (c) c.resize();
+if (c) { c.resize(); c.update(); }
 });
 }
 }
