@@ -454,6 +454,7 @@ Generado automáticamente cada sábado a partir de AmiBroker · Octomomentum / F
 const tabSwitch = document.getElementById('tabSwitch');
 const tabBtns = tabSwitch.querySelectorAll('.tab-btn');
 const views = { octo: document.getElementById('view-octo'), f4: document.getElementById('view-f4') };
+let f4ChartCreated = false;
 
 function setSystem(sys){
 Object.values(views).forEach(v => v.classList.remove('active'));
@@ -467,10 +468,15 @@ tabSwitch.classList.toggle('pos-f4', sys === 'f4');
 tabSwitch.classList.toggle('pos-octo', sys === 'octo');
 document.documentElement.classList.toggle('sys-f4', sys === 'f4');
 if (typeof Chart !== 'undefined') {
+if (sys === 'f4' && !f4ChartCreated) {
+f4ChartCreated = true;
+requestAnimationFrame(() => renderYtdChart('chartYtdF4', F4_2026, 'Fantastic 4', '#d29922'));
+} else {
 requestAnimationFrame(() => {
 const c = Chart.getChart(sys === 'f4' ? 'chartYtdF4' : 'chartYtdOcto');
 if (c) { c.resize(); c.update(); }
 });
+}
 }
 }
 
@@ -622,7 +628,6 @@ y: { ticks: { color: '#8294ab', callback: (v) => v + '%' }, grid: { color: 'rgba
 });
 }
 renderYtdChart('chartYtdOcto', OCTO_2026, 'Octomomentum', '#3fb950');
-renderYtdChart('chartYtdF4', F4_2026, 'Fantastic 4', '#d29922');
 
 // ================= Modal TradingView =================
 const tvOverlay = document.getElementById('tvOverlay');
