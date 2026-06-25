@@ -470,7 +470,7 @@ document.documentElement.classList.toggle('sys-f4', sys === 'f4');
 if (typeof Chart !== 'undefined') {
 if (sys === 'f4' && !f4ChartCreated) {
 f4ChartCreated = true;
-requestAnimationFrame(() => renderYtdChart('chartYtdF4', F4_2026, 'Fantastic 4', '#d29922'));
+requestAnimationFrame(() => renderYtdChart('chartYtdF4', F4_CUM, 'Fantastic 4', '#d29922'));
 } else {
 requestAnimationFrame(() => {
 const c = Chart.getChart(sys === 'f4' ? 'chartYtdF4' : 'chartYtdOcto');
@@ -595,11 +595,19 @@ const DATA_F4 = [
 ];
 renderCandidates(DATA_F4, 'tbodyF4', 'rsc', 4);
 
-// ================= Rentabilidad 2026 vs S&P 500 =================
+// ================= Rentabilidad 2026 vs S&P 500 (acumulado desde enero) =================
 const MONTHS_2026 = ['Ene','Feb','Mar','Abr','May','Jun'];
-const SP500_2026 = [0.89, -0.55, -4.34, 9.95, 3.30, -1.40]; // S&P 500 (total return), junio parcial
+const SP500_2026 = [0.89, -0.55, -4.34, 9.95, 3.30, -1.40]; // S&P 500 (total return mensual), junio parcial
 const OCTO_2026 = [-1.6, 10.1, -11.4, 11.1, 6.1, 16.6];
 const F4_2026 = [-4.0, 5.3, -7.6, 13.4, 12.3, 6.1];
+
+function cumulativeReturns(monthly){
+let cum = 1;
+return monthly.map(m => { cum *= (1 + m / 100); return Math.round((cum - 1) * 1000) / 10; });
+}
+const SP500_CUM = cumulativeReturns(SP500_2026);
+const OCTO_CUM = cumulativeReturns(OCTO_2026);
+const F4_CUM = cumulativeReturns(F4_2026);
 
 function renderYtdChart(canvasId, sysData, sysLabel, sysColor){
 const ctx = document.getElementById(canvasId);
@@ -610,7 +618,7 @@ data: {
 labels: MONTHS_2026,
 datasets: [
 { label: sysLabel, data: sysData, borderColor: sysColor, backgroundColor: sysColor, pointBackgroundColor: sysColor, pointBorderColor: sysColor, tension: .3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: false },
-{ label: 'S&P 500', data: SP500_2026, borderColor: 'rgba(130,148,171,.85)', backgroundColor: 'rgba(130,148,171,.85)', pointBackgroundColor: 'rgba(130,148,171,.85)', pointBorderColor: 'rgba(130,148,171,.85)', tension: .3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: false, borderDash: [4,3] }
+{ label: 'S&P 500', data: SP500_CUM, borderColor: 'rgba(130,148,171,.85)', backgroundColor: 'rgba(130,148,171,.85)', pointBackgroundColor: 'rgba(130,148,171,.85)', pointBorderColor: 'rgba(130,148,171,.85)', tension: .3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: false, borderDash: [4,3] }
 ]
 },
 options: {
@@ -627,7 +635,7 @@ y: { ticks: { color: '#8294ab', callback: (v) => v + '%' }, grid: { color: 'rgba
 }
 });
 }
-renderYtdChart('chartYtdOcto', OCTO_2026, 'Octomomentum', '#3fb950');
+renderYtdChart('chartYtdOcto', OCTO_CUM, 'Octomomentum', '#3fb950');
 
 // ================= Modal TradingView =================
 const tvOverlay = document.getElementById('tvOverlay');
