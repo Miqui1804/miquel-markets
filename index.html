@@ -103,6 +103,16 @@ border-top:2px solid var(--sys-accent);
 .hero-note{position:relative; z-index:1; font-size:12.5px; color:var(--muted); line-height:1.6; border-top:1px solid var(--border); padding-top:16px;}
 .hero-note b{color:var(--text);}
 
+/* ---- YTD vs S&P 500 ---- */
+.ytd-card{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:24px 26px 22px; margin-bottom:28px;}
+.ytd-top{display:flex; flex-wrap:wrap; gap:22px; margin-bottom:20px;}
+.ytd-stat{flex:1; min-width:150px; background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:12px; padding:14px 16px;}
+.ytd-stat .label{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;}
+.ytd-stat .val{font-size:25px; font-weight:800; color:var(--text);}
+.ytd-stat .val.pos{color:var(--green);}
+.ytd-stat .val.neg{color:var(--red);}
+.ytd-chart-wrap{height:260px; position:relative;}
+
 h2.section-title{
 font-size:13px; margin:0 0 14px; color:var(--text); text-transform:uppercase; letter-spacing:.06em;
 display:flex; align-items:center; gap:10px; font-weight:700;
@@ -246,6 +256,20 @@ Ganancia media en operaciones ganadoras: +29,16% · pérdida media en perdedoras
 </div>
 </section>
 
+<section class="ytd-card">
+<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
+<div class="ytd-top">
+<div class="ytd-stat"><div class="label">Octomomentum YTD 2026</div><div class="val pos">+32,0%</div></div>
+<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
+<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+23,9 p.p.</div></div>
+</div>
+<div class="ytd-chart-wrap"><canvas id="chartYtdOcto"></canvas></div>
+<div class="note" style="margin-top:14px; margin-bottom:0;">
+Rentabilidad mensual de <b>Octomomentum</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
+incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
+</div>
+</section>
+
 <section>
 <h2 class="section-title">Cartera actual (posiciones abiertas)</h2>
 <div class="note">
@@ -340,6 +364,20 @@ en perdedoras: -7,16%. Estacionalmente, <b>noviembre</b> es el mes más fuerte d
 </div>
 </section>
 
+<section class="ytd-card">
+<h2 class="section-title">Rentabilidad 2026 vs S&amp;P 500</h2>
+<div class="ytd-top">
+<div class="ytd-stat"><div class="label">Fantastic 4 YTD 2026</div><div class="val pos">+26,1%</div></div>
+<div class="ytd-stat"><div class="label">S&amp;P 500 YTD 2026</div><div class="val pos">+8,1%</div></div>
+<div class="ytd-stat"><div class="label">Diferencia (alpha)</div><div class="val pos">+18,0 p.p.</div></div>
+</div>
+<div class="ytd-chart-wrap"><canvas id="chartYtdF4"></canvas></div>
+<div class="note" style="margin-top:14px; margin-bottom:0;">
+Rentabilidad mensual de <b>Fantastic 4</b> en 2026 comparada con el <b>S&amp;P 500</b> (rentabilidad total, dividendos
+incluidos). El dato de junio es parcial, hasta la fecha de la última actualización.
+</div>
+</section>
+
 <section>
 <h2 class="section-title">Cartera actual (posiciones abiertas)</h2>
 <div class="note">
@@ -410,6 +448,7 @@ Generado automáticamente cada sábado a partir de AmiBroker · Octomomentum / F
 </div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script>
 // ================= Selector de sistema =================
 const tabSwitch = document.getElementById('tabSwitch');
@@ -543,6 +582,41 @@ const DATA_F4 = [
 {t:"APO", n:"Apollo Global Management A", d:"18/06/2026", p:137.58, rsc:-0.56, dist:8.70},
 ];
 renderCandidates(DATA_F4, 'tbodyF4', 'rsc', 4);
+
+// ================= Rentabilidad 2026 vs S&P 500 =================
+const MONTHS_2026 = ['Ene','Feb','Mar','Abr','May','Jun'];
+const SP500_2026 = [0.89, -0.55, -4.34, 9.95, 3.30, -1.40]; // S&P 500 (total return), junio parcial
+const OCTO_2026 = [-1.6, 10.1, -11.4, 11.1, 6.1, 16.6];
+const F4_2026 = [-4.0, 5.3, -7.6, 13.4, 12.3, 6.1];
+
+function renderYtdChart(canvasId, sysData, sysLabel, sysColor){
+const ctx = document.getElementById(canvasId);
+if (!ctx || typeof Chart === 'undefined') return;
+new Chart(ctx, {
+type: 'bar',
+data: {
+labels: MONTHS_2026,
+datasets: [
+{ label: sysLabel, data: sysData, backgroundColor: sysColor, borderRadius: 4, maxBarThickness: 28 },
+{ label: 'S&P 500', data: SP500_2026, backgroundColor: 'rgba(130,148,171,.55)', borderRadius: 4, maxBarThickness: 28 }
+]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: { labels: { color: '#eef2f7' } },
+tooltip: { callbacks: { label: (c) => `${c.dataset.label}: ${c.raw >= 0 ? '+' : ''}${c.raw.toFixed(1)}%` } }
+},
+scales: {
+x: { ticks: { color: '#8294ab' }, grid: { color: 'rgba(255,255,255,.05)' } },
+y: { ticks: { color: '#8294ab', callback: (v) => v + '%' }, grid: { color: 'rgba(255,255,255,.06)' } }
+}
+}
+});
+}
+renderYtdChart('chartYtdOcto', OCTO_2026, 'Octomomentum', '#3fb950');
+renderYtdChart('chartYtdF4', F4_2026, 'Fantastic 4', '#d29922');
 
 // ================= Modal TradingView =================
 const tvOverlay = document.getElementById('tvOverlay');
