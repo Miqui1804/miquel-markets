@@ -663,4 +663,9 @@ const el = e.target.closest('.ticker');
 if (el) openTvModal(el.dataset.ticker);
 });
 document.getElementById('tvClose').addEventListener('click', closeTvModal);
-tvOverlay.addEventListener('click', (e) => { if (e.t
+tvOverlay.addEventListener('click', (e) => { if (e.target === tvOverlay) closeTvModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTvModal(); });
+</script>
+
+</body>
+</html>
