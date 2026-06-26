@@ -111,12 +111,16 @@
 
   footer{border-top:1px solid var(--line);padding:38px 0;text-align:center;color:var(--muted);font-size:.86rem;margin-top:30px}
   footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
   .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+  .reveal.r-left{transform:translateX(-32px)}.reveal.r-right{transform:translateX(32px)}
+  .reveal.r-left.in,.reveal.r-right.in{transform:none}
+  #scrollbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--green));box-shadow:0 0 12px rgba(245,196,81,.5);z-index:200;transition:width .12s linear}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}#scrollbar{display:none}}
 </style>
 </head>
 <body>
+<div id="scrollbar"></div>
 
 <header class="nav">
   <div class="wrap nav-in">
@@ -352,9 +356,18 @@ function buildChart(id,sys,color,label){
     scales:{x:{grid:{display:false},border:{display:false}},y:{grid:{color:'rgba(255,255,255,.05)'},border:{display:false},ticks:{callback:v=>v+'%'}}}}});
 }
 
-/* ====== INIT + REVEAL ====== */
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
+/* ====== INIT + REVEAL (scroll animations escalonadas) ====== */
+(function(){
+  document.querySelectorAll('.card,.block-head,.block-sub,.status-bar,.note,.sys-head,.eyebrow,.sec-sub').forEach(el=>el.classList.add('reveal'));
+  const groups=[['.strip',':scope > .cell'],['.metrics',':scope > .metric'],['#view-octo table tbody','tr'],['#view-f4 table tbody','tr']];
+  groups.forEach(([p,c])=>document.querySelectorAll(p).forEach(g=>{
+    [...g.querySelectorAll(c)].forEach((el,i)=>{el.classList.add('reveal');el.dataset.stagger=Math.min(i,8);});
+  }));
+})();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const d=(+e.target.dataset.stagger||0)*55;e.target.style.transitionDelay=d+'ms';e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -7% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const sb=document.getElementById('scrollbar');
+addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
 buildChart('chartOcto',[5.5,9.2,7.0,18.4,25.1,32.0],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 </script>
