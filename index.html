@@ -159,9 +159,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="32" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="23.3" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="8.1" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="23.9" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="15.2" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -254,30 +254,23 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 18/06/2026 (pendiente de actualizar) */
+/* Octomomentum: 27/06/2026 */
 const POS_OCTO=[
-["STX","17/04/2026","500.08","1061.33",112.23],["MRVL","17/04/2026","129.97","321.68",147.50],
-["GEV","17/04/2026","998.00","1098.17",10.04],["TER","17/04/2026","365.94","429.61",17.40],
-["KEYS","17/04/2026","322.56","365.11",13.19],["VRT","17/04/2026","294.98","331.33",12.32],
-["GLW","17/04/2026","169.65","191.83",13.07],["APA","17/04/2026","39.63","32.79",-17.26]];
+["MRVL","17/04/2026","129.97","266.77",105.26],["STX","17/04/2026","500.08","899.90",79.95],
+["GLW","17/04/2026","169.65","221.05",30.30],["TER","17/04/2026","365.94","436.86",19.38],
+["GEV","17/04/2026","998.00","1045.17",4.73],["VRT","17/04/2026","294.98","303.95",3.04],
+["KEYS","17/04/2026","322.56","328.66",1.89],["APA","17/04/2026","39.63","33.01",-16.69]];
 /* Fantastic 4: 27/06/2026 */
 const POS_F4=[
 ["GLW","17/04/2026","169.65","221.05",30.30],["TER","17/04/2026","365.94","436.86",19.38],
 ["GNRC","08/05/2026","259.91","278.62",7.20],["AKAM","15/05/2026","149.00","113.29",-23.97,1]];
 const CAND_OCTO=[
-["HUM",1,"Humana","366.76","206.24","30.44"],["ON",1,"ON Semiconductor","119.74","192.54","26.05"],
-["HPE",1,"Hewlett Packard Enterprise","47.13","191.53","33.78"],["DDOG",1,"Datadog","223.00","185.28","26.10"],
-["LRCX",1,"Lam Research","393.00","179.91","31.26"],["QCOM",1,"Qualcomm","227.01","179.03","22.13"],
-["FTNT",1,"Fortinet","146.28","177.24","29.10"],["AMAT",1,"Applied Materials","614.04","176.21","33.42"],
-["CNC",0,"Centene","61.66","175.62","21.01"],["PANW",0,"Palo Alto Networks","285.89","175.17","27.74"],
-["CRWD",0,"CrowdStrike","679.02","170.13","23.91"],["TXN",0,"Texas Instruments","320.67","164.56","21.87"],
-["NXPI",0,"NXP","314.29","161.55","18.37"],["NTAP",0,"NetApp","159.71","154.53","23.46"],
-["MCHP",0,"Microchip","99.38","151.49","17.15"],["CSCO",0,"Cisco Systems","119.68","151.46","19.89"],
-["NWL",0,"Newell Brands","5.10","150.44","18.77"],["URI",0,"United Rentals","1083.46","148.00","16.40"],
-["GNRC",0,"Generac","285.85","147.28","19.61"],["OKTA",0,"Okta","118.07","147.24","24.01"],
-["AAL",0,"American Airlines","15.96","147.23","17.47"],["ENPH",0,"Enphase Energy","51.22","146.68","12.34"],
-["ASML",0,"ASML ADR","1917.69","145.59","21.77"],["UNH",0,"UnitedHealth","403.33","145.47","14.87"],
-["DVA",0,"DaVita","209.31","143.78","20.70"]];
+["DDOG",1,"Datadog","239.77","227.55","28.87"],["AMD",1,"Advanced Micro Devices","521.58","212.86","31.89"],
+["INTC",1,"Intel","128.32","205.71","33.68"],["HUM",1,"Humana","383.84","199.76","31.29"],
+["OKTA",1,"Okta","124.28","197.49","25.88"],["FTNT",1,"Fortinet","151.35","197.33","29.09"],
+["PANW",1,"Palo Alto Networks","304.20","195.34","29.71"],["CRWD",1,"CrowdStrike","701.09","184.97","24.29"],
+["STX",0,"Seagate Technology","899.90","178.86","27.92"],["CNC",0,"Centene","65.73","176.22","23.96"],
+["HPE",0,"Hewlett Packard Enterprise","43.71","175.61","26.17"],["WDC",0,"Western Digital","586.45","170.76","28.82"]];
 /* Fantastic 4 — screener 26/06/2026. d[1]=TOP (entra), d[6]=excluido por distancia > 33% */
 const CAND_F4=[
 ["MU",0,"Micron Technology","1132.33","19.13","42.74",1],["INTC",0,"Intel","128.32","13.41","33.68",1],
@@ -331,7 +324,7 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[5.5,9.2,7.0,18.4,25.1,32.0],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.3],'#27e0a3','Octomomentum');charted.octo=true;}
 if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.2],'#f5c451','Fantastic 4');charted.f4=true;}
 animateVisibleCounters();
 }
@@ -375,7 +368,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[5.5,9.2,7.0,18.4,25.1,32.0],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.3],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 </script>
 </body>
