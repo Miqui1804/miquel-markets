@@ -140,7 +140,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 27/06/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 29/06/2026 · Señales semanales</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
 <div id="sistemas" class="switch reveal">
@@ -202,9 +202,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="21.2" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="28.7" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="8.1" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="13.1" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="20.6" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -223,14 +223,14 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <div class="metric"><div class="v" data-count="10.83" data-decimals="2">0</div><div class="k">Ulcer Index</div></div>
 </div>
 
-<div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-warn">AKAM vende · 1 hueco</span></div>
-<p class="block-sub">Resultado del backtest de AmiBroker. <b style="color:var(--gold)">AKAM</b> muestra señal de venta y se vende el lunes en apertura; las otras 3 posiciones se mantienen. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
+<div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-full">4 / 4 completa</span></div>
+<p class="block-sub">Resultado del backtest de AmiBroker. <b style="color:var(--gold)">AKAM</b> se vendió el lunes 29/06 en apertura y el sistema cubrió el hueco con <b style="color:var(--gold)">OKTA</b>. Ninguna de las 4 posiciones muestra señal de venta activa. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
 <div class="table-wrap"><table id="posF4"></table></div>
 
-<div class="status-bar" style="background:var(--gold-soft);border-color:rgba(245,196,81,.3)"><div class="ico" style="background:var(--gold);color:#1a1404">!</div><div class="txt" style="color:var(--txt)"><b style="color:var(--gold)">AKAM</b> activa señal de venta y sale el lunes en apertura. Queda <b style="color:var(--gold)">1 hueco</b> que el sistema cubre con <b style="color:var(--gold)">WDC</b>, el candidato de mayor RSC dentro de la distancia máxima a la media.</div></div>
+<div class="status-bar"><div class="ico">✓</div><div class="txt">AKAM salió el lunes 29/06 y entró <b>OKTA</b> (la que activó la ruptura del ratio). Cartera completa <b>4/4</b> — sin huecos disponibles esta semana.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Generado por el explorer de AmiBroker sobre la fórmula Fantastic 4, ordenado por RSC Mansfield. Con la salida de AKAM hay <b style="color:var(--gold)">1 hueco</b>: el sistema compra el candidato de mayor RSC cuya distancia a la media no supere el máximo (dismax−5 = 33%). MU e INTC tienen más RSC pero lo superan, por lo que entra <b style="color:var(--gold)">WDC</b> (marcado TOP).</p>
+<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: comprar exige además una ruptura del ratio acción/SP500 (máx. Donchian) y distancia a la media &lt; 33% (dismax−5). Los valores en gris superan esa distancia. Con la salida de AKAM, el sistema compró <b style="color:var(--gold)">OKTA</b> —la que activó la ruptura—, no la de mayor RSC del listado.</p>
 <div class="table-wrap"><table id="candF4"></table></div>
 </div>
 </section>
@@ -262,8 +262,8 @@ const POS_OCTO=[
 ["KEYS","17/04/2026","322.56","328.66",1.89],["APA","17/04/2026","39.63","33.01",-16.69]];
 /* Fantastic 4: 27/06/2026 */
 const POS_F4=[
-["GLW","17/04/2026","169.65","221.05",30.30],["TER","17/04/2026","365.94","436.86",19.38],
-["GNRC","08/05/2026","259.91","278.62",7.20],["AKAM","15/05/2026","149.00","113.29",-23.97,1]];
+["GLW","17/04/2026","169.65","249.635",47.15],["TER","17/04/2026","365.94","465.29",27.15],
+["GNRC","08/05/2026","259.91","281.76",8.41],["OKTA","29/06/2026","126.74","130.62",3.06]];
 const CAND_OCTO=[
 ["DDOG",1,"Datadog","239.77","227.55","28.87"],["AMD",1,"Advanced Micro Devices","521.58","212.86","31.89"],
 ["INTC",1,"Intel","128.32","205.71","33.68"],["HUM",1,"Humana","383.84","199.76","31.29"],
@@ -274,7 +274,7 @@ const CAND_OCTO=[
 /* Fantastic 4 — screener 26/06/2026. d[1]=TOP (entra), d[6]=excluido por distancia > 33% */
 const CAND_F4=[
 ["MU",0,"Micron Technology","1132.33","19.13","42.74",1],["INTC",0,"Intel","128.32","13.41","33.68",1],
-["WDC",1,"Western Digital","586.45","13.07","28.82"],["MRVL",0,"Marvell Technology","266.77","12.78","37.45",1],
+["WDC",0,"Western Digital","586.45","13.07","28.82"],["MRVL",0,"Marvell Technology","266.77","12.78","37.45",1],
 ["STX",0,"Seagate Technology","899.90","11.94","27.92"],["DD",0,"DuPont","137.22","11.31","57.24",1],
 ["AMD",0,"Advanced Micro Devices","521.58","9.55","31.89"],["AMAT",0,"Applied Materials","626.84","9.46","32.06"],
 ["GLW",0,"Corning","221.05","8.54","26.62"],["LRCX",0,"Lam Research","379.09","8.25","26.46"],
@@ -325,7 +325,7 @@ document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
 if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.3],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.2],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,28.7],'#f5c451','Fantastic 4');charted.f4=true;}
 animateVisibleCounters();
 }
 
