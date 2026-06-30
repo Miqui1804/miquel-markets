@@ -140,7 +140,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 29/06/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 30/06/2026 · Señales semanales</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
 <div id="sistemas" class="switch reveal">
@@ -159,9 +159,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="23.3" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="35.2" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="8.1" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="15.2" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="27.1" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -202,9 +202,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="28.7" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="33.2" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="8.1" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="20.6" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="25.1" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -254,16 +254,16 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 27/06/2026 */
+/* Octomomentum: 30/06/2026 */
 const POS_OCTO=[
-["MRVL","17/04/2026","129.97","266.77",105.26],["STX","17/04/2026","500.08","899.90",79.95],
-["GLW","17/04/2026","169.65","221.05",30.30],["TER","17/04/2026","365.94","436.86",19.38],
-["GEV","17/04/2026","998.00","1045.17",4.73],["VRT","17/04/2026","294.98","303.95",3.04],
-["KEYS","17/04/2026","322.56","328.66",1.89],["APA","17/04/2026","39.63","33.01",-16.69]];
+["MRVL","17/04/2026","129.97","297.80",129.13],["STX","17/04/2026","500.08","965.00",92.97],
+["GLW","17/04/2026","169.65","255.43",50.56],["TER","17/04/2026","365.94","483.98",32.26],
+["GEV","17/04/2026","998.00","1174.86",17.72],["VRT","17/04/2026","294.98","334.64",13.44],
+["KEYS","17/04/2026","322.56","350.25",8.58],["APA","17/04/2026","39.63","32.56",-17.84]];
 /* Fantastic 4: 27/06/2026 */
 const POS_F4=[
-["GLW","17/04/2026","169.65","249.635",47.15],["TER","17/04/2026","365.94","465.29",27.15],
-["GNRC","08/05/2026","259.91","281.76",8.41],["OKTA","29/06/2026","126.74","130.62",3.06]];
+["GLW","17/04/2026","169.65","255.43",50.56],["TER","17/04/2026","365.94","483.98",32.26],
+["GNRC","08/05/2026","259.91","292.81",12.66],["OKTA","29/06/2026","126.74","136.45",7.66]];
 const CAND_OCTO=[
 ["DDOG",1,"Datadog","239.77","227.55","28.87"],["AMD",1,"Advanced Micro Devices","521.58","212.86","31.89"],
 ["INTC",1,"Intel","128.32","205.71","33.68"],["HUM",1,"Humana","383.84","199.76","31.29"],
@@ -324,8 +324,8 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.3],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,28.7],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,35.2],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,33.2],'#f5c451','Fantastic 4');charted.f4=true;}
 animateVisibleCounters();
 }
 
@@ -368,7 +368,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.3],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,35.2],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 </script>
 </body>
