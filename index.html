@@ -187,7 +187,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <div class="status-bar"><div class="ico">✓</div><div class="txt">Cartera completa <b>8/8</b> — no hay huecos disponibles para nuevos candidatos esta semana.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Generado por el screener de AmiBroker sobre la fórmula Octomomentum (último cierre semanal), ordenado por ROC. Las <b style="color:var(--gold)">TOP 8</b> son las que el sistema compraría si hubiera huecos. Se excluyen valores demasiado alejados de su media.</p>
+<p class="block-sub">Generado por el screener de AmiBroker sobre la fórmula Octomomentum (último cierre semanal), ordenado por ROC. Las <b style="color:var(--gold)">TOP 8</b> son las que el sistema compraría si hubiera huecos. Se excluyen valores que no cumplen todos los criterios de entrada.</p>
 <div class="table-wrap"><table id="candOcto"></table></div>
 </div>
 </section>
@@ -230,7 +230,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <div class="status-bar"><div class="ico">✓</div><div class="txt">Sin movimientos esta semana. Cartera completa <b>4/4</b> — sin huecos disponibles.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: comprar exige además una ruptura del ratio acción/SP500 (máx. Donchian) y distancia a la media &lt; 33% (dismax−5). Los valores en gris superan esa distancia. Esta semana la cartera está completa y ningún candidato entra.</p>
+<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Los valores en gris no los cumplen. Esta semana la cartera está completa y ningún candidato entra.</p>
 <div class="table-wrap"><table id="candF4"></table></div>
 </div>
 </section>
@@ -274,7 +274,7 @@ const CAND_OCTO=[
 ["STX",0,"Seagate Technology","820.16","149.73","18.61"],["MRNA",0,"Moderna","79.76","148.47","33.99"],
 ["AXON",0,"Axon Enterprise","597.04","148.20","23.49"],["NTAP",0,"NetApp","154.17","147.49","17.56"],
 ["WDC",0,"Western Digital","539.00","144.69","20.19"],["ILMN",0,"Illumina","188.68","140.28","23.15"]];
-/* Fantastic 4 — screener 02/07/2026. d[1]=TOP (entra), d[6]=excluido por distancia > 33% */
+/* Fantastic 4 — screener 02/07/2026. d[1]=TOP (entra), d[6]=excluido */
 const CAND_F4=[
 ["AMCR",0,"Amcor","45.00","6.55","9.96"],["DDOG",0,"Datadog","260.36","5.60","31.84"],
 ["MPC",0,"Marathon Petroleum","266.35","1.99","11.42"],["CRL",0,"Charles River Laboratories","230.69","1.89","21.11"],
