@@ -191,7 +191,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 04/07/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 11/07/2026 · Señales semanales</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
 <div id="sistemas" class="switch reveal">
@@ -211,9 +211,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="15.4" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="17.1" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="7.6" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="9.3" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -254,9 +254,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="14.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="10.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="7.0" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
+<div class="cell"><div class="big gold" data-count="3.0" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha a favor</div></div>
 </div>
 
 <div class="card">
@@ -275,14 +275,14 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <div class="metric"><div class="v" data-count="10.83" data-decimals="2">0</div><div class="k">Ulcer Index</div></div>
 </div>
 
-<div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-full">4 / 4 completa</span></div>
-<p class="block-sub">Resultado del backtest de AmiBroker. Sin cambios esta semana: ninguna de las 4 posiciones muestra señal de venta activa. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
+<div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-warn">Rotación: sale GNRC · entra AMD</span></div>
+<p class="block-sub">Resultado del backtest de AmiBroker. Esta semana <b style="color:var(--red)">GNRC da señal de venta</b>: se vende el lunes en apertura y su hueco lo ocupa AMD. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
 <div class="table-wrap"><table id="posF4"></table></div>
 
-<div class="status-bar"><div class="ico">✓</div><div class="txt">Sin movimientos esta semana. Cartera completa <b>4/4</b> — sin huecos disponibles.</div></div>
+<div class="status-bar"><div class="ico">↻</div><div class="txt">Rotación esta semana: <b>sale GNRC</b> (señal de venta) y <b>entra AMD</b> el lunes en apertura. La cartera sigue <b>4/4</b>.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Los valores en gris no los cumplen. Esta semana la cartera está completa y ningún candidato entra.</p>
+<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana <b style="color:var(--gold)">AMD</b> lidera el ranking y ocupa el hueco que deja GNRC.</p>
 <div class="table-wrap"><table id="candF4"></table></div>
 </div>
 </section>
@@ -306,35 +306,31 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 02/07/2026 */
+/* Octomomentum: 10/07/2026 */
 const POS_OCTO=[
-["MRVL","17/04/2026","129.97","245.29",88.73],["STX","17/04/2026","500.08","820.16",64.01],
-["GLW","17/04/2026","169.65","196.79",16.00],["GEV","17/04/2026","998.00","1113.11",11.53],
-["VRT","17/04/2026","294.98","300.53",1.88],["TER","17/04/2026","365.94","369.09",0.86],
-["KEYS","17/04/2026","322.56","313.86",-2.70],["APA","17/04/2026","39.63","32.36",-18.33]];
-/* Fantastic 4: 02/07/2026 */
+["STX","17/04/2026","500.08","910.34",82.04],["MRVL","17/04/2026","129.97","235.81",81.43],
+["GLW","17/04/2026","169.65","190.89",12.52],["GEV","17/04/2026","998.00","1091.57",9.38],
+["VRT","17/04/2026","294.98","318.86",8.10],["KEYS","17/04/2026","322.56","322.05",-0.16],
+["TER","17/04/2026","365.94","359.60",-1.73],["APA","17/04/2026","39.63","33.44",-15.61]];
+/* Fantastic 4: 10/07/2026 — GNRC da señal de venta, AMD entra el lunes en apertura */
 const POS_F4=[
-["GLW","17/04/2026","169.65","196.79",16.00],["OKTA","29/06/2026","126.74","141.42",11.58],
-["TER","17/04/2026","365.94","369.09",0.86],["GNRC","08/05/2026","259.91","252.66",-2.79]];
+["GLW","17/04/2026","169.65","190.89",12.52],["OKTA","02/07/2026","126.74","138.63",9.38],
+["TER","17/04/2026","365.94","359.60",-1.73],["GNRC","08/05/2026","259.91","233.94",-9.99,1]];
 const CAND_OCTO=[
-["MU",1,"Micron Technology","975.56","214.38","30.55"],["DDOG",1,"Datadog","260.36","205.64","31.84"],
-["OKTA",1,"Okta","141.42","195.74","32.45"],["HUM",1,"Humana","396.75","193.40","31.11"],
-["FTNT",1,"Fortinet","156.25","190.92","28.84"],["AMD",1,"Advanced Micro Devices","517.82","186.01","28.66"],
-["CNC",1,"Centene","67.86","177.78","24.29"],["INTC",1,"Intel","120.35","175.69","26.51"],
-["MRVL",0,"Marvell Technology","245.29","175.60","29.04"],["DVA",0,"DaVita","234.91","158.82","25.27"],
-["HPE",0,"Hewlett Packard Enterprise","41.23","155.94","19.72"],["AMAT",0,"Applied Materials","603.04","151.92","26.97"],
-["STX",0,"Seagate Technology","820.16","149.73","18.61"],["MRNA",0,"Moderna","79.76","148.47","33.99"],
-["AXON",0,"Axon Enterprise","597.04","148.20","23.49"],["NTAP",0,"NetApp","154.17","147.49","17.56"],
-["WDC",0,"Western Digital","539.00","144.69","20.19"],["ILMN",0,"Illumina","188.68","140.28","23.15"]];
-/* Fantastic 4 — screener 02/07/2026. d[1]=TOP (entra), d[6]=excluido */
+["DDOG",1,"Datadog","257.54","198.90","28.57"],["MU",1,"Micron Technology","979.30","197.15","27.97"],
+["FTNT",1,"Fortinet","157.51","186.76","27.00"],["PANW",1,"Palo Alto Networks","325.91","182.54","28.97"],
+["OKTA",1,"Okta","138.63","182.46","28.84"],["HUM",1,"Humana","392.22","182.23","28.03"],
+["HPE",1,"Hewlett Packard","48.54","172.37","29.20"],["CNC",1,"Centene","67.35","161.05","21.79"],
+["AMD",0,"Advanced Micro Devices","557.89","160.40","30.91"],["NTAP",0,"NetApp","168.87","155.34","22.78"],
+["STX",0,"Seagate Technology","910.34","155.28","24.09"],["DVA",0,"DaVita","232.80","153.31","22.48"],
+["ILMN",0,"Illumina","190.20","148.73","22.04"],["AMAT",0,"Applied Materials","602.50","144.47","24.62"],
+["WDC",0,"Western Digital","582.59","144.21","23.63"],["MRVL",0,"Marvell Technology","235.81","143.52","23.54"]];
+/* Fantastic 4 — screener 10/07/2026. d[1]=TOP (entra), d[6]=excluido */
 const CAND_F4=[
-["AMCR",0,"Amcor","45.00","6.55","9.96"],["DDOG",0,"Datadog","260.36","5.60","31.84"],
-["MPC",0,"Marathon Petroleum","266.35","1.99","11.42"],["CRL",0,"Charles River Laboratories","230.69","1.89","21.11"],
-["JNJ",0,"Johnson & Johnson","263.04","1.43","10.35"],["GE",0,"General Electric","377.52","1.41","15.59"],
-["INCY",0,"Incyte","116.86","1.30","13.94"],["WELL",0,"Welltower","236.06","1.27","11.16"],
-["MAS",0,"Masco","82.77","1.03","15.38"],["ALL",0,"Allstate","250.33","0.98","13.55"],
-["VRTX",0,"Vertex Pharmaceuticals","528.04","0.94","13.69"],["PNC",0,"PNC Financial","249.49","0.91","10.36"],
-["ABBV",0,"AbbVie","261.07","0.90","15.30"],["CINF",0,"Cincinnati Financial","192.03","0.87","13.13"]];
+["AMD",1,"Advanced Micro Devices","557.89","9.30","30.91"],["PSX",0,"Phillips 66","188.36","1.43","9.33"],
+["EXPD",0,"Expeditors International","172.02","0.97","9.30"],["BBY",0,"Best Buy","82.80","0.60","16.92"],
+["BAC",0,"Bank of America","59.67","0.38","10.59"],["RF",0,"Regions Financial","31.02","0.37","8.82"],
+["PCAR",0,"PACCAR","124.57","0.18","4.68"],["JNPR",0,"Juniper","39.95","0.06","9.24"]];
 
 /* ====== RENDER TABLAS ====== */
 function pctCell(v){const c=v>=0?'pos':'neg';return '<span class="'+c+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>';}
@@ -399,8 +395,8 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,15.4],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.3,14.8],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,17.1],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.3,10.8],'#f5c451','Fantastic 4');charted.f4=true;}
 moveIndicator();
 animateVisibleCounters();
 }
@@ -445,7 +441,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,15.4],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,17.1],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 moveIndicator();
 addEventListener('resize',moveIndicator);
