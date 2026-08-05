@@ -87,7 +87,7 @@ section{padding:42px 0}
 .strip .cell{background:linear-gradient(180deg,var(--panel),var(--bg-2));padding:22px 18px;text-align:center;transition:background .25s}
 .strip .cell:hover{background:linear-gradient(180deg,var(--panel-2),var(--bg-2))}
 .strip .big{font-family:'Sora';font-weight:800;font-size:clamp(1.5rem,4vw,2.3rem);letter-spacing:-.02em;display:inline-block}
-.strip .big.g{color:var(--green)}.strip .big.b{color:var(--blue)}.strip .big.gold{color:var(--gold)}
+.strip .big.g{color:var(--green)}.strip .big.b{color:var(--blue)}.strip .big.gold{color:var(--gold)}.strip .big.r{color:var(--red)}
 .strip .lbl{font-size:.78rem;color:var(--muted);margin-top:6px}
 
 .card{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow);margin-top:26px;transition:border-color .25s,box-shadow .25s}
@@ -191,7 +191,7 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 25/07/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 05/08/2026 · Señales semanales</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
 <div id="sistemas" class="switch reveal">
@@ -211,9 +211,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="7.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="11.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-0.8" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big gold" data-count="4.0" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -254,9 +254,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="0.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big r" data-count="-2.1" data-decimals="1" data-suffix="%">0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-7.3" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big gold" data-count="-9.9" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -276,10 +276,10 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 </div>
 
 <div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-full">4 / 4 completa</span></div>
-<p class="block-sub">Resultado del backtest de AmiBroker. Sin cambios esta semana: ninguna de las 4 posiciones muestra señal de venta activa. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
+<p class="block-sub">Resultado del backtest de AmiBroker. Esta semana se ha cerrado <b style="color:var(--red)">CHRW</b> y su hueco lo ocupa <b style="color:var(--gold)">NTAP</b>. Ninguna de las 4 posiciones abiertas muestra señal de venta activa. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
 <div class="table-wrap"><table id="posF4"></table></div>
 
-<div class="status-bar"><div class="ico">✓</div><div class="txt">Sin movimientos esta semana. Cartera completa <b>4/4</b> — sin huecos disponibles.</div></div>
+<div class="status-bar"><div class="ico">↻</div><div class="txt">Rotación cerrada esta semana: <b>sale CHRW</b> (−28,25%) y <b>entra NTAP</b>. La cartera vuelve a estar completa <b>4/4</b>.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
 <p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana la cartera está completa y ningún candidato entra.</p>
@@ -306,34 +306,33 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 24/07/2026 */
+/* Octomomentum: 04/08/2026 */
 const POS_OCTO=[
-["STX","17/04/2026","500.08","851.69",70.31],["MRVL","17/04/2026","129.97","194.23",49.44],
-["GEV","17/04/2026","998.00","1014.75",1.68],["KEYS","17/04/2026","322.56","318.67",-1.21],
-["VRT","17/04/2026","294.98","290.36",-1.57],["TER","17/04/2026","365.94","349.92",-4.38],
-["APA","17/04/2026","39.63","36.15",-8.77],["GLW","17/04/2026","169.65","146.65",-13.56]];
-/* Fantastic 4: 24/07/2026 — CHRW y ADM ya incorporadas; sin señales de venta esta semana */
+["STX","17/04/2026","500.08","845.35",69.04],["MRVL","17/04/2026","129.97","218.59",68.18],
+["TER","17/04/2026","365.94","403.56",10.28],["KEYS","17/04/2026","322.56","341.24",5.79],
+["GEV","17/04/2026","998.00","1018.53",2.06],["GLW","17/04/2026","169.65","159.89",-5.75],
+["VRT","17/04/2026","294.98","269.93",-8.49],["APA","17/04/2026","39.63","35.80",-9.65]];
+/* Fantastic 4: 04/08/2026 — CHRW cerrada (-28,25%) y NTAP incorporada; sin señales de venta activas */
 const POS_F4=[
-["OKTA","02/07/2026","126.74","138.50",9.28],["ADM","24/07/2026","86.44","85.92",-0.60],
-["AMD","17/07/2026","537.50","521.95",-2.89],["CHRW","24/07/2026","207.92","186.51",-10.30]];
+["OKTA","02/07/2026","126.74","147.82",16.63],["NTAP","04/08/2026","179.06","190.46",6.37],
+["AMD","17/07/2026","537.50","518.58",-3.52],["ADM","24/07/2026","86.44","79.87",-7.60]];
 const CAND_OCTO=[
-["OKTA",1,"Okta","138.50","165.08","24.02"],["PANW",1,"Palo Alto Networks","323.79","155.76","23.27"],
-["HPE",1,"Hewlett Packard","47.69","152.12","23.44"],["TECH",1,"Bio-Techne","71.60","148.06","17.45"],
-["KMX",1,"CarMax","58.29","144.50","19.42"],["BBY",1,"Best Buy","85.43","143.82","16.84"],
-["NTAP",1,"NetApp","167.74","142.15","18.76"],["HUM",1,"Humana","389.32","141.59","23.02"],
-["ILMN",0,"Illumina","194.09","136.80","20.39"],["FTNT",0,"Fortinet","152.37","133.58","19.91"],
-["TRV",0,"Travelers","387.26","129.94","18.36"],["ABBV",0,"AbbVie","259.36","128.68","12.33"],
-["DLTR",0,"Dollar Tree","120.45","127.81","6.38"],["CDW",0,"CDW Corp","133.82","127.70","4.70"],
-["IP",0,"International Paper","42.16","127.64","12.75"],["CRL",0,"Charles River Laboratories","226.58","127.56","16.09"]];
-/* Fantastic 4 — screener 24/07/2026. d[1]=TOP (entra), d[6]=excluido */
+["NWL",1,"Newell Brands","6.13","168.41","23.14"],["OKTA",1,"Okta","147.82","160.26","24.59"],
+["AXON",1,"Axon Enterprise","607.20","157.31","21.45"],["TECH",1,"Bio-Techne","72.09","149.53","15.68"],
+["BAX",1,"Baxter","28.35","147.81","26.75"],["CRL",1,"Charles River Laboratories","234.12","146.05","16.31"],
+["ZBRA",1,"Zebra Technologies","368.83","144.33","31.30"],["KMX",1,"CarMax","57.51","142.60","15.69"],
+["PANW",0,"Palo Alto Networks","366.34","140.59","27.63"],["ILMN",0,"Illumina","203.01","140.58","20.20"],
+["BBY",0,"Best Buy","86.35","140.11","15.13"],["HPE",0,"Hewlett Packard","52.39","139.41","25.75"],
+["CDW",0,"CDW Corp","154.00","138.96","15.22"],["ETSY",0,"Etsy","86.43","138.55","19.63"],
+["DLTR",0,"Dollar Tree","130.71","137.62","12.37"],["NTAP",0,"NetApp","190.46","136.67","24.37"]];
+/* Fantastic 4 — screener 04/08/2026. d[1]=TOP (entra), d[6]=excluido */
 const CAND_F4=[
-["TRV",0,"Travelers","387.26","2.29","18.36"],["HWM",0,"Howmet","289.26","2.06","10.70"],
-["VTR",0,"Ventas","100.53","1.76","13.14"],["MRK",0,"Merck & Co","131.07","1.56","8.20"],
-["FANG",0,"Diamondback Energy","204.68","1.46","7.86"],["JNJ",0,"Johnson & Johnson","263.40","1.37","8.62"],
-["INCY",0,"Incyte","117.67","1.26","11.84"],["USB",0,"US Bancorp","63.97","1.24","10.11"],
-["EOG",0,"EOG Resources","146.39","1.17","8.09"],["MTB",0,"M&T Bank","249.60","1.14","10.05"],
-["DGX",0,"Quest Diagnostics","227.86","1.12","11.68"],["IVZ",0,"Invesco","29.93","1.07","9.89"],
-["DE",0,"Deere & Company","628.16","1.01","6.96"],["BAC",0,"Bank of America","62.05","0.99","12.24"]];
+["HPE",0,"Hewlett Packard","52.39","6.47","25.75"],["ZBRA",0,"Zebra Technologies","368.83","2.72","31.30"],
+["NWL",0,"Newell Brands","6.13","2.18","23.14"],["GRMN",0,"Garmin","307.36","1.87","19.43"],
+["AME",0,"Ametek","254.05","0.67","8.37"],["TDY",0,"Teledyne Technologies","684.76","0.38","7.02"],
+["GPN",0,"Global Payments","88.25","0.30","16.33"],["EMR",0,"Emerson","158.84","0.29","10.23"],
+["WAT",0,"Waters","396.08","0.26","10.88"],["JNPR",0,"Juniper","39.95","0.06","9.24"],
+["CDW",0,"CDW Corp","154.00","-0.03","15.22"]];
 
 /* ====== RENDER TABLAS ====== */
 function pctCell(v){const c=v>=0?'pos':'neg';return '<span class="'+c+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>';}
@@ -398,8 +397,8 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,7.0],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.3,0.5],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,11.8],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,18.9,21.3,-7.1,-2.1],'#f5c451','Fantastic 4');charted.f4=true;}
 moveIndicator();
 animateVisibleCounters();
 }
@@ -418,14 +417,14 @@ document.querySelectorAll('.view.active [data-count]').forEach(el=>{if(!el.datas
 
 /* ====== CHART ====== */
 Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.color="#8fa0b8";
-const MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul'];
+const MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];
 function grad(ctx,c){const g=ctx.createLinearGradient(0,0,0,300);g.addColorStop(0,c+'55');g.addColorStop(1,c+'00');return g;}
 function gradUD(ctx,c,down){const g=ctx.createLinearGradient(0,0,0,300);if(down){g.addColorStop(0,c+'0d');g.addColorStop(1,c+'66');}else{g.addColorStop(0,c+'66');g.addColorStop(1,c+'0d');}return g;}
 function buildChart(id,sys,color,label){
 const el=document.getElementById(id);if(!el)return;const ctx=el.getContext('2d');
 new Chart(ctx,{type:'line',data:{labels:MESES,datasets:[
 {label,data:sys,borderColor:color,borderWidth:3,fill:{target:1,above:gradUD(ctx,'#22c55e',false),below:gradUD(ctx,'#ef4444',true)},tension:.4,pointRadius:0,pointHoverRadius:5},
-{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
+{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,null],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
 ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
 plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle',boxWidth:8,padding:18,font:{size:12}}},
 tooltip:{backgroundColor:'#0c1322',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:12,callbacks:{label:c=>' '+c.dataset.label+': '+(c.parsed.y>=0?'+':'')+c.parsed.y.toFixed(1)+'%'}}},
@@ -444,7 +443,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,7.0],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,11.8],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 moveIndicator();
 addEventListener('resize',moveIndicator);
