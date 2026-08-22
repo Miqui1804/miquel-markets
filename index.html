@@ -212,8 +212,8 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <div class="strip">
 <div class="cell"><div class="big g" data-count="14.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
-<div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="6.7" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
+<div class="cell"><div class="big gold" data-count="1.5" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -255,8 +255,8 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <div class="strip">
 <div class="cell"><div class="big r" data-count="-10.6" data-decimals="1" data-suffix="%">0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
-<div class="cell"><div class="big b" data-count="7.8" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-18.4" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
+<div class="cell"><div class="big gold" data-count="-23.6" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -430,7 +430,7 @@ function buildChart(id,sys,color,label){
 const el=document.getElementById(id);if(!el)return;const ctx=el.getContext('2d');
 new Chart(ctx,{type:'line',data:{labels:MESES,datasets:[
 {label,data:sys,borderColor:color,borderWidth:3,fill:{target:1,above:gradUD(ctx,'#22c55e',false),below:gradUD(ctx,'#ef4444',true)},tension:.4,pointRadius:0,pointHoverRadius:5},
-{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,null],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
+{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,13.0],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
 ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
 plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle',boxWidth:8,padding:18,font:{size:12}}},
 tooltip:{backgroundColor:'#0c1322',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:12,callbacks:{label:c=>' '+c.dataset.label+': '+(c.parsed.y>=0?'+':'')+c.parsed.y.toFixed(1)+'%'}}},
