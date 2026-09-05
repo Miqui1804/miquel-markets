@@ -164,6 +164,59 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 [data-count].pop{animation:none!important}
 .card:hover,.nav-cta:hover{transform:none!important}
 }
+/* ====== SCREENER US / SECTORES ====== */
+.sec-head{margin-bottom:6px}
+.sec-head h2{font-family:'Sora';font-weight:800;font-size:clamp(1.5rem,3.4vw,1.95rem);letter-spacing:-.025em}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(90,169,255,.1);border:1px solid rgba(90,169,255,.22);padding:5px 12px;border-radius:100px;margin-bottom:12px}
+.sd-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 14px}
+.sd-bar select,.sd-bar input{font-family:'Inter';font-size:.88rem;color:var(--txt);background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;max-width:100%}
+.sd-bar select{font-weight:600;cursor:pointer}
+.sd-bar select:focus,.sd-bar input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.sd-bar input{flex:1;min-width:170px}
+.sd-bar .cnt{font-family:'JetBrains Mono';font-size:.78rem;color:var(--muted);white-space:nowrap}
+.sd-bar .cnt b{color:var(--gold);font-size:1.05rem}
+.sd-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.sd-chips span{font-size:.73rem;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);padding:5px 11px;border-radius:100px}
+.sd-note{font-size:.81rem;color:var(--muted);opacity:.9;line-height:1.55;max-width:900px;margin-bottom:14px}
+.sd-note:empty{display:none}
+.sd-note.clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sd-more{font-family:'Inter';font-size:.78rem;font-weight:600;color:var(--blue);background:transparent;border:0;padding:0;margin:-8px 0 16px;cursor:pointer}
+.sd-more:hover{color:var(--txt)}
+.sd-more:empty,.sd-more.hide{display:none}
+td.l,th.l{text-align:left!important}
+.sd-name{color:var(--muted);font-size:.85rem;display:inline-block;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
+.mono{font-family:'JetBrains Mono'}
+.dist{font-family:'JetBrains Mono';font-size:.76rem;font-weight:700;padding:3px 9px;border-radius:7px;display:inline-block}
+.d-g{color:var(--green);background:var(--green-soft)}
+.d-o{color:var(--gold);background:var(--gold-soft)}
+.d-r{color:var(--red);background:var(--red-soft)}
+thead th.s{cursor:pointer;user-select:none;transition:color .15s}
+thead th.s:hover{color:var(--txt)}
+thead th.s.on{color:var(--gold)}
+.sd-msg{padding:36px 20px;text-align:center;color:var(--muted);font-size:.9rem}
+.sd-msg a{color:var(--gold);text-decoration:underline}
+.si-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:940px){.si-grid{grid-template-columns:1fr}}
+.si-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.si-head .t{font-family:'Sora';font-weight:700;font-size:1.02rem}
+.si-head .c{font-family:'JetBrains Mono';font-size:.74rem;color:var(--muted)}
+#sdSecTable,#sdIndTable{min-width:340px;font-size:.86rem}
+#sdSecTable tbody tr,#sdIndTable tbody tr{cursor:pointer}
+.si-perf{font-family:'JetBrains Mono';font-weight:700;text-align:right;padding:9px 14px!important;white-space:nowrap}
+.si-rank{color:var(--muted);font-family:'JetBrains Mono';font-size:.76rem;margin-right:7px}
+.si-cnt{display:block;color:var(--muted);font-size:.71rem;font-weight:400;margin-top:1px}
+.si-badge{font-family:'JetBrains Mono';font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:5px;margin-left:7px;vertical-align:2px;letter-spacing:.03em}
+.si-badge.strong{color:#04231a;background:var(--green)}
+.si-badge.weak{color:#2a0510;background:var(--red)}
+.si-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-size:.78rem;color:var(--muted);align-items:center}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+.sd-modal{height:auto;max-height:86vh}
+.sd-modal .tv-body{overflow:auto}
+.sd-modal table{min-width:520px;font-size:.86rem}
+.sd-modal .table-wrap{border:0;border-radius:0;box-shadow:none}
+.sd-modal .table-wrap{max-height:none}
+#screener .table-wrap,.si-grid .table-wrap{max-height:min(72vh,620px);overflow:auto}
+#screener thead th,.si-grid thead th,.sd-modal thead th{position:sticky;top:0;z-index:2}
 </style>
 </head>
 <body>
@@ -176,6 +229,8 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <a href="#sistemas">Sistemas</a>
 <a href="#" onclick="show('octo');return false;">Octomomentum</a>
 <a href="#" onclick="show('f4');return false;">Fantastic 4</a>
+<a href="#screener">Screener US</a>
+<a href="#sectores">Sectores</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px">
 <a href="#sistemas" class="nav-cta">Ver señales</a>
@@ -186,12 +241,14 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <a href="#sistemas" onclick="closeMenu()">Sistemas</a>
 <a href="#" onclick="show('octo');closeMenu();return false;">Octomomentum</a>
 <a href="#" onclick="show('f4');closeMenu();return false;">Fantastic 4</a>
+<a href="#screener" onclick="closeMenu()">Screener US</a>
+<a href="#sectores" onclick="closeMenu()">Sectores</a>
 </nav>
 </header>
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 22/08/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 05/09/2026 · Señales semanales</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
 <div id="sistemas" class="switch reveal">
@@ -211,9 +268,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="14.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big g" data-count="11.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="1.5" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big gold" data-count="-1.5" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -254,9 +311,9 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big r" data-count="-10.6" data-decimals="1" data-suffix="%">0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big r" data-count="-0.8" data-decimals="1" data-suffix="%">0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
 <div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-23.6" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big gold" data-count="-13.8" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -288,6 +345,60 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 </section>
 </div>
 
+<!-- ===== SCREENER US ===== -->
+<section id="screener">
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="kicker"><span class="pulse"></span> Datos en vivo · stockanalysis.com</div>
+<h2>Screener US</h2>
+</div>
+<p class="block-sub reveal">Ocho screeners sobre el universo de acciones estadounidenses: fundamentales, momentum y patrones técnicos. Se sincronizan automáticamente con el <a href="https://miqui1804.github.io/screener-dashboard/" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(245,196,81,.35)">Dashboard de Screeners</a>. Haz clic en un ticker para ver su gráfico, o en una cabecera numérica para ordenar.</p>
+<div class="sd-bar reveal">
+<select id="sdSelect" aria-label="Elegir screener" onchange="sdSwitch()"></select>
+<input type="text" id="sdSearch" placeholder="Buscar ticker o nombre…" aria-label="Buscar valor" oninput="sdRender()">
+<span class="cnt"><b id="sdCount">—</b> <span id="sdCountLbl"></span></span>
+</div>
+<div class="sd-chips reveal" id="sdChips"></div>
+<p class="sd-note reveal clamp" id="sdNote"></p>
+<button class="sd-more hide" id="sdMore" onclick="sdNoteToggle()"></button>
+<div class="table-wrap reveal"><table id="sdTable"><tbody><tr><td class="sd-msg">Cargando screeners…</td></tr></tbody></table></div>
+</div>
+</section>
+
+<!-- ===== SECTORES E INDUSTRIAS ===== -->
+<section id="sectores">
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="kicker"><span class="pulse"></span> Fuerza relativa</div>
+<h2>Sectores e industrias</h2>
+</div>
+<p class="block-sub reveal">Rendimiento medio <b>ponderado por capitalización</b> a 1, 3 y 6 meses sobre el universo de acciones US (cap. &gt; $50 M, volumen medio &gt; 50 K). Haz clic en una fila para ver las 10 mayores compañías del grupo. Industrias con 4 empresas o más.</p>
+<div class="si-grid reveal">
+<div>
+<div class="si-head"><span class="t">Sectores</span><span class="c" id="sdSecCap">—</span></div>
+<div class="table-wrap"><table id="sdSecTable"><thead><tr><th class="l">Sector</th><th class="s" data-k="2">1M</th><th class="s on" data-k="3">3M</th><th class="s" data-k="4">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="4">Cargando…</td></tr></tbody></table></div>
+</div>
+<div>
+<div class="si-head"><span class="t">Industrias</span><span class="c" id="sdIndCap">—</span></div>
+<div class="table-wrap"><table id="sdIndTable"><thead><tr><th class="l">Industria</th><th class="s" data-k="2">1M</th><th class="s on" data-k="3">3M</th><th class="s" data-k="4">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="4">Cargando…</td></tr></tbody></table></div>
+</div>
+</div>
+<div class="si-legend reveal">
+<span><span class="sw" style="background:rgba(39,224,163,.55)"></span>positivo</span>
+<span><span class="sw" style="background:rgba(255,93,122,.55)"></span>negativo</span>
+<span><span class="si-badge strong">FUERTE</span> top-5 en 1M, 3M y 6M</span>
+<span><span class="si-badge weak">DÉBIL</span> bottom-5 en 1M, 3M y 6M</span>
+</div>
+</div>
+</section>
+
+<div id="sdOverlay" class="tv-overlay" onclick="if(event.target===this)sdCloseGroup()">
+<div class="tv-modal sd-modal">
+<div class="tv-head"><span class="t" id="sdGmTitle">Grupo</span><button class="tv-close" onclick="sdCloseGroup()">&times;</button></div>
+<div class="tv-body" id="sdGmBody"></div>
+</div>
+</div>
+
 <div id="tvOverlay" class="tv-overlay" onclick="if(event.target===this)closeChart()">
 <div class="tv-modal">
 <div class="tv-head"><span class="t" id="tvTitle">Ticker</span><button class="tv-close" onclick="closeChart()">&times;</button></div>
@@ -306,39 +417,33 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 21/08/2026 */
+/* Octomomentum: 04/09/2026 */
 const POS_OCTO=[
-["MRVL","17/04/2026","129.97","248.07",90.86],["STX","17/04/2026","500.08","859.38",71.85],
-["APA","17/04/2026","39.63","44.35",11.92],["TER","17/04/2026","365.94","376.68",2.93],
-["KEYS","17/04/2026","322.56","316.60",-1.85],["GEV","17/04/2026","998.00","968.97",-2.91],
-["VRT","17/04/2026","294.98","264.76",-10.25],["GLW","17/04/2026","169.65","149.84",-11.68]];
-/* Fantastic 4: 21/08/2026 — sin cambios esta semana */
+["MRVL","17/04/2026","129.97","223.55",72.00],["STX","17/04/2026","500.08","849.28",69.83],
+["APA","17/04/2026","39.63","42.77",7.94],["KEYS","17/04/2026","322.56","327.21",1.44],
+["TER","17/04/2026","365.94","357.03",-2.43],["VRT","17/04/2026","294.98","280.53",-4.90],
+["GEV","17/04/2026","998.00","941.95",-5.62],["GLW","17/04/2026","169.65","154.30",-9.05]];
+/* Fantastic 4: 04/09/2026 — sin cambios */
 const POS_F4=[
-["NTAP","07/08/2026","179.06","193.31",7.96],["OKTA","02/07/2026","126.74","135.14",6.63],
-["HPE","14/08/2026","55.40","53.45",-3.52],["AMD","17/07/2026","537.50","473.22",-11.96]];
+["OKTA","02/07/2026","126.74","170.60",34.61],["NTAP","07/08/2026","179.06","185.59",3.65],
+["HPE","14/08/2026","55.40","52.00",-6.14],["AMD","17/07/2026","537.50","477.57",-11.15]];
 const CAND_OCTO=[
-["CRL",1,"Charles River Laboratories","290.07","159.96","27.55"],["NWL",1,"Newell Brands","5.82","156.45","15.84"],
-["ZBRA",1,"Zebra Technologies","359.83","155.03","25.10"],["PYPL",1,"PayPal Holdings","62.12","150.45","19.59"],
-["GPN",1,"Global Payments","92.51","139.49","17.58"],["TECH",1,"Bio-Techne","72.29","139.04","13.61"],
-["IQV",1,"Iqvia","254.93","138.96","22.48"],["MKTX",1,"MarketAxess Holdings","162.12","138.65","11.91"],
-["ABNB",0,"AirBNB","184.79","138.38","20.29"],["MPC",0,"Marathon Petroleum","361.80","138.09","23.83"],
-["GPC",0,"Genuine Parts","133.39","135.90","12.42"],["WDAY",0,"Workday","195.30","135.36","25.76"],
-["ILMN",0,"Illumina","219.40","135.17","23.34"],["BAX",0,"Baxter","26.17","135.04","17.68"],
-["VLO",0,"Valero Energy","344.03","134.48","20.66"],["SHOP",0,"Shopify","145.61","132.93","15.79"],
-["PLTR",0,"Palantir","179.94","132.77","21.31"],["TGT",0,"Target","162.40","132.50","17.03"],
-["ZS",0,"Zscaler","173.25","132.47","13.71"],["PSX",0,"Phillips 66","242.18","132.28","21.76"],
-["REGN",0,"Regeneron Pharmaceuticals","835.78","131.53","15.28"],["NEM",0,"Newmont","130.76","131.14","18.30"],
-["TMO",0,"Thermo Fisher Scientific","618.52","130.82","15.88"],["KMX",0,"CarMax","61.42","130.27","18.02"]];
-/* Fantastic 4 — screener 21/08/2026. d[1]=TOP (entra), d[6]=excluido */
+["CRM",1,"Salesforce","259.23","170.79","27.03"],["WDAY",1,"Workday","195.79","167.44","21.97"],
+["MPC",1,"Marathon Petroleum","388.90","160.10","25.08"],["IQV",1,"Iqvia","267.77","159.61","22.43"],
+["DOCU",1,"DocuSign","68.41","157.37","22.80"],["VLO",1,"Valero Energy","370.72","156.89","22.60"],
+["CRL",1,"Charles River Laboratories","288.50","155.95","22.85"],["PSX",1,"Phillips 66","255.09","153.54","22.23"],
+["EPAM",0,"EPAM Systems","117.04","152.71","11.77"],["NOW",0,"ServiceNow","141.26","148.63","20.84"],
+["IT",0,"Gartner","186.42","146.22","14.16"],["ACN",0,"Accenture","186.72","145.90","9.06"],
+["OKTA",0,"Okta","170.60","144.81","26.69"],["CTSH",0,"Cognizant Technology Solutions","62.31","142.59","13.80"],
+["HPQ",0,"HP Inc","32.64","138.89","21.83"],["GPN",0,"Global Payments","92.54","138.37","15.05"]];
+/* Fantastic 4 — screener 04/09/2026. d[1]=TOP (entra), d[6]=excluido */
 const CAND_F4=[
-["APA",0,"Apache Corporation","44.35","3.15","16.74"],["TRGP",0,"Targa Resources","305.46","2.81","13.33"],
-["FCX",0,"Freeport-McMoRan","76.58","2.60","16.26"],["NEM",0,"Newmont","130.76","1.72","18.30"],
-["IQV",0,"Iqvia","254.93","1.67","22.48"],["AMGN",0,"Amgen","435.41","1.65","15.50"],
-["COP",0,"ConocoPhillips","135.32","1.54","12.56"],["RVTY",0,"Revvity","122.98","1.40","15.49"],
-["PKI",0,"PerkinElmer","122.61","1.36","14.62"],["EOG",0,"EOG Resources","152.76","1.24","9.67"],
-["OXY",0,"Occidental","61.27","1.15","8.42"],["XOM",0,"Exxon Mobil","166.65","1.13","9.44"],
-["LH",0,"Laboratory America","331.61","1.08","14.92"],["VRTX",0,"Vertex Pharmaceuticals","544.22","1.05","13.25"],
-["GPN",0,"Global Payments","92.51","0.95","17.58"]];
+["DE",0,"Deere & Company","693.53","1.58","13.00"],["SLB",0,"Schlumberger","57.51","1.38","9.14"],
+["CRM",0,"Salesforce","259.23","1.20","27.03"],["CVX",0,"Chevron","208.60","0.82","8.71"],
+["DOCU",0,"DocuSign","68.41","0.78","22.80"],["QRVO",0,"Qorvo","102.84","0.63","9.78"],
+["GILD",0,"Gilead Sciences","151.00","0.50","10.44"],["SMCI",0,"Super Micro Computer","39.59","0.45","18.07"],
+["HAL",0,"Halliburton","37.07","0.34","2.39"],["EL",0,"Estée Lauder","103.86","0.23","16.00"],
+["SWKS",0,"Skyworks Solutions","74.02","0.23","9.97"]];
 
 /* ====== RENDER TABLAS ====== */
 function pctCell(v){const c=v>=0?'pos':'neg';return '<span class="'+c+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>';}
@@ -403,8 +508,8 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.7,9.0,-4.0,7.1,13.6,23.7,4.9,14.5],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.4,0.4,-8.2,4.4,17.3,19.6,-9.1,-10.6],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,11.5],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,19.0,21.3,-7.1,-2.0,-0.8],'#f5c451','Fantastic 4');charted.f4=true;}
 moveIndicator();
 animateVisibleCounters();
 }
@@ -423,14 +528,14 @@ document.querySelectorAll('.view.active [data-count]').forEach(el=>{if(!el.datas
 
 /* ====== CHART ====== */
 Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.color="#8fa0b8";
-const MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];
+const MESES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep'];
 function grad(ctx,c){const g=ctx.createLinearGradient(0,0,0,300);g.addColorStop(0,c+'55');g.addColorStop(1,c+'00');return g;}
 function gradUD(ctx,c,down){const g=ctx.createLinearGradient(0,0,0,300);if(down){g.addColorStop(0,c+'0d');g.addColorStop(1,c+'66');}else{g.addColorStop(0,c+'66');g.addColorStop(1,c+'0d');}return g;}
 function buildChart(id,sys,color,label){
 const el=document.getElementById(id);if(!el)return;const ctx=el.getContext('2d');
 new Chart(ctx,{type:'line',data:{labels:MESES,datasets:[
 {label,data:sys,borderColor:color,borderWidth:3,fill:{target:1,above:gradUD(ctx,'#22c55e',false),below:gradUD(ctx,'#ef4444',true)},tension:.4,pointRadius:0,pointHoverRadius:5},
-{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,13.0],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
+{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,13.0,null],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
 ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
 plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle',boxWidth:8,padding:18,font:{size:12}}},
 tooltip:{backgroundColor:'#0c1322',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:12,callbacks:{label:c=>' '+c.dataset.label+': '+(c.parsed.y>=0?'+':'')+c.parsed.y.toFixed(1)+'%'}}},
@@ -449,11 +554,197 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[-1.7,9.0,-4.0,7.1,13.6,23.7,4.9,14.5],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,11.5],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 moveIndicator();
 addEventListener('resize',moveIndicator);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(moveIndicator);
+/* ====== SCREENER US + SECTORES (datos en vivo de /screener-dashboard/) ====== */
+const SD_SRC='https://miqui1804.github.io/screener-dashboard/';
+const SD_VARS=['DATA_CRECIMIENTO','DATA_VICTOR','DATA_ONEILL','DATA_BANDERAS','DATA_TAZA','DATA_RSC','DATA_RSC2','DATA_COINCIDENCIAS','DATA_SECTORS','DATA_INDUSTRIES'];
+let SD_DATA={},sdKey='banderas',sdSort=null,sdDir=-1;
+
+const sdPc=s=>parseFloat(String(s).replace(/[%,]/g,''))||0;
+const sdVn=s=>parseFloat(String(s).replace(/[,$]/g,''))||0;
+const sdVol=s=>parseInt(String(s).replace(/,/g,''),10)||0;
+function sdMcN(s){if(typeof s==='number')return s;const m=String(s).match(/([\d,.]+)\s*([BTM])/);if(!m)return sdVn(s);const n=parseFloat(m[1].replace(/,/g,''));return m[2]==='T'?n*1e12:m[2]==='B'?n*1e9:n*1e6;}
+function sdMc(s){const n=sdMcN(s);return n>=1e12?(n/1e12).toFixed(2)+'T':n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(2)+'M':String(Math.round(n));}
+function sdFv(v){const n=sdVol(v);return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?Math.round(n/1e3)+'K':String(n);}
+function sdEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+function sdTk(t){return '<span class="tk tkc" onclick="openChart(\''+String(t).replace(/'/g,'')+'\')">'+sdEsc(t)+'</span>';}
+function sdNm(n){return '<span class="sd-name" title="'+sdEsc(n)+'">'+sdEsc(n)+'</span>';}
+function sdP(v){v=Number(v)||0;const a=Math.abs(v),t=a>=1000?(v/1000).toFixed(1)+'k%':v.toFixed(1)+'%';return '<span class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+t+'</span>';}
+function sdPlain(v){return '<span class="mono">'+(Number(v)||0).toFixed(1)+'%</span>';}
+function sdRs(v){v=Number(v)||0;return '<span class="'+(v>=0?'pos':'neg')+'">'+(v>=0?'+':'')+v.toFixed(1)+'</span>';}
+function sdDst(v,g,o){v=Number(v)||0;return '<span class="dist '+(v>g?'d-g':v>o?'d-o':'d-r')+'">'+v.toFixed(1)+'%</span>';}
+function sdMoney(v){return '<span class="mono">$'+sdVn(v).toFixed(2)+'</span>';}
+function sdN(v,d){return '<span class="mono">'+(Number(v)||0).toFixed(d==null?1:d)+'</span>';}
+function sdTxt(v){return '<span class="mono" style="color:var(--muted);font-size:.82rem">'+sdEsc(v)+'</span>';}
+function sdTags(s){return String(s).split(', ').map(x=>'<span class="dist d-o" style="margin:2px 3px 2px 0">'+sdEsc(x)+'</span>').join('');}
+const c=(h,r,s,l)=>({h:h,r:r,s:s,l:!!l});
+
+const SD_CFG={
+banderas:{v:"DATA_BANDERAS",t:"Banderas · Patrón Mástil + Bandera",lbl:"valores con patrón mástil+bandera activo",chips:["Mástil: +100% o más en 4-8 semanas", "Bandera: consolidación 10-25% en 3-5 semanas", "Patrón activo en los últimos ~6 días de cotización", "Market Cap mínimo $150M"],note:"Metodología: se escaneó el histórico diario completo (desde IPO) de las ~5.600 acciones US del universo de stockanalysis.com. Primero se aplicó un filtro de momentum (subida de 3 ó 6 meses ≥ 55-80% y volumen ≥ 50K) para reducir a ~299 candidatos, y sobre estos se ejecutó un algoritmo de detección de mástil (ganancia ≥100% en 4-8 semanas) seguido de bandera (retroceso 10-25% en 3-5 semanas) que debe estar activo en las últimas sesiones. Resultado: 14 valores. Esto es un patrón técnico/gráfico, no un filtro fundamental — revisa siempre el gráfico antes de operar.",def:[5,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Volumen',d=>sdTxt(sdFv(d[4])),d=>sdVol(d[4])),
+c('Mástil',d=>sdP(d[5]),d=>d[5]),
+c('Sem. mástil',d=>sdTxt(d[6]),d=>d[6]),
+c('Retroceso',d=>sdPlain(d[7]),d=>d[7]),
+c('Sem. bandera',d=>sdTxt(d[8]),d=>d[8]),
+c('Fin bandera',d=>sdTxt(d[11]),d=>d[11])]},
+taza:{v:"DATA_TAZA",t:"Taza con Asa · Patrón Cup & Handle",lbl:"valores con patrón taza con asa activo",chips:["Taza: corrección 12-35% en forma de U (6-40 semanas)", "Bordes a nivel similar (±10%) con subida previa ≥ 25%", "Asa: retroceso 2-15% en la mitad superior (1-5 semanas)", "Precio aún bajo el pivot de compra", "Market Cap mínimo $150M"],note:"Metodología: sobre ~2.917 candidatos US con Market Cap > $150M, volumen medio ≥ 100K y precio a menos del 45% de su máximo de 52 semanas, se escaneó el histórico diario ajustado de 2 años buscando: subida previa ≥ 25%, taza en U con profundidad 12-35% y fondo centrado (20-80% de la taza), recuperación hasta ±10% del borde izquierdo, y asa en formación con retroceso 2-15% en la mitad superior de la taza. El pivot de compra es el máximo del borde derecho (inicio del asa); la distancia indica cuánto le falta al último cierre ajustado para romperlo. Patrón técnico — revisa siempre el gráfico y el volumen antes de operar.",def:[9,1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Prof. taza',d=>sdPlain(d[5]),d=>d[5]),
+c('Sem. taza',d=>sdTxt(d[6]),d=>d[6]),
+c('Retr. asa',d=>sdPlain(d[7]),d=>d[7]),
+c('Sem. asa',d=>sdTxt(d[8]),d=>d[8]),
+c('Pivot',d=>sdMoney(d[9]),d=>sdVn(d[9])),
+c('Dist. pivot',d=>sdPlain(d[10]),d=>d[10])]},
+rsc:{v:"DATA_RSC",t:"RSC Mansfield · Top 15 vs S&P 500 (1 año)",lbl:"mejores acciones por RSC Mansfield",chips:["Fuerza relativa Mansfield vs SPY (proxy S&amp;P 500)", "Ventana: 1 año (semanal, SMA 52 semanas)", "Universo: Market Cap &gt; $300M y Vol. medio &gt; 100K", "Ranking: Top 15 por RSC Mansfield"],note:"Metodología: para cada acción del universo filtrado (~3.235 candidatas tras el filtro de liquidez, sobre un universo total de ~5.600), se calculó el ratio semanal Precio Acción (ajustado) / Precio SPY (sin ajustar) durante el último año, su media móvil semanal de 52 semanas, y el RS de Mansfield = ((ratio de hoy / media móvil) - 1) × 100. Un valor positivo indica que la acción está más fuerte que el S&P 500 respecto a su propia tendencia relativa de 1 año. El ranking muestra las 15 acciones con mayor RSC Mansfield, junto a su variación mensual de precio (puede ser independiente del RSC: una acción puede tener RSC alto y haber caído el último mes si venía de una subida aún mayor).",def:[5,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Volumen',d=>sdTxt(sdFv(d[4])),d=>sdVol(d[4])),
+c('RSC Mansfield',d=>sdRs(d[5]),d=>d[5]),
+c('Var. mes',d=>sdP(d[6]),d=>d[6])]},
+rsc2:{v:"DATA_RSC2",t:"RSC Mansfield · Top 15 S&P 500 + Nasdaq 100",lbl:"mejores acciones por RSC Mansfield (S&amp;P 500 + Nasdaq 100)",chips:["Fuerza relativa Mansfield vs SPY (proxy S&amp;P 500)", "Ventana: 1 año (semanal, SMA 52 semanas)", "Universo: 518 tickers únicos (S&amp;P 500 + Nasdaq 100)", "Ranking: Top 15 por RSC Mansfield"],note:"Metodología: igual que el screener RSC Mansfield general, pero el ranking se calcula solo sobre los 518 tickers únicos que componen el S&amp;P 500 (503 acciones) y el Nasdaq 100 (101 acciones, con solapamiento). Para cada acción se calculó el ratio semanal Precio Acción (ajustado) / Precio SPY (sin ajustar) durante el último año, su media móvil semanal de 52 semanas, y el RS de Mansfield = ((ratio de hoy / media móvil) - 1) × 100. El ranking muestra las 15 acciones de grandes índices con mayor RSC Mansfield, junto a su variación mensual de precio.",def:[5,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Volumen',d=>sdTxt(sdFv(d[4])),d=>sdVol(d[4])),
+c('RSC Mansfield',d=>sdRs(d[5]),d=>d[5]),
+c('Var. mes',d=>sdP(d[6]),d=>d[6])]},
+crecimiento:{v:"DATA_CRECIMIENTO",t:"Screener · Crecimiento US",lbl:"valores cumplen los 7 filtros",chips:["Market Cap &gt; $2 B", "Precio &gt; $9", "Sin dividendo", "Ventas YoY &gt; 20%", "Vol. medio &gt; 200 K", "EPS prox. año &gt; 0%", "A &lt; 20% de máx. 52 sem."],note:"",def:[7,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Ventas YoY',d=>sdP(sdPc(d[4])),d=>sdPc(d[4])),
+c('EPS próx. año',d=>sdP(sdPc(d[6])),d=>sdPc(d[6])),
+c('Vol. medio',d=>sdTxt(sdFv(d[5])),d=>sdVol(d[5])),
+c('Dist. máx 52s',d=>sdDst(sdPc(d[7]),-5,-12),d=>sdPc(d[7]))]},
+victor:{v:"DATA_VICTOR",t:"Acciones Top · Crecimiento + Calidad",lbl:"valores cumplen los filtros aplicados",chips:["Market Cap $2B–$10B", "País: USA", "Vol. medio &gt; 500K", "&lt; -5% del máx. 52 sem.", "EPS este año &gt; 0%", "EPS 5 años &gt; 0%", "Ventas 5 años &gt; 0%", "EPS trim. &gt; 0%", "Ventas trim. &gt; 0%", "Precio &gt; media 200 días"],note:"Nota: stockanalysis.com no ofrece un filtro equivalente a \"Institutional Ownership\" de Finviz, por lo que este criterio no pudo aplicarse. Los 10 filtros restantes sí están aplicados con datos en tiempo real.",def:[4,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Vol. medio',d=>sdTxt(sdFv(d[3])),d=>sdVol(d[3])),
+c('Dist. máx 52s',d=>sdDst(sdPc(d[4]),-5,-15),d=>sdPc(d[4])),
+c('EPS año',d=>sdP(sdPc(d[5])),d=>sdPc(d[5])),
+c('EPS 5a',d=>sdP(sdPc(d[6])),d=>sdPc(d[6])),
+c('Ventas 5a',d=>sdP(sdPc(d[7])),d=>sdPc(d[7])),
+c('EPS trim.',d=>sdP(sdPc(d[8])),d=>sdPc(d[8])),
+c('Ventas trim.',d=>sdP(sdPc(d[9])),d=>sdPc(d[9])),
+c('Sobre MA200',d=>sdP(sdPc(d[10])),d=>sdPc(d[10]))]},
+oneill:{v:"DATA_ONEILL",t:"Screener Oneill · Momentum + Calidad",lbl:"valores cumplen los filtros aplicados",chips:["EPS este año &gt; 20%", "EPS 5 años &gt; 20%", "EPS trim. &gt; 20%", "A 0-5% del máx. 52 sem.", "Vol. medio &gt; 50K", "Vol. relativo &gt; 0.75"],note:"Nota: stockanalysis.com no ofrece un filtro equivalente a \"Institutional Ownership\" de Finviz, por lo que este criterio no pudo aplicarse. Los 6 filtros restantes sí están aplicados con datos en tiempo real.",def:[5,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
+c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Vol. medio',d=>sdTxt(sdFv(d[4])),d=>sdVol(d[4])),
+c('Dist. máx 52s',d=>sdDst(sdPc(d[5]),-2,-5),d=>sdPc(d[5])),
+c('EPS año',d=>sdP(sdPc(d[6])),d=>sdPc(d[6])),
+c('EPS 5a',d=>sdP(sdPc(d[7])),d=>sdPc(d[7])),
+c('EPS trim.',d=>sdP(sdPc(d[8])),d=>sdPc(d[8])),
+c('Vol. rel.',d=>sdN(d[9],2),d=>sdVn(d[9]))]},
+coincidencias:{v:"DATA_COINCIDENCIAS",t:"Screener · Coincidencias (3+ listas)",lbl:"valores coinciden en 3 o más screeners",chips:["Aparece en 3 o más de los 7 screeners", "Cruce: Crecimiento, Acciones Top, Oneill, Banderas, Taza con Asa, RSC, RSC2"],note:"Este screener no aplica filtros propios: cruza los resultados de los otros 7 screeners y muestra los tickers que coinciden en al menos 3 de ellos, junto con el listado de en qué screeners aparecen.",def:[2,-1],cols:[
+c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
+c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
+c('Coincidencias',d=>sdN(d[2],0),d=>d[2]),
+c('Screeners',d=>sdTags(d[3]),null,1)]}
+};
+
+function sdMeta(){
+const cfg=SD_CFG[sdKey];
+document.getElementById('sdChips').innerHTML=cfg.chips.map(x=>'<span>'+x+'</span>').join('');
+document.getElementById('sdCountLbl').innerHTML=cfg.lbl;
+const n=document.getElementById('sdNote'),b=document.getElementById('sdMore');
+n.innerHTML=cfg.note||'';n.classList.add('clamp');
+b.classList.toggle('hide',!cfg.note);b.textContent='▾ Ver metodología completa';
+}
+function sdNoteToggle(){
+const n=document.getElementById('sdNote'),b=document.getElementById('sdMore');
+const open=n.classList.toggle('clamp')===false;
+b.textContent=open?'▴ Ocultar metodología':'▾ Ver metodología completa';
+}
+function sdSetSort(i){
+const cfg=SD_CFG[sdKey];if(!cfg.cols[i]||!cfg.cols[i].s)return;
+const cur=sdSort==null?cfg.def[0]:sdSort,dir=sdSort==null?cfg.def[1]:sdDir;
+sdDir=(cur===i)?-dir:(cfg.cols[i].l?1:-1);
+sdSort=i;sdRender();
+}
+function sdRender(){
+const cfg=SD_CFG[sdKey],data=SD_DATA[cfg.v],el=document.getElementById('sdTable'),cnt=document.getElementById('sdCount');
+if(!data){el.innerHTML='<tbody><tr><td class="sd-msg">No se han podido cargar los datos. Consulta el <a href="'+SD_SRC+'" target="_blank" rel="noopener">dashboard original</a>.</td></tr></tbody>';cnt.textContent='—';return;}
+const q=(document.getElementById('sdSearch').value||'').toLowerCase().trim();
+let rows=data.filter(d=>!q||String(d[0]).toLowerCase().indexOf(q)>=0||String(d[1]).toLowerCase().indexOf(q)>=0);
+const si=sdSort==null?cfg.def[0]:sdSort,dir=sdSort==null?cfg.def[1]:sdDir,sf=cfg.cols[si]&&cfg.cols[si].s;
+if(sf)rows=rows.slice().sort((a,b)=>{const x=sf(a),y=sf(b);return (typeof x==='string'?String(x).localeCompare(String(y)):x-y)*dir;});
+const head='<thead><tr>'+cfg.cols.map((col,i)=>'<th'+(col.s?' class="s'+(i===si?' on':'')+(col.l?' l':'')+'" onclick="sdSetSort('+i+')"':(col.l?' class="l"':''))+'>'+col.h+(col.s&&i===si?(dir>0?' ▲':' ▼'):'')+'</th>').join('')+'</tr></thead>';
+const body=rows.map(d=>'<tr>'+cfg.cols.map(col=>'<td'+(col.l?' class="l"':'')+'>'+col.r(d)+'</td>').join('')+'</tr>').join('');
+el.innerHTML=head+'<tbody>'+(body||'<tr><td class="sd-msg" colspan="'+cfg.cols.length+'">Ningún valor coincide con la búsqueda.</td></tr>')+'</tbody>';
+cnt.textContent=rows.length;
+}
+function sdSwitch(){sdKey=document.getElementById('sdSelect').value;sdSort=null;sdDir=-1;sdMeta();sdRender();}
+
+/* ---- sectores e industrias ---- */
+let sdSecSort=3,sdIndSort=3;
+function siHeat(v){const g=v>=0,m=Math.min(Math.abs(v)/50,1),a=(0.09+m*0.5).toFixed(3);
+return 'background:rgba('+(g?'39,224,163':'255,93,122')+','+a+');color:'+(m>0.42?'#06101c':(g?'var(--green)':'var(--red)'));}
+function siFmt(v){return (v>0?'+':'')+(Number(v)||0).toFixed(1)+'%';}
+function siBadge(b){return b==='strong'?'<span class="si-badge strong">FUERTE</span>':b==='weak'?'<span class="si-badge weak">DÉBIL</span>':'';}
+function siTable(id,varName,k){
+const data=SD_DATA[varName],tb=document.querySelector('#'+id+' tbody');
+if(!tb)return;
+if(!data){tb.innerHTML='<tr><td class="sd-msg" colspan="4">No se han podido cargar los datos. Ver el <a href="'+SD_SRC+'" target="_blank" rel="noopener">dashboard original</a>.</td></tr>';return;}
+const ord=data.map((x,i)=>i).sort((a,b)=>data[b][k]-data[a][k]);
+tb.innerHTML=ord.map((oi,r)=>{const x=data[oi];
+return '<tr data-v="'+varName+'" data-i="'+oi+'"><td class="l"><span class="si-rank">'+(r+1)+'</span>'+sdEsc(x[0])+siBadge(x[5])+'<span class="si-cnt">'+x[1]+' empresas</span></td>'+
+[2,3,4].map(j=>'<td class="si-perf" style="'+siHeat(x[j])+'">'+siFmt(x[j])+'</td>').join('')+'</tr>';}).join('');
+document.querySelectorAll('#'+id+' thead th.s').forEach(th=>th.classList.toggle('on',+th.dataset.k===k));
+}
+function sdOpenGroup(varName,i){
+const x=(SD_DATA[varName]||[])[i];if(!x)return;
+document.getElementById('sdGmTitle').innerHTML=sdEsc(x[0])+' <small>'+x[1]+' empresas · 10 mayores por capitalización · 1M '+siFmt(x[2])+' · 3M '+siFmt(x[3])+' · 6M '+siFmt(x[4])+'</small>';
+document.getElementById('sdGmBody').innerHTML='<div class="table-wrap"><table><thead><tr><th class="l">Ticker</th><th class="l">Empresa</th><th>Precio</th><th>1M</th><th>3M</th><th>6M</th></tr></thead><tbody>'+
+(x[6]||[]).map(s=>'<tr><td class="l">'+sdTk(s[0])+'</td><td class="l">'+sdNm(s[1])+'</td><td>'+sdMoney(s[2])+'</td>'+[3,4,5].map(j=>'<td class="si-perf" style="'+siHeat(s[j])+'">'+siFmt(s[j])+'</td>').join('')+'</tr>').join('')+
+'</tbody></table></div>';
+document.getElementById('sdOverlay').classList.add('open');
+}
+function sdCloseGroup(){document.getElementById('sdOverlay').classList.remove('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')sdCloseGroup();});
+document.addEventListener('click',function(e){
+const row=e.target.closest('#sdSecTable tbody tr,#sdIndTable tbody tr');
+if(row&&row.dataset.i!==undefined&&!e.target.closest('.tkc'))sdOpenGroup(row.dataset.v,+row.dataset.i);
+});
+['sdSecTable','sdIndTable'].forEach(function(id){
+document.querySelectorAll('#'+id+' thead th.s').forEach(function(th){
+th.addEventListener('click',function(){const k=+th.dataset.k;
+if(id==='sdSecTable'){sdSecSort=k;siTable(id,'DATA_SECTORS',k);}else{sdIndSort=k;siTable(id,'DATA_INDUSTRIES',k);}});});
+});
+
+/* ---- carga ---- */
+(function sdBoot(){
+const sel=document.getElementById('sdSelect');
+sel.innerHTML=Object.keys(SD_CFG).map(k=>'<option value="'+k+'">'+sdEsc(SD_CFG[k].t)+'</option>').join('');
+sel.value=sdKey;sdMeta();
+fetch(SD_SRC,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.text();}).then(txt=>{
+SD_VARS.forEach(v=>{const m=txt.match(new RegExp('const\\s+'+v+'\\s*=\\s*(\\[[\\s\\S]*?\\])\\s*;'));
+if(m){try{SD_DATA[v]=JSON.parse(m[1]);}catch(err){}}});
+sdRender();
+siTable('sdSecTable','DATA_SECTORS',sdSecSort);
+siTable('sdIndTable','DATA_INDUSTRIES',sdIndSort);
+if(SD_DATA.DATA_SECTORS)document.getElementById('sdSecCap').textContent=SD_DATA.DATA_SECTORS.length+' sectores';
+if(SD_DATA.DATA_INDUSTRIES)document.getElementById('sdIndCap').textContent=SD_DATA.DATA_INDUSTRIES.length+' industrias';
+}).catch(()=>{sdRender();siTable('sdSecTable','DATA_SECTORS',sdSecSort);siTable('sdIndTable','DATA_INDUSTRIES',sdIndSort);});
+})();
 </script>
 </body>
 </html>
