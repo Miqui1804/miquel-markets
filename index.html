@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Miquel Markets — Señales Semanales</title>
-<meta name="description" content="Sistemas cuantitativos de momentum (Octomomentum y Fantastic 4) que baten al S&P 500. Posiciones abiertas y candidatos de compra, actualizados cada sábado." />
+<title>Miquel Markets — Sistemas, screener y sectores</title>
+<meta name="description" content="Sistemas cuantitativos de momentum (Octomomentum y Fantastic 4), screener de acciones US y fuerza relativa por sectores e industrias." />
 <meta name="theme-color" content="#070b14" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Miquel Markets — Señales Semanales" />
-<meta property="og:description" content="Sistemas cuantitativos de momentum que baten al S&P 500. Señales semanales de Octomomentum y Fantastic 4." />
+<meta property="og:title" content="Miquel Markets" />
+<meta property="og:description" content="Sistemas de momentum, screener de acciones US y fuerza relativa por sectores e industrias." />
 <meta name="twitter:card" content="summary" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b14'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f5c451'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -200,7 +200,7 @@ thead th.s.on{color:var(--gold)}
 .si-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .si-head .t{font-family:'Sora';font-weight:700;font-size:1.02rem}
 .si-head .c{font-family:'JetBrains Mono';font-size:.74rem;color:var(--muted)}
-#sdSecTable,#sdIndTable{min-width:340px;font-size:.86rem}
+#sdSecTable,#sdIndTable{min-width:400px;font-size:.86rem}
 #sdSecTable tbody tr,#sdIndTable tbody tr{cursor:pointer}
 .si-perf{font-family:'JetBrains Mono';font-weight:700;text-align:right;padding:9px 14px!important;white-space:nowrap}
 .si-rank{color:var(--muted);font-family:'JetBrains Mono';font-size:.76rem;margin-right:7px}
@@ -217,6 +217,18 @@ thead th.s.on{color:var(--gold)}
 .sd-modal .table-wrap{max-height:none}
 #screener .table-wrap,.si-grid .table-wrap{max-height:min(72vh,620px);overflow:auto}
 #screener thead th,.si-grid thead th,.sd-modal thead th{position:sticky;top:0;z-index:2}
+.si-perf.na{color:var(--muted);opacity:.45;font-weight:500}
+.nav-date{font-family:'JetBrains Mono';font-size:.76rem;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);padding:7px 12px;border-radius:9px;white-space:nowrap}
+@media(max-width:560px){.nav-date{display:none}}
+.hero-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:36px auto 0}
+@media(max-width:760px){.hero-nav{grid-template-columns:1fr}}
+.hero-nav a{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-align:left;display:block;transition:transform .2s,border-color .2s,box-shadow .2s}
+.hero-nav a:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 22px 46px -26px rgba(0,0,0,.9)}
+.hero-nav .n{font-family:'JetBrains Mono';font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:7px}
+.hero-nav b{font-family:'Sora';font-weight:800;font-size:1.05rem;display:block;margin-bottom:4px}
+.hero-nav small{color:var(--muted);font-size:.79rem;line-height:1.45;display:block}
+#sistemas .switch{margin:18px 0 4px}
+#sistemas .view{padding-top:6px}
 </style>
 </head>
 <body>
@@ -227,44 +239,51 @@ thead th.s.on{color:var(--gold)}
 <div class="brand"><span class="dot"></span>Miquel <span>Markets</span></div>
 <nav class="nav-links">
 <a href="#sistemas">Sistemas</a>
-<a href="#" onclick="show('octo');return false;">Octomomentum</a>
-<a href="#" onclick="show('f4');return false;">Fantastic 4</a>
-<a href="#screener">Screener US</a>
+<a href="#screener">Screener</a>
 <a href="#sectores">Sectores</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px">
-<a href="#sistemas" class="nav-cta">Ver señales</a>
+<span class="nav-date">Datos 05/09/2026</span>
 <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()"><span></span></button>
 </div>
 </div>
 <nav class="nav-mobile" id="navMobile">
 <a href="#sistemas" onclick="closeMenu()">Sistemas</a>
-<a href="#" onclick="show('octo');closeMenu();return false;">Octomomentum</a>
-<a href="#" onclick="show('f4');closeMenu();return false;">Fantastic 4</a>
-<a href="#screener" onclick="closeMenu()">Screener US</a>
+<a href="#screener" onclick="closeMenu()">Screener</a>
 <a href="#sectores" onclick="closeMenu()">Sectores</a>
 </nav>
 </header>
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 05/09/2026 · Señales semanales</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 05/09/2026</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
-<p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Posiciones abiertas y candidatos de compra generados cada sábado desde AmiBroker.</p>
-<div id="sistemas" class="switch reveal">
-<span class="switch-ind" id="switchInd"></span>
-<button id="btn-octo" class="active" onclick="show('octo')">Octomomentum</button>
-<button id="btn-f4" onclick="show('f4')">Fantastic 4</button>
+<p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Sistemas propios desde AmiBroker, screener del universo de acciones US y fuerza relativa por sectores e industrias.</p>
+<div class="hero-nav reveal">
+<a href="#sistemas"><span class="n">01</span><b>Sistemas</b><small>Octomomentum y Fantastic 4: posiciones abiertas, backtest y candidatos.</small></a>
+<a href="#screener"><span class="n">02</span><b>Screener</b><small>Ocho screeners sobre el universo de acciones estadounidenses.</small></a>
+<a href="#sectores"><span class="n">03</span><b>Sectores</b><small>Fuerza relativa por sector e industria a 1S, 1M, 3M y 6M.</small></a>
 </div>
 </div>
 </section>
 
+<section id="sistemas">
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="kicker"><span class="pulse"></span> Momentum cuantitativo · AmiBroker</div>
+<h2>Sistemas</h2>
+</div>
+<p class="block-sub reveal">Dos sistemas propios de momentum sobre acciones estadounidenses, con backtest de más de 25 años sin sesgo de supervivencia. Las posiciones abiertas y los candidatos se regeneran cada sábado.</p>
+<div class="switch reveal">
+<span class="switch-ind" id="switchInd"></span>
+<button id="btn-octo" class="active" onclick="show('octo')">Octomomentum</button>
+<button id="btn-f4" onclick="show('f4')">Fantastic 4</button>
+</div>
+
 <!-- ===== OCTOMOMENTUM ===== -->
 <div id="view-octo" class="view active">
-<section>
-<div class="wrap">
 <div class="eyebrow">Sistema · 8 posiciones</div>
-<div class="sys-head"><h2 class="sec-title" style="margin:0">Octomomentum</h2><span class="sys-tag"><span class="pulse"></span> Sistema activo</span></div>
+<div class="sys-head"><h3 class="sec-title" style="margin:0">Octomomentum</h3><span class="sys-tag"><span class="pulse"></span> Sistema activo</span></div>
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
@@ -296,18 +315,14 @@ thead th.s.on{color:var(--gold)}
 <div class="status-bar"><div class="ico">✓</div><div class="txt">Cartera completa <b>8/8</b> — no hay huecos disponibles para nuevos candidatos esta semana.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Generado por el screener de AmiBroker sobre la fórmula Octomomentum (último cierre semanal), ordenado por ROC. Las <b style="color:var(--gold)">TOP 8</b> son las que el sistema compraría si hubiera huecos. Se excluyen valores que no cumplen todos los criterios de entrada.</p>
+<p class="block-sub">Generado por el screener de AmiBroker sobre la fórmula Octomomentum (último cierre semanal), ordenado por ROC. Gráficos en diario con EMA(10), EMA(21) y SMA(50). Las <b style="color:var(--gold)">TOP 8</b> son las que el sistema compraría si hubiera huecos. Se excluyen valores que no cumplen todos los criterios de entrada.</p>
 <div class="table-wrap"><table id="candOcto"></table></div>
-</div>
-</section>
 </div>
 
 <!-- ===== FANTASTIC 4 ===== -->
 <div id="view-f4" class="view">
-<section>
-<div class="wrap">
 <div class="eyebrow">Sistema · 4 posiciones</div>
-<div class="sys-head"><h2 class="sec-title" style="margin:0">Fantastic 4</h2><span class="sys-tag"><span class="pulse"></span> Sistema activo</span></div>
+<div class="sys-head"><h3 class="sec-title" style="margin:0">Fantastic 4</h3><span class="sys-tag"><span class="pulse"></span> Sistema activo</span></div>
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
@@ -339,11 +354,11 @@ thead th.s.on{color:var(--gold)}
 <div class="status-bar"><div class="ico">✓</div><div class="txt">Sin movimientos esta semana. Cartera completa <b>4/4</b> — sin huecos disponibles.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana la cartera está completa y ningún candidato entra.</p>
+<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana la cartera está completa y ningún candidato entra. Gráficos en diario con EMA(10), EMA(21) y SMA(50).</p>
 <div class="table-wrap"><table id="candF4"></table></div>
 </div>
-</section>
 </div>
+</section>
 
 <!-- ===== SCREENER US ===== -->
 <section id="screener">
@@ -352,7 +367,7 @@ thead th.s.on{color:var(--gold)}
 <div class="kicker"><span class="pulse"></span> Datos en vivo · stockanalysis.com</div>
 <h2>Screener US</h2>
 </div>
-<p class="block-sub reveal">Ocho screeners sobre el universo de acciones estadounidenses: fundamentales, momentum y patrones técnicos. Se sincronizan automáticamente con el <a href="https://miqui1804.github.io/screener-dashboard/" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(245,196,81,.35)">Dashboard de Screeners</a>. Haz clic en un ticker para ver su gráfico, o en una cabecera numérica para ordenar.</p>
+<p class="block-sub reveal">Ocho screeners sobre el universo de acciones estadounidenses: fundamentales, momentum y patrones técnicos. Se sincronizan automáticamente con el <a href="https://miqui1804.github.io/screener-dashboard/" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(245,196,81,.35)">Dashboard de Screeners</a>. Haz clic en un ticker para ver su gráfico diario con EMA(10), EMA(21) y SMA(50), o en una cabecera numérica para ordenar.</p>
 <div class="sd-bar reveal">
 <select id="sdSelect" aria-label="Elegir screener" onchange="sdSwitch()"></select>
 <input type="text" id="sdSearch" placeholder="Buscar ticker o nombre…" aria-label="Buscar valor" oninput="sdRender()">
@@ -376,11 +391,11 @@ thead th.s.on{color:var(--gold)}
 <div class="si-grid reveal">
 <div>
 <div class="si-head"><span class="t">Sectores</span><span class="c" id="sdSecCap">—</span></div>
-<div class="table-wrap"><table id="sdSecTable"><thead><tr><th class="l">Sector</th><th class="s" data-k="2">1M</th><th class="s on" data-k="3">3M</th><th class="s" data-k="4">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="4">Cargando…</td></tr></tbody></table></div>
+<div class="table-wrap"><table id="sdSecTable"><thead><tr><th class="l">Sector</th><th class="s" data-k="w1">1S</th><th class="s" data-k="m1">1M</th><th class="s on" data-k="m3">3M</th><th class="s" data-k="m6">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="5">Cargando…</td></tr></tbody></table></div>
 </div>
 <div>
 <div class="si-head"><span class="t">Industrias</span><span class="c" id="sdIndCap">—</span></div>
-<div class="table-wrap"><table id="sdIndTable"><thead><tr><th class="l">Industria</th><th class="s" data-k="2">1M</th><th class="s on" data-k="3">3M</th><th class="s" data-k="4">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="4">Cargando…</td></tr></tbody></table></div>
+<div class="table-wrap"><table id="sdIndTable"><thead><tr><th class="l">Industria</th><th class="s" data-k="w1">1S</th><th class="s" data-k="m1">1M</th><th class="s on" data-k="m3">3M</th><th class="s" data-k="m6">6M</th></tr></thead><tbody><tr><td class="sd-msg" colspan="5">Cargando…</td></tr></tbody></table></div>
 </div>
 </div>
 <div class="si-legend reveal">
@@ -388,6 +403,7 @@ thead th.s.on{color:var(--gold)}
 <span><span class="sw" style="background:rgba(255,93,122,.55)"></span>negativo</span>
 <span><span class="si-badge strong">FUERTE</span> top-5 en 1M, 3M y 6M</span>
 <span><span class="si-badge weak">DÉBIL</span> bottom-5 en 1M, 3M y 6M</span>
+<span><b style="color:var(--muted);opacity:.55">—</b>&nbsp; dato aún no publicado por el dashboard</span>
 </div>
 </div>
 </section>
@@ -410,7 +426,7 @@ thead th.s.on{color:var(--gold)}
 <div class="wrap">
 <div class="brand"><span class="dot"></span>Miquel <span style="color:var(--gold)">Markets</span></div>
 <div>Timing · Strategy · Growth</div>
-<div style="margin-top:8px;opacity:.7">Generado automáticamente cada sábado a partir de AmiBroker · Octomomentum / Fantastic 4</div>
+<div style="margin-top:8px;opacity:.7">Sistemas desde AmiBroker · Screener y sectores vía stockanalysis.com · Actualizado cada sábado</div>
 <div style="margin-top:10px;font-size:.8rem;opacity:.6">Rentabilidades pasadas no garantizan resultados futuros. Contenido informativo, no es asesoramiento financiero.</div>
 </div>
 </footer>
@@ -449,7 +465,7 @@ const CAND_F4=[
 function pctCell(v){const c=v>=0?'pos':'neg';return '<span class="'+c+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>';}
 function renderPos(id,data){
 const h='<thead><tr><th>Ticker</th><th>Entrada</th><th>P. entrada</th><th>P. actual</th><th>% Resultado</th><th>Señal</th></tr></thead>';
-const b=data.map(d=>'<tr><td><span class="tk tkc" onclick="openChart(\''+d[0]+'\')">'+d[0]+'</span></td><td>'+d[1]+'</td><td>$'+d[2]+'</td><td>$'+d[3]+'</td><td>'+pctCell(d[4])+'</td><td>'+(d[5]===1?'<span class="sell">VENDER</span>':'<span class="hold">Mantener</span>')+'</td></tr>').join('');
+const b=data.map(d=>'<tr><td><span class="tk tkc" onclick="openChart(\''+d[0]+'\',\'sys\')">'+d[0]+'</span></td><td>'+d[1]+'</td><td>$'+d[2]+'</td><td>$'+d[3]+'</td><td>'+pctCell(d[4])+'</td><td>'+(d[5]===1?'<span class="sell">VENDER</span>':'<span class="hold">Mantener</span>')+'</td></tr>').join('');
 document.getElementById(id).innerHTML=h+'<tbody>'+b+'</tbody>';
 }
 function renderCand(id,data,metricLabel){
@@ -466,16 +482,20 @@ renderPos('posOcto',POS_OCTO); renderPos('posF4',POS_F4);
 renderCand('candOcto',CAND_OCTO,'ROC'); renderCand('candF4',CAND_F4,'RSC Mansf.');
 
 /* ====== TRADINGVIEW (velas semanales + WMA 30) ====== */
-function openChart(t){
-document.getElementById('tvTitle').innerHTML=t+' <small>Velas semanales · WMA(30)</small>';
+function tvMA(kind,len,color){return {id:kind+'@tv-basicstudies',inputs:{length:len},overrides:{'Plot.color':color,'Plot.linewidth':2}};}
+/* mode 'sys' = cartera del sistema (semanal, WMA 30) · por defecto = screener (diario, EMA 10/21 + SMA 50) */
+function openChart(t,mode){
+const sys=mode==='sys';
+document.getElementById('tvTitle').innerHTML=t+' <small>'+(sys?'Velas semanales · WMA(30)':'Velas diarias · EMA(10) · EMA(21) · SMA(50)')+'</small>';
 document.getElementById('tvOverlay').classList.add('open');
 document.getElementById('tv_container').innerHTML='';
 if(typeof TradingView==='undefined')return;
 new TradingView.widget({
-container_id:'tv_container',symbol:t,autosize:true,interval:'W',timezone:'Etc/UTC',
+container_id:'tv_container',symbol:t,autosize:true,interval:sys?'W':'D',timezone:'Etc/UTC',
 theme:'dark',style:'1',locale:'es',toolbar_bg:'#0f1828',enable_publishing:false,
 allow_symbol_change:true,hide_side_toolbar:false,
-studies:[{id:'MAWeighted@tv-basicstudies',inputs:{length:30},overrides:{'Plot.color':'#f5c451','Plot.linewidth':2}}]
+studies:sys?[tvMA('MAWeighted',30,'#f5c451')]
+:[tvMA('MAExp',10,'#27e0a3'),tvMA('MAExp',21,'#f5c451'),tvMA('MASimple',50,'#5aa9ff')]
 });
 }
 function closeChart(){document.getElementById('tvOverlay').classList.remove('open');document.getElementById('tv_container').innerHTML='';}
@@ -695,26 +715,37 @@ cnt.textContent=rows.length;
 function sdSwitch(){sdKey=document.getElementById('sdSelect').value;sdSort=null;sdDir=-1;sdMeta();sdRender();}
 
 /* ---- sectores e industrias ---- */
-let sdSecSort=3,sdIndSort=3;
+/* Formatos aceptados (el 1S aparece solo si el dashboard lo publica):
+   grupo  : [nombre, nEmpresas, 1M, 3M, 6M, badge, top10]                     (sin 1S)
+            [nombre, nEmpresas, 1S, 1M, 3M, 6M, badge, top10]                 (con 1S)
+   top10  : [ticker, nombre, precio, 1M, 3M, 6M]                              (sin 1S)
+            [ticker, nombre, precio, 1S, 1M, 3M, 6M]                          (con 1S) */
+let sdSecSort='m3',sdIndSort='m3';
+const SD_SI={};
+function siNormTop(s){const w=s.length>=7;return {tk:s[0],name:s[1],px:s[2],w1:w?s[3]:null,m1:s[w?4:3],m3:s[w?5:4],m6:s[w?6:5]};}
+function siNorm(x){const w=x.length>=8;return {name:x[0],n:x[1],w1:w?x[2]:null,m1:x[w?3:2],m3:x[w?4:3],m6:x[w?5:4],badge:x[w?6:5],top:(x[w?7:6]||[]).map(siNormTop)};}
 function siHeat(v){const g=v>=0,m=Math.min(Math.abs(v)/50,1),a=(0.09+m*0.5).toFixed(3);
 return 'background:rgba('+(g?'39,224,163':'255,93,122')+','+a+');color:'+(m>0.42?'#06101c':(g?'var(--green)':'var(--red)'));}
 function siFmt(v){return (v>0?'+':'')+(Number(v)||0).toFixed(1)+'%';}
-function siBadge(b){return b==='strong'?'<span class="si-badge strong">FUERTE</span>':b==='weak'?'<span class="si-badge weak">DÉBIL</span>':'';}
+function siCell(v){return v==null?'<td class="si-perf na">\u2014</td>':'<td class="si-perf" style="'+siHeat(v)+'">'+siFmt(v)+'</td>';}
+function siBadge(b){return b==='strong'?'<span class="si-badge strong">FUERTE</span>':b==='weak'?'<span class="si-badge weak">D\u00c9BIL</span>':'';}
 function siTable(id,varName,k){
-const data=SD_DATA[varName],tb=document.querySelector('#'+id+' tbody');
+const rows=SD_SI[varName],tb=document.querySelector('#'+id+' tbody');
 if(!tb)return;
-if(!data){tb.innerHTML='<tr><td class="sd-msg" colspan="4">No se han podido cargar los datos. Ver el <a href="'+SD_SRC+'" target="_blank" rel="noopener">dashboard original</a>.</td></tr>';return;}
-const ord=data.map((x,i)=>i).sort((a,b)=>data[b][k]-data[a][k]);
-tb.innerHTML=ord.map((oi,r)=>{const x=data[oi];
-return '<tr data-v="'+varName+'" data-i="'+oi+'"><td class="l"><span class="si-rank">'+(r+1)+'</span>'+sdEsc(x[0])+siBadge(x[5])+'<span class="si-cnt">'+x[1]+' empresas</span></td>'+
-[2,3,4].map(j=>'<td class="si-perf" style="'+siHeat(x[j])+'">'+siFmt(x[j])+'</td>').join('')+'</tr>';}).join('');
-document.querySelectorAll('#'+id+' thead th.s').forEach(th=>th.classList.toggle('on',+th.dataset.k===k));
+if(!rows){tb.innerHTML='<tr><td class="sd-msg" colspan="5">No se han podido cargar los datos. Ver el <a href="'+SD_SRC+'" target="_blank" rel="noopener">dashboard original</a>.</td></tr>';return;}
+const key=rows.some(x=>x[k]!=null)?k:'m3';
+const val=(x,f)=>x[f]==null?-1e9:x[f];
+const ord=rows.map((x,i)=>i).sort((a,b)=>val(rows[b],key)-val(rows[a],key));
+tb.innerHTML=ord.map((oi,r)=>{const x=rows[oi];
+return '<tr data-v="'+varName+'" data-i="'+oi+'"><td class="l"><span class="si-rank">'+(r+1)+'</span>'+sdEsc(x.name)+siBadge(x.badge)+'<span class="si-cnt">'+x.n+' empresas</span></td>'+
+siCell(x.w1)+siCell(x.m1)+siCell(x.m3)+siCell(x.m6)+'</tr>';}).join('');
+document.querySelectorAll('#'+id+' thead th.s').forEach(th=>th.classList.toggle('on',th.dataset.k===key));
 }
 function sdOpenGroup(varName,i){
-const x=(SD_DATA[varName]||[])[i];if(!x)return;
-document.getElementById('sdGmTitle').innerHTML=sdEsc(x[0])+' <small>'+x[1]+' empresas · 10 mayores por capitalización · 1M '+siFmt(x[2])+' · 3M '+siFmt(x[3])+' · 6M '+siFmt(x[4])+'</small>';
-document.getElementById('sdGmBody').innerHTML='<div class="table-wrap"><table><thead><tr><th class="l">Ticker</th><th class="l">Empresa</th><th>Precio</th><th>1M</th><th>3M</th><th>6M</th></tr></thead><tbody>'+
-(x[6]||[]).map(s=>'<tr><td class="l">'+sdTk(s[0])+'</td><td class="l">'+sdNm(s[1])+'</td><td>'+sdMoney(s[2])+'</td>'+[3,4,5].map(j=>'<td class="si-perf" style="'+siHeat(s[j])+'">'+siFmt(s[j])+'</td>').join('')+'</tr>').join('')+
+const x=(SD_SI[varName]||[])[i];if(!x)return;
+document.getElementById('sdGmTitle').innerHTML=sdEsc(x.name)+' <small>'+x.n+' empresas \u00b7 10 mayores por capitalizaci\u00f3n \u00b7 '+(x.w1!=null?'1S '+siFmt(x.w1)+' \u00b7 ':'')+'1M '+siFmt(x.m1)+' \u00b7 3M '+siFmt(x.m3)+' \u00b7 6M '+siFmt(x.m6)+'</small>';
+document.getElementById('sdGmBody').innerHTML='<div class="table-wrap"><table><thead><tr><th class="l">Ticker</th><th class="l">Empresa</th><th>Precio</th><th>1S</th><th>1M</th><th>3M</th><th>6M</th></tr></thead><tbody>'+
+x.top.map(t=>'<tr><td class="l">'+sdTk(t.tk)+'</td><td class="l">'+sdNm(t.name)+'</td><td>'+sdMoney(t.px)+'</td>'+siCell(t.w1)+siCell(t.m1)+siCell(t.m3)+siCell(t.m6)+'</tr>').join('')+
 '</tbody></table></div>';
 document.getElementById('sdOverlay').classList.add('open');
 }
@@ -726,7 +757,7 @@ if(row&&row.dataset.i!==undefined&&!e.target.closest('.tkc'))sdOpenGroup(row.dat
 });
 ['sdSecTable','sdIndTable'].forEach(function(id){
 document.querySelectorAll('#'+id+' thead th.s').forEach(function(th){
-th.addEventListener('click',function(){const k=+th.dataset.k;
+th.addEventListener('click',function(){const k=th.dataset.k;
 if(id==='sdSecTable'){sdSecSort=k;siTable(id,'DATA_SECTORS',k);}else{sdIndSort=k;siTable(id,'DATA_INDUSTRIES',k);}});});
 });
 
@@ -738,11 +769,12 @@ sel.value=sdKey;sdMeta();
 fetch(SD_SRC,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.text();}).then(txt=>{
 SD_VARS.forEach(v=>{const m=txt.match(new RegExp('const\\s+'+v+'\\s*=\\s*(\\[[\\s\\S]*?\\])\\s*;'));
 if(m){try{SD_DATA[v]=JSON.parse(m[1]);}catch(err){}}});
+['DATA_SECTORS','DATA_INDUSTRIES'].forEach(v=>{if(SD_DATA[v])SD_SI[v]=SD_DATA[v].map(siNorm);});
 sdRender();
 siTable('sdSecTable','DATA_SECTORS',sdSecSort);
 siTable('sdIndTable','DATA_INDUSTRIES',sdIndSort);
-if(SD_DATA.DATA_SECTORS)document.getElementById('sdSecCap').textContent=SD_DATA.DATA_SECTORS.length+' sectores';
-if(SD_DATA.DATA_INDUSTRIES)document.getElementById('sdIndCap').textContent=SD_DATA.DATA_INDUSTRIES.length+' industrias';
+if(SD_SI.DATA_SECTORS)document.getElementById('sdSecCap').textContent=SD_SI.DATA_SECTORS.length+' sectores';
+if(SD_SI.DATA_INDUSTRIES)document.getElementById('sdIndCap').textContent=SD_SI.DATA_INDUSTRIES.length+' industrias';
 }).catch(()=>{sdRender();siTable('sdSecTable','DATA_SECTORS',sdSecSort);siTable('sdIndTable','DATA_INDUSTRIES',sdIndSort);});
 })();
 </script>
