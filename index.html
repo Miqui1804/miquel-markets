@@ -175,6 +175,8 @@ footer .brand{justify-content:center;margin-bottom:10px;font-size:1.05rem}
 .sd-bar input{flex:1;min-width:170px}
 .sd-bar .cnt{font-family:'JetBrains Mono';font-size:.78rem;color:var(--muted);white-space:nowrap}
 .sd-bar .cnt b{color:var(--gold);font-size:1.05rem}
+.sd-bar .cnt .warn{color:var(--red);opacity:.85}
+.sd-bar .cnt{white-space:normal}
 .sd-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
 .sd-chips span{font-size:.73rem;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);padding:5px 11px;border-radius:100px}
 .sd-note{font-size:.81rem;color:var(--muted);opacity:.9;line-height:1.55;max-width:900px;margin-bottom:14px}
@@ -243,7 +245,7 @@ thead th.s.on{color:var(--gold)}
 <a href="#sectores">Sectores</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px">
-<span class="nav-date">Datos 05/09/2026</span>
+<span class="nav-date">Datos 11/09/2026</span>
 <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()"><span></span></button>
 </div>
 </div>
@@ -256,7 +258,7 @@ thead th.s.on{color:var(--gold)}
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 05/09/2026</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 12/09/2026</div>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Sistemas propios desde AmiBroker, screener del universo de acciones US y fuerza relativa por sectores e industrias.</p>
 <div class="hero-nav reveal">
@@ -287,9 +289,9 @@ thead th.s.on{color:var(--gold)}
 <p class="sec-sub">Backtest 2000–2026 (27 años) · capital inicial 10.000 € · 8 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big g" data-count="11.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
-<div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-1.5" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big g" data-count="14.3" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Octomomentum YTD 2026</div></div>
+<div class="cell"><div class="big b" data-count="12.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
+<div class="cell"><div class="big gold" data-count="1.8" data-decimals="1" data-suffix=" p.p." data-prefix="+">+0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -326,9 +328,9 @@ thead th.s.on{color:var(--gold)}
 <p class="sec-sub">Backtest 2000–2026 (26 años) · capital inicial 10.000 € · 4 posiciones simultáneas.</p>
 
 <div class="strip">
-<div class="cell"><div class="big r" data-count="-0.8" data-decimals="1" data-suffix="%">0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
-<div class="cell"><div class="big b" data-count="13.0" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
-<div class="cell"><div class="big gold" data-count="-13.8" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
+<div class="cell"><div class="big g" data-count="4.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">Fantastic 4 YTD 2026</div></div>
+<div class="cell"><div class="big b" data-count="12.5" data-decimals="1" data-suffix="%" data-prefix="+">+0%</div><div class="lbl">S&amp;P 500 YTD 2026</div></div>
+<div class="cell"><div class="big gold" data-count="-8.0" data-decimals="1" data-suffix=" p.p.">0</div><div class="lbl">Alpha vs S&amp;P 500</div></div>
 </div>
 
 <div class="card">
@@ -371,7 +373,7 @@ thead th.s.on{color:var(--gold)}
 <div class="sd-bar reveal">
 <select id="sdSelect" aria-label="Elegir screener" onchange="sdSwitch()"></select>
 <input type="text" id="sdSearch" placeholder="Buscar ticker o nombre…" aria-label="Buscar valor" oninput="sdRender()">
-<span class="cnt"><b id="sdCount">—</b> <span id="sdCountLbl"></span></span>
+<span class="cnt"><b id="sdCount">—</b> <span id="sdCountLbl"></span> <span class="warn" id="sdFilterNote"></span></span>
 </div>
 <div class="sd-chips reveal" id="sdChips"></div>
 <p class="sd-note reveal clamp" id="sdNote"></p>
@@ -433,34 +435,29 @@ thead th.s.on{color:var(--gold)}
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 04/09/2026 */
+/* Octomomentum: 11/09/2026 — sin cambios */
 const POS_OCTO=[
-["MRVL","17/04/2026","129.97","223.55",72.00],["STX","17/04/2026","500.08","849.28",69.83],
-["APA","17/04/2026","39.63","42.77",7.94],["KEYS","17/04/2026","322.56","327.21",1.44],
-["TER","17/04/2026","365.94","357.03",-2.43],["VRT","17/04/2026","294.98","280.53",-4.90],
-["GEV","17/04/2026","998.00","941.95",-5.62],["GLW","17/04/2026","169.65","154.30",-9.05]];
-/* Fantastic 4: 04/09/2026 — sin cambios */
+["MRVL","17/04/2026","129.97","238.97",83.87],["STX","17/04/2026","500.08","829.80",65.93],
+["APA","17/04/2026","39.63","44.68",12.76],["KEYS","17/04/2026","322.56","337.75",4.71],
+["TER","17/04/2026","365.94","381.46",4.24],["GLW","17/04/2026","169.65","166.94",-1.60],
+["GEV","17/04/2026","998.00","954.50",-4.36],["VRT","17/04/2026","294.98","257.59",-12.68]];
+/* Fantastic 4: 11/09/2026 — sin cambios */
 const POS_F4=[
-["OKTA","02/07/2026","126.74","170.60",34.61],["NTAP","07/08/2026","179.06","185.59",3.65],
-["HPE","14/08/2026","55.40","52.00",-6.14],["AMD","17/07/2026","537.50","477.57",-11.15]];
+["OKTA","02/07/2026","126.74","166.50",31.37],["HPE","14/08/2026","55.40","62.09",12.08],
+["NTAP","07/08/2026","179.06","199.28",11.29],["AMD","17/07/2026","537.50","518.18",-3.60]];
 const CAND_OCTO=[
-["CRM",1,"Salesforce","259.23","170.79","27.03"],["WDAY",1,"Workday","195.79","167.44","21.97"],
-["MPC",1,"Marathon Petroleum","388.90","160.10","25.08"],["IQV",1,"Iqvia","267.77","159.61","22.43"],
-["DOCU",1,"DocuSign","68.41","157.37","22.80"],["VLO",1,"Valero Energy","370.72","156.89","22.60"],
-["CRL",1,"Charles River Laboratories","288.50","155.95","22.85"],["PSX",1,"Phillips 66","255.09","153.54","22.23"],
-["EPAM",0,"EPAM Systems","117.04","152.71","11.77"],["NOW",0,"ServiceNow","141.26","148.63","20.84"],
-["IT",0,"Gartner","186.42","146.22","14.16"],["ACN",0,"Accenture","186.72","145.90","9.06"],
-["OKTA",0,"Okta","170.60","144.81","26.69"],["CTSH",0,"Cognizant Technology Solutions","62.31","142.59","13.80"],
-["HPQ",0,"HP Inc","32.64","138.89","21.83"],["GPN",0,"Global Payments","92.54","138.37","15.05"]];
-/* Fantastic 4 — screener 04/09/2026. d[1]=TOP (entra), d[6]=excluido */
+["MSTR",1,"MicroStrategy","131.17","159.36","6.82"],["MPC",1,"Marathon Petroleum","399.86","157.39","24.97"],
+["CRM",1,"Salesforce","247.92","156.54","22.09"],["HPQ",1,"HP Inc","35.35","154.50","25.64"],
+["PSX",1,"Phillips 66","260.38","151.69","21.96"],["VLO",1,"Valero Energy","392.80","151.44","24.84"],
+["WDAY",1,"Workday","185.17","149.08","16.05"],["CTSH",1,"Cognizant Technology Solutions","59.33","148.21","9.06"],
+["PLTR",0,"Palantir","167.20","148.06","11.42"],["DOCU",0,"DocuSign","66.16","146.34","18.61"],
+["EPAM",0,"EPAM Systems","117.87","146.10","12.09"]];
+/* Fantastic 4 — screener 11/09/2026. d[1]=TOP (entra), d[6]=excluido */
 const CAND_F4=[
-["DE",0,"Deere & Company","693.53","1.58","13.00"],["SLB",0,"Schlumberger","57.51","1.38","9.14"],
-["CRM",0,"Salesforce","259.23","1.20","27.03"],["CVX",0,"Chevron","208.60","0.82","8.71"],
-["DOCU",0,"DocuSign","68.41","0.78","22.80"],["QRVO",0,"Qorvo","102.84","0.63","9.78"],
-["GILD",0,"Gilead Sciences","151.00","0.50","10.44"],["SMCI",0,"Super Micro Computer","39.59","0.45","18.07"],
-["HAL",0,"Halliburton","37.07","0.34","2.39"],["EL",0,"Estée Lauder","103.86","0.23","16.00"],
-["SWKS",0,"Skyworks Solutions","74.02","0.23","9.97"]];
-
+["LITE",0,"Lumentum Holdings","927.03","4.48","8.49"],["SWKS",0,"Skyworks Solutions","88.35","2.30","22.84"],
+["QRVO",0,"Qorvo","116.65","2.12","18.97"],["COP",0,"ConocoPhillips","137.35","1.62","11.69"],
+["CVX",0,"Chevron","214.06","1.16","10.31"],["OXY",0,"Occidental","61.46","1.15","7.33"],
+["DVN",0,"Devon Energy","50.23","1.06","8.70"]];
 /* ====== RENDER TABLAS ====== */
 function pctCell(v){const c=v>=0?'pos':'neg';return '<span class="'+c+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>';}
 function renderPos(id,data){
@@ -528,8 +525,8 @@ document.getElementById('view-octo').classList.toggle('active',key==='octo');
 document.getElementById('view-f4').classList.toggle('active',key==='f4');
 document.getElementById('btn-octo').classList.toggle('active',key==='octo');
 document.getElementById('btn-f4').classList.toggle('active',key==='f4');
-if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,11.5],'#27e0a3','Octomomentum');charted.octo=true;}
-if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,19.0,21.3,-7.1,-2.0,-0.8],'#f5c451','Fantastic 4');charted.f4=true;}
+if(key==='octo'&&!charted.octo){buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,14.3],'#27e0a3','Octomomentum');charted.octo=true;}
+if(key==='f4'&&!charted.f4){buildChart('chartF4',[-4.0,1.1,-6.6,5.9,19.0,21.3,-7.1,-2.0,4.5],'#f5c451','Fantastic 4');charted.f4=true;}
 moveIndicator();
 animateVisibleCounters();
 }
@@ -555,7 +552,7 @@ function buildChart(id,sys,color,label){
 const el=document.getElementById(id);if(!el)return;const ctx=el.getContext('2d');
 new Chart(ctx,{type:'line',data:{labels:MESES,datasets:[
 {label,data:sys,borderColor:color,borderWidth:3,fill:{target:1,above:gradUD(ctx,'#22c55e',false),below:gradUD(ctx,'#ef4444',true)},tension:.4,pointRadius:0,pointHoverRadius:5},
-{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,13.0,null],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
+{label:'S&P 500',data:[1.4,2.6,1.1,4.2,6.5,8.1,7.8,13.0,12.5],borderColor:'#5aa9ff',borderWidth:2,borderDash:[6,5],fill:false,tension:.4,pointRadius:0,pointHoverRadius:5}
 ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
 plugins:{legend:{labels:{usePointStyle:true,pointStyle:'circle',boxWidth:8,padding:18,font:{size:12}}},
 tooltip:{backgroundColor:'#0c1322',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:12,callbacks:{label:c=>' '+c.dataset.label+': '+(c.parsed.y>=0?'+':'')+c.parsed.y.toFixed(1)+'%'}}},
@@ -574,7 +571,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const sb=document.getElementById('scrollbar');
 addEventListener('scroll',()=>{const h=document.documentElement;sb.style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+'%';},{passive:true});
-buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,11.5],'#27e0a3','Octomomentum');charted.octo=true;
+buildChart('chartOcto',[-1.6,8.3,-4.0,6.6,13.1,23.2,4.5,8.1,14.3],'#27e0a3','Octomomentum');charted.octo=true;
 animateVisibleCounters();
 moveIndicator();
 addEventListener('resize',moveIndicator);
@@ -602,6 +599,13 @@ function sdN(v,d){return '<span class="mono">'+(Number(v)||0).toFixed(d==null?1:
 function sdTxt(v){return '<span class="mono" style="color:var(--muted);font-size:.82rem">'+sdEsc(v)+'</span>';}
 function sdTags(s){return String(s).split(', ').map(x=>'<span class="dist d-o" style="margin:2px 3px 2px 0">'+sdEsc(x)+'</span>').join('');}
 const c=(h,r,s,l)=>({h:h,r:r,s:s,l:!!l});
+/* distancia al maximo de 52 semanas: campo opcional 15 de cada fila de DATA_TAZA */
+function tzD(d){return d.length>=15&&d[14]!=null?d[14]:null;}
+/* filtro de calidad: solo actua cuando el dashboard publica el dato */
+function sdFiltrar(cfg,rows){
+if(cfg.d52==null||!rows.some(d=>tzD(d)!=null))return null;
+return rows.filter(d=>tzD(d)!=null&&tzD(d)>=-10);
+}
 
 const SD_CFG={
 banderas:{v:"DATA_BANDERAS",t:"Banderas · Patrón Mástil + Bandera",lbl:"valores con patrón mástil+bandera activo",chips:["Mástil: +100% o más en 4-8 semanas", "Bandera: consolidación 10-25% en 3-5 semanas", "Patrón activo en los últimos ~6 días de cotización", "Market Cap mínimo $150M"],note:"Metodología: se escaneó el histórico diario completo (desde IPO) de las ~5.600 acciones US del universo de stockanalysis.com. Primero se aplicó un filtro de momentum (subida de 3 ó 6 meses ≥ 55-80% y volumen ≥ 50K) para reducir a ~299 candidatos, y sobre estos se ejecutó un algoritmo de detección de mástil (ganancia ≥100% en 4-8 semanas) seguido de bandera (retroceso 10-25% en 3-5 semanas) que debe estar activo en las últimas sesiones. Resultado: 14 valores. Esto es un patrón técnico/gráfico, no un filtro fundamental — revisa siempre el gráfico antes de operar.",def:[5,-1],cols:[
@@ -615,11 +619,12 @@ c('Sem. mástil',d=>sdTxt(d[6]),d=>d[6]),
 c('Retroceso',d=>sdPlain(d[7]),d=>d[7]),
 c('Sem. bandera',d=>sdTxt(d[8]),d=>d[8]),
 c('Fin bandera',d=>sdTxt(d[11]),d=>d[11])]},
-taza:{v:"DATA_TAZA",t:"Taza con Asa · Patrón Cup & Handle",lbl:"valores con patrón taza con asa activo",chips:["Taza: corrección 12-35% en forma de U (6-40 semanas)", "Bordes a nivel similar (±10%) con subida previa ≥ 25%", "Asa: retroceso 2-15% en la mitad superior (1-5 semanas)", "Precio aún bajo el pivot de compra", "Market Cap mínimo $150M"],note:"Metodología: sobre ~2.917 candidatos US con Market Cap > $150M, volumen medio ≥ 100K y precio a menos del 45% de su máximo de 52 semanas, se escaneó el histórico diario ajustado de 2 años buscando: subida previa ≥ 25%, taza en U con profundidad 12-35% y fondo centrado (20-80% de la taza), recuperación hasta ±10% del borde izquierdo, y asa en formación con retroceso 2-15% en la mitad superior de la taza. El pivot de compra es el máximo del borde derecho (inicio del asa); la distancia indica cuánto le falta al último cierre ajustado para romperlo. Patrón técnico — revisa siempre el gráfico y el volumen antes de operar.",def:[9,1],cols:[
+taza:{v:"DATA_TAZA",t:"Taza con Asa · Patrón Cup & Handle",lbl:"valores con patrón taza con asa activo",chips:["A menos del 10% del m\u00e1ximo de 52 semanas", "Taza: corrección 12-35% en forma de U (6-40 semanas)", "Bordes a nivel similar (±10%) con subida previa ≥ 25%", "Asa: retroceso 2-15% en la mitad superior (1-5 semanas)", "Precio aún bajo el pivot de compra", "Market Cap mínimo $150M"],note:"Metodología: sobre ~2.917 candidatos US con Market Cap > $150M, volumen medio ≥ 100K y precio a menos del 45% de su máximo de 52 semanas, se escaneó el histórico diario ajustado de 2 años buscando: subida previa ≥ 25%, taza en U con profundidad 12-35% y fondo centrado (20-80% de la taza), recuperación hasta ±10% del borde izquierdo, y asa en formación con retroceso 2-15% en la mitad superior de la taza. El pivot de compra es el máximo del borde derecho (inicio del asa); la distancia indica cuánto le falta al último cierre ajustado para romperlo. Patrón técnico — revisa siempre el gráfico y el volumen antes de operar. FILTRO A\u00d1ADIDO EN ESTA P\u00c1GINA: solo se listan valores a menos del 10% de su m\u00e1ximo de 52 semanas. Requiere que el dashboard publique ese dato como campo 15 de cada fila de DATA_TAZA; mientras no lo haga se muestran todos y la columna sale como gui\u00f3n.",def:[10,1],d52:14,cols:[
 c('Ticker',d=>sdTk(d[0]),d=>d[0],1),
 c('Empresa',d=>sdNm(d[1]),d=>d[1],1),
 c('Precio',d=>sdMoney(d[3]),d=>sdVn(d[3])),
 c('Cap.',d=>sdTxt(sdMc(d[2])),d=>sdMcN(d[2])),
+c('Dist. m\u00e1x 52s',d=>tzD(d)==null?'<span class="na">\u2014</span>':sdDst(tzD(d),-5,-10),d=>tzD(d)==null?-1e9:tzD(d)),
 c('Prof. taza',d=>sdPlain(d[5]),d=>d[5]),
 c('Sem. taza',d=>sdTxt(d[6]),d=>d[6]),
 c('Retr. asa',d=>sdPlain(d[7]),d=>d[7]),
@@ -702,9 +707,12 @@ sdSort=i;sdRender();
 }
 function sdRender(){
 const cfg=SD_CFG[sdKey],data=SD_DATA[cfg.v],el=document.getElementById('sdTable'),cnt=document.getElementById('sdCount');
+const nv=document.getElementById('sdFilterNote');if(nv)nv.textContent='';
 if(!data){el.innerHTML='<tbody><tr><td class="sd-msg">No se han podido cargar los datos. Consulta el <a href="'+SD_SRC+'" target="_blank" rel="noopener">dashboard original</a>.</td></tr></tbody>';cnt.textContent='—';return;}
 const q=(document.getElementById('sdSearch').value||'').toLowerCase().trim();
-let rows=data.filter(d=>!q||String(d[0]).toLowerCase().indexOf(q)>=0||String(d[1]).toLowerCase().indexOf(q)>=0);
+const fil=sdFiltrar(cfg,data),base=fil||data,nota=document.getElementById('sdFilterNote');
+if(nota)nota.textContent=fil&&data.length>fil.length?'\u00b7 '+(data.length-fil.length)+' descartados por estar a m\u00e1s del 10% del m\u00e1ximo de 52 semanas':'';
+let rows=base.filter(d=>!q||String(d[0]).toLowerCase().indexOf(q)>=0||String(d[1]).toLowerCase().indexOf(q)>=0);
 const si=sdSort==null?cfg.def[0]:sdSort,dir=sdSort==null?cfg.def[1]:sdDir,sf=cfg.cols[si]&&cfg.cols[si].s;
 if(sf)rows=rows.slice().sort((a,b)=>{const x=sf(a),y=sf(b);return (typeof x==='string'?String(x).localeCompare(String(y)):x-y)*dir;});
 const head='<thead><tr>'+cfg.cols.map((col,i)=>'<th'+(col.s?' class="s'+(i===si?' on':'')+(col.l?' l':'')+'" onclick="sdSetSort('+i+')"':(col.l?' class="l"':''))+'>'+col.h+(col.s&&i===si?(dir>0?' ▲':' ▼'):'')+'</th>').join('')+'</tr></thead>';
