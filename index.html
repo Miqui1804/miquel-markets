@@ -222,8 +222,9 @@ thead th.s.on{color:var(--gold)}
 .si-perf.na,.na{color:var(--muted);opacity:.45;font-weight:500}
 .nav-date{font-family:'JetBrains Mono';font-size:.76rem;color:var(--muted);background:var(--panel-2);border:1px solid var(--line);padding:7px 12px;border-radius:9px;white-space:nowrap}
 @media(max-width:560px){.nav-date{display:none}}
-.hero-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:36px auto 0}
-@media(max-width:760px){.hero-nav{grid-template-columns:1fr}}
+.hero-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1080px;margin:36px auto 0}
+@media(max-width:900px){.hero-nav{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.hero-nav{grid-template-columns:1fr}}
 .hero-nav a{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:16px;padding:20px 18px;text-align:left;display:block;transition:transform .2s,border-color .2s,box-shadow .2s}
 .hero-nav a:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 22px 46px -26px rgba(0,0,0,.9)}
 .hero-nav .n{font-family:'JetBrains Mono';font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:7px}
@@ -231,6 +232,65 @@ thead th.s.on{color:var(--gold)}
 .hero-nav small{color:var(--muted);font-size:.79rem;line-height:1.45;display:block}
 #sistemas .switch{margin:18px 0 4px}
 #sistemas .view{padding-top:6px}
+.br-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 4px}
+.br-range{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:4px;gap:3px}
+.br-range button{font-family:'JetBrains Mono';font-size:.76rem;font-weight:700;color:var(--muted);background:transparent;border:0;padding:7px 13px;border-radius:9px;cursor:pointer;transition:color .2s,background .2s}
+.br-range button:hover{color:var(--txt)}
+.br-range button.on{background:var(--gold);color:#1a1404}
+.br-asof{font-family:'JetBrains Mono';font-size:.74rem;color:var(--muted)}
+.br-card{padding:6px 0;overflow:hidden}
+.br-pane{padding:18px 22px 10px}
+.br-pane+.br-pane{border-top:1px solid var(--line)}
+.br-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.br-head .t{font-family:'Sora';font-weight:700;font-size:.98rem}
+.br-head .t small{font-family:'Inter';font-weight:500;color:var(--muted);font-size:.75rem;margin-left:8px}
+.br-vals{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.br-v{font-family:'JetBrains Mono';font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line)}
+.br-v i{font-style:normal;color:var(--muted);font-weight:500;margin-right:6px}
+.br-tag{font-family:'JetBrains Mono';font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:.03em}
+.br-tag.g{color:#04231a;background:var(--green)}
+.br-tag.r{color:#2a0510;background:var(--red)}
+.br-tag.n{color:var(--muted);background:var(--panel-2);border:1px solid var(--line)}
+.br-box{position:relative}
+.br-box.h1{height:210px}.br-box.h2{height:170px}.br-box.h3{height:200px}
+.br-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+@media(max-width:860px){.br-notes{grid-template-columns:1fr}}
+.br-notes div{font-size:.8rem;color:var(--muted);line-height:1.55;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.br-notes b{color:var(--txt);display:block;font-family:'Sora';font-size:.86rem;margin-bottom:4px}
+.br-notes code{font-family:'JetBrains Mono';font-size:.74rem;color:var(--gold)}
+@media(max-width:560px){.br-pane{padding:16px 14px 8px}}
+.mk-sub{font-family:'Sora';font-weight:800;font-size:1.25rem;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
+.mk-sub .n{font-family:'JetBrains Mono';font-size:.72rem;color:var(--gold);letter-spacing:.1em}
+.sem-card{display:grid;grid-template-columns:300px 1fr;gap:28px;padding:28px}
+@media(max-width:900px){.sem-card{grid-template-columns:1fr}}
+.sem-left{display:flex;gap:22px;align-items:center}
+@media(max-width:900px){.sem-left{justify-content:center}}
+.sem-light{display:flex;flex-direction:column;align-items:center;gap:13px;background:#04070d;border:1px solid var(--line-strong);border-radius:24px;padding:16px 15px;box-shadow:inset 0 2px 10px rgba(0,0,0,.6)}
+.sem-light span{width:52px;height:52px;border-radius:50%;opacity:.14;transition:opacity .5s,box-shadow .5s}
+.sem-light .r{background:#ff5d7a}.sem-light .a{background:#ffb020}.sem-light .v{background:#27e0a3}
+.sem-light .r.on{opacity:1;box-shadow:0 0 30px 4px rgba(255,93,122,.65)}
+.sem-light .a.on{opacity:1;box-shadow:0 0 30px 4px rgba(255,176,32,.6)}
+.sem-light .v.on{opacity:1;box-shadow:0 0 30px 4px rgba(39,224,163,.6)}
+.sem-read .k{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.sem-read .big{font-family:'Sora';font-weight:800;font-size:3.1rem;line-height:1;letter-spacing:-.03em;margin:6px 0 4px}
+.sem-read .zone{font-family:'JetBrains Mono';font-weight:700;font-size:.82rem;letter-spacing:.06em}
+.sem-read .sc{font-family:'JetBrains Mono';font-size:.76rem;color:var(--muted);margin-top:10px;line-height:1.6}
+.sem-table table{min-width:0;font-size:.84rem}
+.sem-table td,.sem-table th{padding:9px 10px!important}
+.sem-table td:first-child b{font-weight:600}
+.sem-table .tf{font-family:'JetBrains Mono';font-size:.68rem;color:var(--muted);display:block}
+.sem-ok{color:var(--green);font-weight:700}.sem-ko{color:var(--red);font-weight:700}.sem-mid{color:#ffb020;font-weight:700}
+.sem-foot{font-size:.76rem;color:var(--muted);margin-top:10px;line-height:1.55}
+.sem-hist{padding:6px 22px 16px;border-top:1px solid var(--line)}
+.sem-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin:4px 0 8px}
+.sem-legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.mk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:900px){.mk-grid{grid-template-columns:1fr}}
+.mk-card{margin-top:0;padding:18px 20px 12px}
+.mk-card .br-box{height:190px}
+.mk-note{font-size:.74rem;color:var(--muted);margin-top:6px;line-height:1.5}
+.hero-sem{display:inline-flex;align-items:center;gap:9px;margin:0 0 24px 10px;font-family:'JetBrains Mono';font-size:.74rem;font-weight:700;letter-spacing:.04em;padding:7px 14px;border-radius:100px;border:1px solid var(--line-strong);background:var(--panel-2);vertical-align:top}
+.hero-sem i{width:9px;height:9px;border-radius:50%;display:inline-block}
 </style>
 </head>
 <body>
@@ -243,6 +303,7 @@ thead th.s.on{color:var(--gold)}
 <a href="#sistemas">Sistemas</a>
 <a href="#screener">Screener</a>
 <a href="#sectores">Sectores</a>
+<a href="#mercado">Mercado</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px">
 <span class="nav-date">Datos 11/09/2026</span>
@@ -253,18 +314,20 @@ thead th.s.on{color:var(--gold)}
 <a href="#sistemas" onclick="closeMenu()">Sistemas</a>
 <a href="#screener" onclick="closeMenu()">Screener</a>
 <a href="#sectores" onclick="closeMenu()">Sectores</a>
+<a href="#mercado" onclick="closeMenu()">Mercado</a>
 </nav>
 </header>
 
 <section class="hero">
 <div class="wrap">
-<div class="pill reveal"><span class="pulse"></span> Actualizado 12/09/2026</div>
+<div class="pill reveal"><span class="pulse"></span> Actualizado 12/09/2026</div><a href="#mercado" class="hero-sem reveal" id="heroSem"></a>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
-<p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Sistemas propios desde AmiBroker, screener del universo de acciones US y fuerza relativa por sectores e industrias.</p>
+<p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Sistemas propios desde AmiBroker, screener del universo de acciones US, fuerza relativa por sectores e industrias y un semáforo de exposición a renta variable.</p>
 <div class="hero-nav reveal">
 <a href="#sistemas"><span class="n">01</span><b>Sistemas</b><small>Octomomentum y Fantastic 4: posiciones abiertas, backtest y candidatos.</small></a>
 <a href="#screener"><span class="n">02</span><b>Screener</b><small>Ocho screeners sobre el universo de acciones estadounidenses.</small></a>
 <a href="#sectores"><span class="n">03</span><b>Sectores</b><small>Fuerza relativa por sector e industria a 1S, 1M, 3M y 6M.</small></a>
+<a href="#mercado"><span class="n">04</span><b>Mercado</b><small>Semáforo de exposición, filtros de mercado y amplitud del NYSE.</small></a>
 </div>
 </div>
 </section>
@@ -410,6 +473,78 @@ thead th.s.on{color:var(--gold)}
 </div>
 </section>
 
+<!-- ===== MERCADO ===== -->
+<section id="mercado">
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="kicker"><span class="pulse"></span> Filtros de mercado · AmiBroker</div>
+<h2>Mercado</h2>
+</div>
+<p class="block-sub reveal">Un semáforo que resume en una cifra cuánta exposición a renta variable justifican los filtros de mercado y la amplitud del NYSE. Debajo, cada indicador por separado.</p>
+
+<div class="card reveal" style="padding:0;overflow:hidden">
+<div class="sem-card">
+<div class="sem-left">
+<div class="sem-light" aria-hidden="true"><span class="r" id="semR"></span><span class="a" id="semA"></span><span class="v" id="semV"></span></div>
+<div class="sem-read">
+<div class="k">Exposición a renta variable</div>
+<div class="big" id="semExpo">—</div>
+<div class="zone" id="semZone"></div>
+<div class="sc" id="semScore"></div>
+</div>
+</div>
+<div class="sem-table">
+<div class="table-wrap"><table id="semTable"></table></div>
+<div class="sem-foot" id="semFoot"></div>
+</div>
+</div>
+<div class="sem-hist">
+<div class="br-head" style="margin-top:14px"><span class="t">Semáforo histórico<small>S&amp;P 500 coloreado por el semáforo vigente cada semana</small></span></div>
+<div class="sem-legend"><span><i style="background:#27e0a3"></i>Verde · 100%</span><span><i style="background:#ffb020"></i>Ámbar · 50%</span><span><i style="background:#ff5d7a"></i>Rojo · 0%</span></div>
+<div class="br-box" style="height:230px"><canvas id="semHist"></canvas></div>
+</div>
+</div>
+
+<div class="mk-sub reveal"><span class="n">01</span> Filtros de mercado</div>
+<p class="block-sub reveal">Tus fórmulas de AmiBroker calculadas sobre el S&amp;P 500.</p>
+<div class="mk-grid">
+<div class="card mk-card reveal"><div class="br-head"><span class="t">Flujo de capitales<small>semanal · RSC Mansfield vs DBC y TLT</small></span><span class="br-vals" id="mkFlujoV"></span></div><div class="br-box"><canvas id="mkFlujo"></canvas></div><div class="mk-note">Media del RSC Mansfield (52 semanas) del S&amp;P 500 frente a materias primas y bonos largos. Favorable por encima de 1.</div></div>
+<div class="card mk-card reveal"><div class="br-head"><span class="t">MACD semanal<small>S&amp;P 500 · 12, 26, 9</small></span><span class="br-vals" id="mkMacdV"></span></div><div class="br-box"><canvas id="mkMacd"></canvas></div><div class="mk-note">Fuera de largos cuando la línea de señal cruza por debajo de 0.</div></div>
+<div class="card mk-card reveal"><div class="br-head"><span class="t">Guía de Coppock<small>mensual · WMA 10 de ROC 6 + ROC 12</small></span><span class="br-vals" id="mkCopV"></span></div><div class="br-box"><canvas id="mkCop"></canvas></div><div class="mk-note">Favorable mientras sube. Desfavorable cuando baja estando por debajo de 0. El mes en curso usa el último cierre.</div></div>
+<div class="card mk-card reveal"><div class="br-head"><span class="t">Ratio dólar<small>semanal · DXY / S&amp;P 500 y WMA 30</small></span><span class="br-vals" id="mkRatioV"></span></div><div class="br-box"><canvas id="mkRatio"></canvas></div><div class="mk-note">Largos cuando la WMA 30 baja; salida cuando sube y el ratio la cruza al alza. WMA en verde bajando, en rojo subiendo.</div></div>
+</div>
+<div class="card mk-card reveal" style="margin-top:16px"><div class="br-head"><span class="t">Agorero<small>diario · divergencia NYSE / línea AD, baja volatilidad y nuevos mínimos &gt; 40</small></span><span class="br-vals" id="mkAgoV"></span></div><div class="br-box" style="height:70px"><canvas id="mkAgo"></canvas></div></div>
+
+<div class="mk-sub reveal" id="amplitud"><span class="n">02</span> Amplitud NYSE</div>
+<p class="block-sub reveal">Cuántas acciones acompañan al índice, con los mismos parámetros que en AmiBroker.</p>
+<div class="br-top reveal">
+<div class="br-range" id="brRange">
+<button data-r="3M">3M</button><button data-r="6M" class="on">6M</button><button data-r="1A">1A</button><button data-r="Todo">Todo</button>
+</div>
+<span class="br-asof" id="brAsof"></span>
+</div>
+<div class="card br-card reveal">
+<div class="br-pane">
+<div class="br-head"><span class="t">ADn NYSE<small>estocástico de la línea avance-descenso</small></span><span class="br-vals" id="brAdnVals"></span></div>
+<div class="br-box h1"><canvas id="brAdn"></canvas></div>
+</div>
+<div class="br-pane">
+<div class="br-head"><span class="t">Oscilador McClelland<small>EMA 19 − EMA 39 de avances netos</small></span><span class="br-vals" id="brMccVals"></span></div>
+<div class="br-box h2"><canvas id="brMcc"></canvas></div>
+</div>
+<div class="br-pane">
+<div class="br-head"><span class="t">Nuevos máximos − nuevos mínimos<small>línea acumulada NYSE y su media de 50</small></span><span class="br-vals" id="brHlVals"></span></div>
+<div class="br-box h3"><canvas id="brHl"></canvas></div>
+</div>
+</div>
+<div class="br-notes reveal">
+<div><b>ADn</b>Estocástico de 21 sesiones de la línea AD acumulada, suavizado con <code>EMA(7)</code>. Por encima de <span style="color:var(--green)">80</span> la participación está en máximos de su rango reciente; por debajo de <span style="color:var(--red)">20</span>, en mínimos.</div>
+<div><b>McClelland</b><code>EMA(19) − EMA(39)</code> de avances menos descensos diarios. Por encima de cero la amplitud gana impulso; por debajo, lo pierde.</div>
+<div><b>NH − NL</b>Suma acumulada de nuevos máximos menos nuevos mínimos de 52 semanas del NYSE, con su <code>SMA(50)</code> en rojo. Mide si se amplía o se estrecha la base de valores en máximos.</div>
+</div>
+</div>
+</section>
+
 <div id="sdOverlay" class="tv-overlay" onclick="if(event.target===this)sdCloseGroup()">
 <div class="tv-modal sd-modal">
 <div class="tv-head"><span class="t" id="sdGmTitle">Grupo</span><button class="tv-close" onclick="sdCloseGroup()">&times;</button></div>
@@ -428,7 +563,7 @@ thead th.s.on{color:var(--gold)}
 <div class="wrap">
 <div class="brand"><span class="dot"></span>Miquel <span style="color:var(--gold)">Markets</span></div>
 <div>Timing · Strategy · Growth</div>
-<div style="margin-top:8px;opacity:.7">Sistemas desde AmiBroker · Screener y sectores vía stockanalysis.com · Actualizado cada sábado</div>
+<div style="margin-top:8px;opacity:.7">Sistemas y amplitud desde AmiBroker · Screener y sectores vía stockanalysis.com · Actualizado cada sábado</div>
 <div style="margin-top:10px;font-size:.8rem;opacity:.6">Rentabilidades pasadas no garantizan resultados futuros. Contenido informativo, no es asesoramiento financiero.</div>
 </div>
 </footer>
@@ -576,6 +711,146 @@ animateVisibleCounters();
 moveIndicator();
 addEventListener('resize',moveIndicator);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(moveIndicator);
+/* Amplitud NYSE: generado desde amplitud2025.csv (AmiBroker). Datos al 2026-09-11 */
+const BREADTH={"d":["2025-07-14","2025-07-15","2025-07-16","2025-07-17","2025-07-18","2025-07-21","2025-07-22","2025-07-23","2025-07-24","2025-07-25","2025-07-28","2025-07-29","2025-07-30","2025-07-31","2025-08-01","2025-08-04","2025-08-05","2025-08-06","2025-08-07","2025-08-08","2025-08-11","2025-08-12","2025-08-13","2025-08-14","2025-08-15","2025-08-18","2025-08-19","2025-08-20","2025-08-21","2025-08-22","2025-08-25","2025-08-26","2025-08-27","2025-08-28","2025-08-29","2025-09-02","2025-09-03","2025-09-04","2025-09-05","2025-09-08","2025-09-09","2025-09-10","2025-09-11","2025-09-12","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-24","2025-11-25","2025-11-26","2025-11-28","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-22","2025-12-23","2025-12-24","2025-12-26","2025-12-29","2025-12-30","2025-12-31","2026-01-02","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-12","2026-01-13","2026-01-14","2026-01-15","2026-01-16","2026-01-20","2026-01-21","2026-01-22","2026-01-23","2026-01-26","2026-01-27","2026-01-28","2026-01-29","2026-01-30","2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11"],"adn":[91.26,85.29,82.49,83.29,82.17,80.97,83.2,87.4,87.62,89.51,86.89,84.72,73.11,57.61,43.21,44.02,47.1,48.68,48.98,50.99,50.32,61.2,70.9,71.93,70.61,71.09,73.14,74.19,73.01,79.76,80.7,82.09,85.93,89.24,91.49,86.94,84.54,88.41,91.31,93.48,92.43,91.23,93.42,90.9,90.65,89.3,88.34,91.26,89.24,86.58,83.45,76.47,63.11,59.95,57.14,56.04,57.79,56.23,59.94,60.93,53.65,52.41,39.91,29.93,30.69,35.81,42.85,41.67,42.97,54.48,65.75,71.38,78.53,83.9,87.92,87.56,82.06,74.03,69.89,65.01,56.66,55.17,50.01,48.9,48.77,53.82,57.68,50.09,42.0,31.5,24.63,18.47,13.86,16.55,21.19,32.74,47.76,60.82,67.31,71.13,78.35,83.25,86.25,84.99,85.06,88.8,91.6,90.65,89.95,87.26,84.24,84.28,84.6,86.86,86.21,89.66,92.24,87.94,83.53,68.03,65.47,73.15,79.87,79.44,84.58,88.43,91.33,93.49,95.12,96.34,95.86,89.31,90.74,93.05,92.66,92.58,93.49,91.96,92.38,91.11,91.69,92.83,94.62,91.32,93.49,95.12,96.34,97.25,92.34,94.25,95.69,96.77,96.97,97.73,90.83,90.39,92.58,94.43,93.01,93.75,86.36,84.9,76.67,62.25,46.69,35.02,26.26,19.7,14.77,14.65,17.91,14.66,11.0,8.25,10.82,12.66,17.06,17.11,12.97,9.79,12.01,16.24,22.5,33.58,42.27,56.7,67.53,74.39,80.79,85.6,89.2,91.9,93.92,95.44,93.52,92.72,91.53,91.37,91.7,91.04,86.58,87.92,88.63,84.33,85.21,88.91,87.53,89.11,85.2,74.02,59.26,53.84,40.38,34.04,25.53,28.77,32.55,38.38,49.21,58.29,68.07,72.24,74.51,77.71,70.62,72.64,67.05,61.82,63.22,60.25,66.46,74.85,81.13,85.85,81.87,82.23,77.64,74.57,74.41,77.38,83.03,87.27,89.63,92.23,94.17,95.63,94.29,87.23,85.42,86.65,84.44,86.67,90.0,92.5,89.15,81.3,77.23,71.67,57.64,49.58,48.45,53.95,48.95,48.38,46.66,54.72,66.04,70.88,69.62,75.37,75.31,76.16,78.8,84.1,88.08,84.28,75.84,74.65,67.79,64.88,61.52,62.96,62.27,57.87,50.53,37.89,28.42,25.96,27.82,28.97,24.39,18.29,13.72,13.39],"mcc":[65.6,-34.9,-9.1,33.6,-5.0,-17.6,33.2,69.8,9.2,28.9,-24.8,-27.5,-85.1,-107.8,-153.0,-50.0,-30.3,-37.2,-44.2,-29.8,-47.1,40.0,110.2,24.1,-6.8,3.4,14.3,1.2,-25.2,86.1,19.1,18.0,41.5,33.9,19.3,-40.1,-31.9,31.8,58.8,56.9,12.0,8.2,88.3,24.6,30.0,6.5,-2.1,31.5,-24.3,-28.3,-41.1,-79.5,-139.4,-72.0,-71.4,-59.2,-32.8,-37.6,-8.0,-23.2,-73.6,-42.3,-110.9,-196.8,-90.5,-35.3,-1.3,-67.1,-57.8,34.5,47.2,15.3,49.4,75.1,80.2,28.4,-35.9,-76.5,-47.9,-62.9,-107.1,-41.7,-81.3,-40.7,13.5,51.1,42.9,-42.8,-55.8,-139.7,-110.0,-126.7,-184.1,-71.3,-22.8,68.6,119.5,146.7,85.2,59.9,110.6,87.3,64.9,9.8,19.6,76.6,111.8,46.8,37.5,-3.9,-21.6,13.6,12.9,44.0,12.4,56.6,49.9,4.5,-6.5,-76.4,-18.8,33.0,65.5,14.5,60.5,85.1,89.6,80.9,103.8,131.1,87.8,-10.1,64.1,81.4,33.4,23.4,24.7,-16.5,-1.4,-30.5,-10.3,-6.8,8.7,-45.4,37.2,47.5,65.6,58.1,-11.5,44.9,35.8,39.3,19.6,33.6,-46.3,-7.5,6.4,27.8,-13.8,-3.2,-87.1,-44.7,-114.7,-184.6,-180.5,-169.3,-184.6,-242.0,-242.7,-157.9,-87.6,-158.5,-155.3,-228.5,-108.0,-91.7,-20.0,-74.0,-137.2,-114.6,-17.3,32.5,55.4,87.7,72.4,159.8,177.4,138.0,177.9,197.4,180.6,153.7,206.3,182.9,91.2,85.8,56.2,57.0,51.7,19.8,-47.2,35.4,21.7,-47.4,6.3,47.7,-1.3,15.0,-21.7,-55.8,-84.8,-50.7,-124.7,-88.6,-138.5,-49.9,-36.0,-11.5,35.4,34.0,47.9,13.5,1.3,8.5,-67.7,-6.4,-64.6,-66.0,-20.4,-49.5,16.7,55.6,59.2,52.1,-24.5,17.1,-13.5,-12.2,-2.1,11.5,47.0,51.2,34.4,43.6,64.1,72.0,33.8,-33.3,1.5,19.8,-3.2,18.3,39.0,43.2,-10.3,-49.8,-34.4,-51.6,-110.2,-69.5,-27.8,8.8,-48.3,-26.6,-33.5,21.6,62.9,26.8,-12.2,28.8,-7.2,-4.2,5.5,40.8,38.6,-21.8,-64.4,-20.5,-65.6,-30.1,-26.9,-4.1,-16.3,-32.4,-51.0,-86.9,-131.2,-78.9,-40.8,-37.6,-73.4,-132.0,-175.8,-112.0],"hl":[174492,174544,174552,174640,174720,174779,174840,174971,175071,175154,175220,175282,175317,175345,175284,175324,175368,175388,175450,175485,175503,175611,175806,175868,175913,175952,175998,176037,176060,176252,176348,176471,176596,176737,176838,176968,177034,177114,177298,177415,177512,177625,177848,177953,178085,178174,178304,178421,178529,178622,178785,178822,178794,178850,178928,179006,179127,179215,179364,179516,179591,179690,179757,179706,179716,179738,179851,179913,179891,179941,179989,180018,180077,180200,180311,180372,180414,180376,180345,180320,180259,180271,180226,180173,180253,180364,180477,180472,180393,180278,180146,180038,179922,179861,179869,179948,180064,180165,180239,180294,180399,180502,180603,180650,180711,180873,181098,181243,181323,181339,181373,181435,181503,181606,181684,181755,181832,181846,181872,181866,181896,182072,182260,182356,182493,182684,182886,183095,183275,183503,183651,183700,183915,184203,184355,184522,184690,184855,185029,185054,185147,185301,185525,185582,185867,186152,186423,186760,186996,187139,187263,187398,187501,187619,187687,187779,187933,188070,188205,188356,188358,188413,188443,188437,188365,188364,188326,188266,188203,188187,188195,188141,188045,187883,187857,187830,187815,187787,187644,187566,187496,187468,187422,187443,187443,187529,187623,187660,187710,187827,187894,187962,188146,188276,188421,188512,188613,188708,188808,188860,188898,188975,189121,189193,189340,189524,189622,189668,189724,189717,189713,189800,189748,189775,189722,189738,189754,189800,189935,190032,190105,190178,190239,190323,190322,190350,190338,190328,190362,190410,190473,190628,190749,190807,190849,190866,190884,190852,190886,190941,191007,191103,191152,191277,191430,191537,191638,191606,191636,191676,191697,191762,191836,191963,192069,192074,192078,192086,191980,191995,192052,192178,192210,192222,192204,192265,192368,192462,192495,192534,192535,192550,192550,192686,192699,192638,192523,192552,192533,192526,192523,192538,192555,192564,192568,192467,192334,192276,192266,192309,192262,192079,191772,191669],"ma":[null,173071.06,173120.3,173170.78,173223.1,173276.22,173329.92,173385.72,173441.96,173498.9,173556.56,173614.58,173671.82,173728.46,173782.5,173837.52,173894.02,173950.9,174007.38,174063.72,174119.66,174177.42,174238.38,174299.58,174360.2,174420.4,174480.1,174539.38,174598.44,174660.4,174723.36,174789.1,174856.72,174927.44,174999.84,175074.58,175150.38,175226.36,175305.36,175384.98,175464.42,175544.24,175626.44,175708.54,175789.7,175870.68,175952.7,176035.62,176118.5,176202.36,176288.22,176373.78,176458.62,176542.82,176626.98,176711.52,176797.26,176882.14,176968.0,177055.24,177142.66,177230.82,177319.62,177406.84,177495.48,177583.76,177673.42,177763.92,177852.74,177941.86,178031.58,178119.72,178205.14,178291.78,178379.74,178468.14,178556.46,178643.24,178728.94,178810.3,178888.52,178964.52,179037.12,179105.84,179174.14,179242.06,179310.92,179378.08,179439.98,179497.24,179549.92,179598.18,179639.66,179677.82,179713.5,179748.98,179784.18,179819.06,179853.26,179886.7,179918.98,179952.58,179988.76,180024.76,180060.42,180097.76,180137.18,180177.74,180216.92,180253.38,180289.02,180323.92,180358.84,180396.84,180436.2,180476.54,180516.16,180554.82,180594.44,180632.94,180671.08,180712.16,180755.82,180798.94,180842.58,180888.82,180938.26,180992.64,181051.24,181114.9,181182.74,181251.32,181325.1,181405.7,181487.74,181570.9,181655.16,181742.82,181835.54,181931.06,182031.08,182136.34,182248.4,182362.82,182482.78,182606.86,182734.04,182865.94,183001.08,183137.98,183275.26,183413.18,183551.14,183690.52,183830.04,183968.16,184104.86,184241.4,184379.04,184519.38,184659.08,184798.64,184937.44,185074.06,185207.68,185339.86,185469.74,185598.14,185724.76,185851.18,185977.16,186098.54,186214.24,186324.78,186432.06,186534.98,186633.56,186727.4,186814.78,186896.04,186972.94,187048.3,187118.44,187183.24,187245.0,187305.14,187363.8,187419.9,187473.52,187528.98,187583.92,187637.14,187689.56,187743.44,187794.52,187841.72,187885.52,187924.48,187960.72,187995.14,188027.84,188059.38,188091.78,188123.26,188156.32,188191.22,188225.0,188256.96,188287.34,188314.56,188341.66,188369.4,188395.5,188422.26,188449.4,188476.88,188505.44,188536.12,188570.76,188607.66,188645.86,188686.6,188730.48,188779.28,188828.58,188878.98,188929.44,188980.26,189034.62,189091.5,189151.04,189214.24,189280.78,189348.06,189416.18,189482.92,189548.14,189611.98,189675.5,189737.78,189800.04,189862.86,189922.98,189983.0,190043.18,190103.68,190164.18,190222.14,190278.7,190335.02,190391.0,190446.74,190501.04,190556.44,190611.02,190662.02,190711.14,190759.5,190804.62,190850.18,190896.96,190944.52,190993.76,191042.7,191092.34,191142.88,191195.16,191248.4,191299.6,191349.64,191398.24,191445.68,191491.9,191539.16,191586.7,191632.46,191676.16,191720.64,191764.06,191806.38,191847.38,191885.58,191921.7,191956.84,191991.22,192023.24,192052.24,192080.72,192108.32,192135.68,192160.78,192180.3,192192.7,192200.54]};
+const BR_N={'3M':63,'6M':126,'1A':252,'Todo':1e9};
+let brRango='6M',brCh=[];
+const brNum=(v,d)=>v==null?'—':Number(v).toLocaleString('es-ES',{minimumFractionDigits:d,maximumFractionDigits:d});
+function brSlice(){
+const L=BREADTH.d.length,n=Math.min(BR_N[brRango],L),a=L-n,cut=k=>BREADTH[k].slice(a);
+const largo=n>140;
+return {lab:cut('d').map(x=>x.slice(8,10)+'/'+x.slice(5,7)+(largo?'/'+x.slice(2,4):'')),adn:cut('adn'),mcc:cut('mcc'),hl:cut('hl'),ma:cut('ma')};
+}
+function brBase(yExtra){
+return {responsive:true,maintainAspectRatio:false,animation:{duration:550},interaction:{mode:'index',intersect:false},
+plugins:{legend:{display:false},tooltip:{backgroundColor:'#0c1322',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:10,displayColors:false}},
+scales:{x:{grid:{display:false},border:{display:false},ticks:{maxTicksLimit:9,autoSkip:true,maxRotation:0,font:{size:10}}},
+y:Object.assign({position:'right',grid:{color:'rgba(255,255,255,.05)'},border:{display:false},ticks:{font:{size:10}}},yExtra||{})}};
+}
+function brLevel(n,v,color){return {data:new Array(n).fill(v),borderColor:color,borderWidth:1,pointRadius:0,fill:false,tension:0};}
+function brTag(txt,cls){return '<span class="br-tag '+cls+'">'+txt+'</span>';}
+function brVal(lbl,txt,color){return '<span class="br-v"><i>'+lbl+'</i><span style="color:'+color+'">'+txt+'</span></span>';}
+function brDraw(){
+brCh.forEach(c=>c.destroy());brCh=[];
+const S=brSlice(),n=S.lab.length;
+/* --- ADn --- */
+const oA=brBase({min:0,max:100,afterBuildTicks:ax=>{ax.ticks=[20,50,80].map(v=>({value:v}));}});
+oA.plugins.tooltip.filter=i=>i.datasetIndex===0;
+oA.plugins.tooltip.callbacks={label:c=>' ADn: '+brNum(c.parsed.y,1)};
+brCh.push(new Chart(document.getElementById('brAdn'),{type:'line',data:{labels:S.lab,datasets:[
+{data:S.adn,borderColor:'#ffa94d',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.25,fill:false,spanGaps:true},
+{data:S.adn,borderWidth:0,pointRadius:0,tension:.25,spanGaps:true,fill:{target:{value:80},above:'rgba(39,224,163,.55)',below:'rgba(0,0,0,0)'}},
+{data:S.adn,borderWidth:0,pointRadius:0,tension:.25,spanGaps:true,fill:{target:{value:20},above:'rgba(0,0,0,0)',below:'rgba(255,93,122,.6)'}},
+brLevel(n,80,'rgba(39,224,163,.7)'),brLevel(n,50,'rgba(90,169,255,.55)'),brLevel(n,20,'rgba(255,93,122,.7)')
+]},options:oA}));
+/* --- McClelland --- */
+const oM=brBase({grid:{color:c=>c.tick&&c.tick.value===0?'rgba(255,255,255,.35)':'rgba(255,255,255,.05)'}});
+oM.plugins.tooltip.callbacks={label:c=>' McClelland: '+brNum(c.parsed.y,1)};
+brCh.push(new Chart(document.getElementById('brMcc'),{type:'bar',data:{labels:S.lab,datasets:[
+{data:S.mcc,backgroundColor:S.mcc.map(v=>v>=0?'rgba(39,224,163,.8)':'rgba(255,93,122,.8)'),borderWidth:0,categoryPercentage:1,barPercentage:.85}
+]},options:oM}));
+/* --- NH-NL --- */
+const oH=brBase({ticks:{font:{size:10},callback:v=>Number(v).toLocaleString('es-ES')}});
+oH.plugins.tooltip.callbacks={label:c=>' '+(c.datasetIndex?'Media 50':'NH-NL')+': '+brNum(c.parsed.y,c.datasetIndex?2:0)};
+brCh.push(new Chart(document.getElementById('brHl'),{type:'line',data:{labels:S.lab,datasets:[
+{data:S.hl,borderColor:'#e8eef7',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true},
+{data:S.ma,borderColor:'#ff5d7a',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true}
+]},options:oH}));
+}
+function brResumen(){
+const B=BREADTH,L=B.d.length-1,last=k=>{for(let i=L;i>=0;i--)if(B[k][i]!=null)return B[k][i];return null;};
+const f=B.d[L];
+document.getElementById('brAsof').textContent='Datos al '+f.slice(8,10)+'/'+f.slice(5,7)+'/'+f.slice(0,4);
+const a=last('adn');
+document.getElementById('brAdnVals').innerHTML=brVal('ADn',brNum(a,1),'#ffa94d')+(a>80?brTag('SOBRECOMPRA','g'):a<20?brTag('SOBREVENTA','r'):brTag('NEUTRAL','n'));
+const m=B.mcc[L],mp=B.mcc[L-1];
+const cruce=(m>=0)!==(mp>=0)?(m>=0?' · cruza al alza':' · cruza a la baja'):'';
+document.getElementById('brMccVals').innerHTML=brVal('McC',brNum(m,1),m>=0?'var(--green)':'var(--red)')+brTag((m>=0?'POSITIVO':'NEGATIVO')+cruce.toUpperCase(),m>=0?'g':'r');
+const h=last('hl'),ma=last('ma');
+document.getElementById('brHlVals').innerHTML=brVal('NH-NL',brNum(h,0),'#e8eef7')+brVal('Media 50',brNum(ma,2),'var(--red)')+(h>=ma?brTag('SOBRE SU MEDIA','g'):brTag('BAJO SU MEDIA','r'));
+}
+document.querySelectorAll('#brRange button').forEach(b=>b.addEventListener('click',()=>{
+if(b.dataset.r===brRango)return;brRango=b.dataset.r;
+document.querySelectorAll('#brRange button').forEach(x=>x.classList.toggle('on',x===b));brDraw();}));
+brResumen();brDraw();
+/* Mercado: filtros AmiBroker + semaforo. Datos al 2026-09-11 */
+const MARKET={"asof":"2026-09-11","pesos":{"macd":20,"flujo":15,"ratio":15,"coppock":10,"nhnl":15,"mcc":15,"adn":10},"agoPen":20,"agoVent":10,"expo":{"V":100,"A":50,"R":0},"umbral":[70,40,5],"semana":["2026-09-11",61.2,"A"],"scoreHoy":45,"estados":{"macd":1,"flujo":0,"ratio":1,"coppock":1,"nhnl":0,"mcc":0,"adn":0},"lect":{"macd":199.54,"macdl":195.37,"flujo":0.72,"ratio":0.012945,"rw":0.013377,"rpos":1,"cop":29.46,"cst":"OK","hl":191669,"ma":192200.54,"mcc":-112.0,"adn":13.39,"ago_rec":false},"weeks":[["2025-07-18",83.0,"V"],["2025-07-25",92.0,"V"],["2025-08-01",77.0,"V"],["2025-08-08",75.0,"V"],["2025-08-15",84.0,"V"],["2025-08-22",87.0,"V"],["2025-08-29",95.0,"V"],["2025-09-05",87.5,"V"],["2025-09-12",95.0,"V"],["2025-09-19",89.0,"V"],["2025-09-26",65.0,"V"],["2025-10-03",59.0,"A"],["2025-10-10",64.0,"A"],["2025-10-17",60.0,"A"],["2025-10-24",80.0,"V"],["2025-10-31",89.0,"V"],["2025-11-07",80.0,"V"],["2025-11-14",89.0,"V"],["2025-11-21",61.0,"A"],["2025-11-28",71.2,"V"],["2025-12-05",89.0,"V"],["2025-12-12",100.0,"V"],["2025-12-19",94.0,"V"],["2025-12-26",100.0,"V"],["2026-01-02",86.2,"V"],["2026-01-09",97.0,"V"],["2026-01-16",100.0,"V"],["2026-01-23",96.2,"V"],["2026-01-30",87.0,"V"],["2026-02-06",71.0,"V"],["2026-02-13",77.0,"V"],["2026-02-20",80.0,"V"],["2026-02-27",67.0,"V"],["2026-03-06",40.0,"A"],["2026-03-13",35.0,"R"],["2026-03-20",40.0,"R"],["2026-03-27",40.0,"R"],["2026-04-02",48.8,"A"],["2026-04-10",63.0,"A"],["2026-04-17",80.0,"V"],["2026-04-24",80.0,"V"],["2026-05-01",79.0,"V"],["2026-05-08",79.0,"V"],["2026-05-15",57.0,"A"],["2026-05-22",60.0,"A"],["2026-05-29",80.0,"V"],["2026-06-05",82.0,"V"],["2026-06-12",66.0,"V"],["2026-06-18",76.2,"V"],["2026-06-26",75.0,"V"],["2026-07-02",80.0,"V"],["2026-07-10",77.0,"V"],["2026-07-17",86.0,"V"],["2026-07-24",77.0,"V"],["2026-07-31",62.0,"A"],["2026-08-07",67.0,"A"],["2026-08-14",70.0,"V"],["2026-08-21",64.0,"A"],["2026-08-28",55.0,"A"],["2026-09-04",72.0,"V"],["2026-09-11",61.2,"A"]],"spx":{"d":["2025-07-14","2025-07-15","2025-07-16","2025-07-17","2025-07-18","2025-07-21","2025-07-22","2025-07-23","2025-07-24","2025-07-25","2025-07-28","2025-07-29","2025-07-30","2025-07-31","2025-08-01","2025-08-04","2025-08-05","2025-08-06","2025-08-07","2025-08-08","2025-08-11","2025-08-12","2025-08-13","2025-08-14","2025-08-15","2025-08-18","2025-08-19","2025-08-20","2025-08-21","2025-08-22","2025-08-25","2025-08-26","2025-08-27","2025-08-28","2025-08-29","2025-09-02","2025-09-03","2025-09-04","2025-09-05","2025-09-08","2025-09-09","2025-09-10","2025-09-11","2025-09-12","2025-09-15","2025-09-16","2025-09-17","2025-09-18","2025-09-19","2025-09-22","2025-09-23","2025-09-24","2025-09-25","2025-09-26","2025-09-29","2025-09-30","2025-10-01","2025-10-02","2025-10-03","2025-10-06","2025-10-07","2025-10-08","2025-10-09","2025-10-10","2025-10-13","2025-10-14","2025-10-15","2025-10-16","2025-10-17","2025-10-20","2025-10-21","2025-10-22","2025-10-23","2025-10-24","2025-10-27","2025-10-28","2025-10-29","2025-10-30","2025-10-31","2025-11-03","2025-11-04","2025-11-05","2025-11-06","2025-11-07","2025-11-10","2025-11-11","2025-11-12","2025-11-13","2025-11-14","2025-11-17","2025-11-18","2025-11-19","2025-11-20","2025-11-21","2025-11-24","2025-11-25","2025-11-26","2025-11-28","2025-12-01","2025-12-02","2025-12-03","2025-12-04","2025-12-05","2025-12-08","2025-12-09","2025-12-10","2025-12-11","2025-12-12","2025-12-15","2025-12-16","2025-12-17","2025-12-18","2025-12-19","2025-12-22","2025-12-23","2025-12-24","2025-12-26","2025-12-29","2025-12-30","2025-12-31","2026-01-02","2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-12","2026-01-13","2026-01-14","2026-01-15","2026-01-16","2026-01-20","2026-01-21","2026-01-22","2026-01-23","2026-01-26","2026-01-27","2026-01-28","2026-01-29","2026-01-30","2026-02-02","2026-02-03","2026-02-04","2026-02-05","2026-02-06","2026-02-09","2026-02-10","2026-02-11","2026-02-12","2026-02-13","2026-02-17","2026-02-18","2026-02-19","2026-02-20","2026-02-23","2026-02-24","2026-02-25","2026-02-26","2026-02-27","2026-03-02","2026-03-03","2026-03-04","2026-03-05","2026-03-06","2026-03-09","2026-03-10","2026-03-11","2026-03-12","2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11"],"c":[6268.56,6243.76,6263.7,6297.36,6296.79,6305.6,6309.62,6358.91,6363.35,6388.64,6389.77,6370.86,6362.9,6339.39,6238.01,6329.94,6299.19,6345.06,6340.0,6389.45,6373.45,6445.76,6466.58,6468.54,6449.8,6449.15,6411.37,6395.78,6370.17,6466.91,6439.32,6465.94,6481.4,6501.86,6460.26,6415.54,6448.26,6502.08,6481.5,6495.15,6512.61,6532.04,6587.47,6584.29,6615.28,6606.76,6600.35,6631.96,6664.36,6693.75,6656.92,6637.97,6604.72,6643.7,6661.21,6688.46,6711.2,6715.35,6715.79,6740.28,6714.59,6753.72,6735.11,6552.51,6654.72,6644.31,6671.06,6629.07,6664.01,6735.13,6735.35,6699.4,6738.44,6791.69,6875.16,6890.89,6890.59,6822.34,6840.2,6851.97,6771.55,6796.29,6720.32,6728.8,6832.43,6846.61,6850.92,6737.49,6734.11,6672.41,6617.32,6642.16,6538.76,6602.99,6705.12,6765.88,6812.61,6849.09,6812.63,6829.37,6849.72,6857.12,6870.4,6846.51,6840.51,6886.68,6901.0,6827.41,6816.51,6800.26,6721.43,6774.76,6834.5,6878.49,6909.79,6932.05,6929.94,6905.74,6896.24,6845.5,6858.47,6902.05,6944.82,6920.93,6921.46,6966.28,6977.27,6963.74,6926.6,6944.47,6940.01,6796.86,6875.62,6913.35,6915.61,6950.23,6978.6,6978.03,6969.01,6939.03,6976.44,6917.81,6882.72,6798.4,6932.3,6964.82,6941.81,6941.47,6832.76,6836.17,6843.22,6881.31,6861.89,6909.51,6837.75,6890.07,6946.13,6908.86,6878.88,6881.62,6816.63,6869.5,6830.71,6740.02,6795.99,6781.48,6775.8,6672.62,6632.19,6699.38,6716.09,6624.7,6606.49,6506.48,6581.0,6556.37,6591.9,6477.16,6368.85,6343.72,6528.52,6575.32,6582.69,6611.83,6616.85,6782.81,6824.66,6816.89,6886.24,6967.38,7022.95,7041.28,7126.06,7109.14,7064.01,7137.9,7108.4,7165.08,7173.91,7138.8,7135.95,7209.01,7230.12,7200.75,7259.22,7365.12,7337.11,7398.93,7412.84,7400.96,7444.25,7501.24,7408.5,7403.05,7353.61,7432.97,7445.72,7473.47,7519.12,7520.36,7563.63,7580.06,7599.96,7609.78,7553.68,7584.31,7383.74,7405.73,7386.65,7266.99,7394.3,7431.46,7554.29,7511.35,7420.1,7500.58,7472.79,7365.46,7358.22,7357.49,7354.02,7440.43,7499.36,7483.23,7483.24,7537.43,7503.85,7482.71,7543.64,7575.39,7515.34,7543.59,7572.4,7533.77,7457.69,7443.28,7509.2,7498.96,7408.3,7411.98,7413.18,7428.78,7316.15,7437.63,7489.72,7600.5,7736.52,7723.55,7709.96,7757.64,7753.11,7728.2,7748.5,7798.99,7785.76,7745.06,7691.76,7707.98,7641.16,7674.37,7652.86,7677.28,7675.7,7730.99,7711.76,7686.14,7631.47,7666.6,7747.71,7718.6,7673.52,7636.36,7591.7,7656.98]},"macd":{"d":["2024-09-20","2024-09-27","2024-10-04","2024-10-11","2024-10-18","2024-10-25","2024-11-01","2024-11-08","2024-11-15","2024-11-22","2024-11-29","2024-12-06","2024-12-13","2024-12-20","2024-12-27","2025-01-03","2025-01-10","2025-01-17","2025-01-24","2025-01-31","2025-02-07","2025-02-14","2025-02-21","2025-02-28","2025-03-07","2025-03-14","2025-03-21","2025-03-28","2025-04-04","2025-04-11","2025-04-17","2025-04-25","2025-05-02","2025-05-09","2025-05-16","2025-05-23","2025-05-30","2025-06-06","2025-06-13","2025-06-20","2025-06-27","2025-07-03","2025-07-11","2025-07-18","2025-07-25","2025-08-01","2025-08-08","2025-08-15","2025-08-22","2025-08-29","2025-09-05","2025-09-12","2025-09-19","2025-09-26","2025-10-03","2025-10-10","2025-10-17","2025-10-24","2025-10-31","2025-11-07","2025-11-14","2025-11-21","2025-11-28","2025-12-05","2025-12-12","2025-12-19","2025-12-26","2026-01-02","2026-01-09","2026-01-16","2026-01-23","2026-01-30","2026-02-06","2026-02-13","2026-02-20","2026-02-27","2026-03-06","2026-03-13","2026-03-20","2026-03-27","2026-04-02","2026-04-10","2026-04-17","2026-04-24","2026-05-01","2026-05-08","2026-05-15","2026-05-22","2026-05-29","2026-06-05","2026-06-12","2026-06-18","2026-06-26","2026-07-02","2026-07-10","2026-07-17","2026-07-24","2026-07-31","2026-08-07","2026-08-14","2026-08-21","2026-08-28","2026-09-04","2026-09-11"],"m":[147.32,153.33,157.31,163.75,170.88,170.01,161.06,173.5,171.3,175.5,181.82,189.31,189.9,178.61,170.92,160.68,141.62,138.6,143.0,139.97,134.85,136.37,127.91,115.14,89.13,57.26,33.92,8.34,-52.23,-76.01,-100.21,-98.69,-83.49,-72.76,-39.72,-25.79,-5.9,16.83,32.58,43.82,68.49,95.53,114.05,130.22,148.73,149.53,160.53,172.13,180.62,184.68,187.46,195.7,206.31,210.62,217.35,207.12,205.64,212.33,219.01,212.87,206.05,187.9,191.17,193.26,189.26,184.54,186.35,179.94,181.47,178.5,172.2,167.17,160.78,146.28,139.1,129.44,109.33,83.72,52.68,16.77,5.51,15.31,47.47,75.24,101.33,134.09,158.98,181.86,206.21,207.28,209.56,214.48,204.19,204.11,209.08,201.2,189.08,183.64,198.65,210.39,208.31,207.28,204.67,195.37],"s":[151.75,152.07,153.12,155.24,158.37,160.7,160.77,163.32,164.91,167.03,169.99,173.85,177.06,177.37,176.08,173.0,166.72,161.1,157.48,153.98,150.15,147.39,143.5,137.83,128.09,113.92,97.92,80.01,53.56,27.64,2.07,-18.08,-31.16,-39.48,-39.53,-36.78,-30.6,-21.12,-10.38,0.46,14.07,30.36,47.1,63.72,80.73,94.49,107.69,120.58,132.59,143.01,151.9,160.66,169.79,177.95,185.83,190.09,193.2,197.03,201.42,203.71,204.18,200.92,198.97,197.83,196.12,193.8,192.31,189.84,188.16,186.23,183.42,180.17,176.29,170.29,164.05,157.13,147.57,134.8,118.38,98.05,79.55,66.7,62.85,65.33,72.53,84.84,99.67,116.11,134.13,148.76,160.92,171.63,178.14,183.34,188.48,191.03,190.64,189.24,191.12,194.97,197.64,199.57,200.59,199.54]},"flujo":{"d":["2024-09-20","2024-09-27","2024-10-04","2024-10-11","2024-10-18","2024-10-25","2024-11-01","2024-11-08","2024-11-15","2024-11-22","2024-11-29","2024-12-06","2024-12-13","2024-12-20","2024-12-27","2025-01-03","2025-01-10","2025-01-17","2025-01-24","2025-01-31","2025-02-07","2025-02-14","2025-02-21","2025-02-28","2025-03-07","2025-03-14","2025-03-21","2025-03-28","2025-04-04","2025-04-11","2025-04-17","2025-04-25","2025-05-02","2025-05-09","2025-05-16","2025-05-23","2025-05-30","2025-06-06","2025-06-13","2025-06-20","2025-06-27","2025-07-03","2025-07-11","2025-07-18","2025-07-25","2025-08-01","2025-08-08","2025-08-15","2025-08-22","2025-08-29","2025-09-05","2025-09-12","2025-09-19","2025-09-26","2025-10-03","2025-10-10","2025-10-17","2025-10-24","2025-10-31","2025-11-07","2025-11-14","2025-11-21","2025-11-28","2025-12-05","2025-12-12","2025-12-19","2025-12-26","2026-01-02","2026-01-09","2026-01-16","2026-01-23","2026-01-30","2026-02-06","2026-02-13","2026-02-20","2026-02-27","2026-03-06","2026-03-13","2026-03-20","2026-03-27","2026-04-02","2026-04-10","2026-04-17","2026-04-24","2026-05-01","2026-05-08","2026-05-15","2026-05-22","2026-05-29","2026-06-05","2026-06-12","2026-06-18","2026-06-26","2026-07-02","2026-07-10","2026-07-17","2026-07-24","2026-07-31","2026-08-07","2026-08-14","2026-08-21","2026-08-28","2026-09-04","2026-09-11"],"v":[11.43,11.41,10.55,12.17,14.71,12.74,12.5,15.6,15.78,14.94,14.32,15.1,15.17,14.29,17.68,15.24,11.95,12.73,14.58,13.31,11.34,11.69,8.67,7.2,5.02,2.3,1.96,0.37,-7.44,0.87,-2.23,1.28,6.08,4.79,10.19,7.52,9.37,9.27,5.56,3.72,9.73,10.31,9.83,10.41,11.66,7.92,11.0,12.33,10.98,10.44,9.54,9.21,10.9,8.91,10.32,7.39,8.44,8.24,9.3,7.65,7.75,6.07,8.06,8.77,9.29,9.16,10.67,10.46,10.06,8.85,5.98,6.13,6.41,3.73,3.33,0.89,-4.04,-6.34,-8.1,-10.23,-8.46,-4.0,-0.01,-1.85,-1.74,0.73,1.09,1.98,4.1,2.09,3.14,4.75,4.08,6.89,6.9,2.61,1.03,3.59,7.62,6.58,3.04,3.53,2.37,0.72]},"ratio":{"d":["2023-09-22","2023-09-29","2023-10-06","2023-10-13","2023-10-20","2023-10-27","2023-11-03","2023-11-10","2023-11-17","2023-11-24","2023-12-01","2023-12-08","2023-12-15","2023-12-22","2023-12-29","2024-01-05","2024-01-12","2024-01-19","2024-01-26","2024-02-02","2024-02-09","2024-02-16","2024-02-23","2024-03-01","2024-03-08","2024-03-15","2024-03-22","2024-03-28","2024-04-05","2024-04-12","2024-04-19","2024-04-26","2024-05-03","2024-05-10","2024-05-17","2024-05-24","2024-05-31","2024-06-07","2024-06-14","2024-06-21","2024-06-28","2024-07-05","2024-07-12","2024-07-19","2024-07-26","2024-08-02","2024-08-09","2024-08-16","2024-08-23","2024-08-30","2024-09-06","2024-09-13","2024-09-20","2024-09-27","2024-10-04","2024-10-11","2024-10-18","2024-10-25","2024-11-01","2024-11-08","2024-11-15","2024-11-22","2024-11-29","2024-12-06","2024-12-13","2024-12-20","2024-12-27","2025-01-03","2025-01-10","2025-01-17","2025-01-24","2025-01-31","2025-02-07","2025-02-14","2025-02-21","2025-02-28","2025-03-07","2025-03-14","2025-03-21","2025-03-28","2025-04-04","2025-04-11","2025-04-17","2025-04-25","2025-05-02","2025-05-09","2025-05-16","2025-05-23","2025-05-30","2025-06-06","2025-06-13","2025-06-20","2025-06-27","2025-07-03","2025-07-11","2025-07-18","2025-07-25","2025-08-01","2025-08-08","2025-08-15","2025-08-22","2025-08-29","2025-09-05","2025-09-12","2025-09-19","2025-09-26","2025-10-03","2025-10-10","2025-10-17","2025-10-24","2025-10-31","2025-11-07","2025-11-14","2025-11-21","2025-11-28","2025-12-05","2025-12-12","2025-12-19","2025-12-26","2026-01-02","2026-01-09","2026-01-16","2026-01-23","2026-01-30","2026-02-06","2026-02-13","2026-02-20","2026-02-27","2026-03-06","2026-03-13","2026-03-20","2026-03-27","2026-04-02","2026-04-10","2026-04-17","2026-04-24","2026-05-01","2026-05-08","2026-05-15","2026-05-22","2026-05-29","2026-06-05","2026-06-12","2026-06-18","2026-06-26","2026-07-02","2026-07-10","2026-07-17","2026-07-24","2026-07-31","2026-08-07","2026-08-14","2026-08-21","2026-08-28","2026-09-04","2026-09-11"],"r":[24.4395,24.7595,24.6118,24.6431,25.1316,25.8806,24.0963,23.976,22.9995,22.6787,22.4762,22.5894,21.7304,21.3897,21.2439,21.8022,21.4054,21.3417,21.1553,20.9575,20.7058,20.8328,20.4252,20.2177,20.052,20.2127,19.9515,19.8978,20.041,20.6972,21.3701,20.7727,20.4825,20.164,19.6954,19.7409,19.8332,19.6166,19.4326,19.3609,19.3884,18.8389,18.5367,18.9646,19.1094,19.304,19.2996,18.4471,17.8752,18.0051,18.7079,17.9719,17.6623,17.5004,17.8262,17.6938,17.6463,17.9507,18.2028,17.513,18.1735,18.007,17.5287,17.3999,17.6828,18.1458,18.0879,18.3341,18.8174,18.2352,17.6095,17.9405,17.929,17.4287,17.7295,18.072,17.9959,18.3935,18.3659,18.642,20.3032,18.604,18.8123,18.0029,17.585,17.7282,16.966,17.0796,16.8023,16.5307,16.4264,16.5403,15.7782,15.4761,15.6316,15.6397,15.2849,15.8208,15.366,15.171,15.1108,15.1341,15.0845,14.8156,14.6511,14.7734,14.5508,15.1057,14.7704,14.5693,14.5902,14.802,14.7414,15.1719,14.5216,14.4082,14.4125,14.4268,14.1444,14.3501,14.23,14.3213,14.113,13.9775,14.0833,14.1717,14.1544,14.1898,14.6869,15.1323,15.3155,15.725,15.1959,14.4714,13.7664,13.7486,13.5835,13.2235,13.3995,13.2897,13.0487,13.5528,13.4227,13.4456,13.7829,13.4781,13.3287,13.5095,13.69,13.3249,12.839,12.8016,12.874,12.9283,12.8469,12.9451],"w":[23.6105,23.6519,23.686,23.7275,23.8044,23.9315,23.9414,23.9451,23.887,23.8117,23.7271,23.654,23.5305,23.3911,23.2497,23.1509,23.0313,22.9116,22.7847,22.6494,22.5027,22.3674,22.209,22.0409,21.8676,21.7111,21.5451,21.3836,21.2382,21.1428,21.0971,21.0195,20.9317,20.8323,20.7122,20.6068,20.5206,20.4295,20.336,20.2455,20.1639,20.0535,19.9316,19.8443,19.7715,19.7158,19.6652,19.5642,19.4325,19.3162,19.2516,19.1438,19.0222,18.8961,18.7969,18.6939,18.5932,18.5172,18.4616,18.3654,18.3188,18.2682,18.1928,18.1153,18.0621,18.0431,18.0238,18.0241,18.0583,18.0563,18.0164,18.0016,17.988,17.9435,17.9217,17.9249,17.9259,17.9553,17.9831,18.0276,18.1779,18.2152,18.2646,18.2592,18.2258,18.2022,18.1293,18.0652,17.9851,17.8905,17.7913,17.7032,17.569,17.4192,17.2835,17.1527,17.0045,16.8968,16.7652,16.6285,16.4944,16.3672,16.2429,16.1073,15.9668,15.8407,15.7074,15.6173,15.5126,15.4027,15.3029,15.2291,15.1595,15.1264,15.0575,14.9878,14.9256,14.8698,14.8015,14.7521,14.6997,14.6579,14.6074,14.5518,14.5062,14.4697,14.4352,14.4054,14.4112,14.4472,14.4951,14.569,14.6074,14.5989,14.5457,14.4932,14.4322,14.3501,14.2834,14.2126,14.1289,14.0811,14.0276,13.9785,13.9548,13.913,13.8635,13.8281,13.8063,13.7619,13.6884,13.6154,13.5504,13.4916,13.4297,13.3769],"p":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"cop":{"d":["2016-10-31","2016-11-30","2016-12-30","2017-01-31","2017-02-28","2017-03-31","2017-04-28","2017-05-31","2017-06-30","2017-07-31","2017-08-31","2017-09-29","2017-10-31","2017-11-30","2017-12-29","2018-01-31","2018-02-28","2018-03-29","2018-04-30","2018-05-31","2018-06-29","2018-07-31","2018-08-31","2018-09-28","2018-10-31","2018-11-30","2018-12-31","2019-01-31","2019-02-28","2019-03-29","2019-04-30","2019-05-31","2019-06-28","2019-07-31","2019-08-30","2019-09-30","2019-10-31","2019-11-29","2019-12-31","2020-01-31","2020-02-28","2020-03-31","2020-04-30","2020-05-29","2020-06-30","2020-07-31","2020-08-31","2020-09-30","2020-10-30","2020-11-30","2020-12-31","2021-01-29","2021-02-26","2021-03-31","2021-04-30","2021-05-28","2021-06-30","2021-07-30","2021-08-31","2021-09-30","2021-10-29","2021-11-30","2021-12-31","2022-01-31","2022-02-28","2022-03-31","2022-04-29","2022-05-31","2022-06-30","2022-07-29","2022-08-31","2022-09-30","2022-10-31","2022-11-30","2022-12-30","2023-01-31","2023-02-28","2023-03-31","2023-04-28","2023-05-31","2023-06-30","2023-07-31","2023-08-31","2023-09-29","2023-10-31","2023-11-30","2023-12-29","2024-01-31","2024-02-29","2024-03-28","2024-04-30","2024-05-31","2024-06-28","2024-07-31","2024-08-30","2024-09-30","2024-10-31","2024-11-29","2024-12-31","2025-01-31","2025-02-28","2025-03-31","2025-04-30","2025-05-30","2025-06-30","2025-07-31","2025-08-29","2025-09-30","2025-10-31","2025-11-28","2025-12-31","2026-01-30","2026-02-27","2026-03-31","2026-04-30","2026-05-29","2026-06-30","2026-07-31","2026-08-31","2026-09-11"],"v":[9.34,10.34,11.99,14.26,17.88,19.52,21.46,22.44,23.08,23.39,22.98,23.12,24.19,25.21,26.01,28.38,28.01,26.23,24.11,22.25,20.44,18.7,19.04,19.77,17.26,14.89,9.41,5.68,3.64,2.98,5.27,4.09,7.53,9.22,9.25,9.53,11.25,14.76,19.57,21.62,19.53,12.4,8.73,7.95,6.2,6.32,11.27,16.7,17.64,21.54,25.88,28.09,31.04,39.39,46.49,49.18,50.88,52.25,52.57,50.31,50.64,47.77,45.35,40.48,34.14,30.29,21.5,13.93,3.66,-1.9,-7.9,-15.39,-18.76,-19.17,-20.03,-19.08,-17.18,-12.76,-8.04,-4.98,3.18,8.55,13.51,16.91,16.92,18.69,21.72,22.75,26.53,31.33,33.55,35.81,36.9,37.29,37.82,39.3,41.33,42.49,40.46,39.17,36.03,29.95,25.28,21.46,19.75,18.45,18.17,20.62,24.62,26.0,26.97,27.42,27.09,25.04,26.72,28.85,29.09,28.4,28.73,29.46]},"ago":{"d":["2026-03-13","2026-03-16","2026-03-17","2026-03-18","2026-03-19","2026-03-20","2026-03-23","2026-03-24","2026-03-25","2026-03-26","2026-03-27","2026-03-30","2026-03-31","2026-04-01","2026-04-02","2026-04-06","2026-04-07","2026-04-08","2026-04-09","2026-04-10","2026-04-13","2026-04-14","2026-04-15","2026-04-16","2026-04-17","2026-04-20","2026-04-21","2026-04-22","2026-04-23","2026-04-24","2026-04-27","2026-04-28","2026-04-29","2026-04-30","2026-05-01","2026-05-04","2026-05-05","2026-05-06","2026-05-07","2026-05-08","2026-05-11","2026-05-12","2026-05-13","2026-05-14","2026-05-15","2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-26","2026-05-27","2026-05-28","2026-05-29","2026-06-01","2026-06-02","2026-06-03","2026-06-04","2026-06-05","2026-06-08","2026-06-09","2026-06-10","2026-06-11","2026-06-12","2026-06-15","2026-06-16","2026-06-17","2026-06-18","2026-06-22","2026-06-23","2026-06-24","2026-06-25","2026-06-26","2026-06-29","2026-06-30","2026-07-01","2026-07-02","2026-07-06","2026-07-07","2026-07-08","2026-07-09","2026-07-10","2026-07-13","2026-07-14","2026-07-15","2026-07-16","2026-07-17","2026-07-20","2026-07-21","2026-07-22","2026-07-23","2026-07-24","2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31","2026-08-03","2026-08-04","2026-08-05","2026-08-06","2026-08-07","2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-08","2026-09-09","2026-09-10","2026-09-11"],"v":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"ultima":"2026-08-19","n2026":23}};
+/* ====== SEMAFORO Y FILTROS ====== */
+const MK=MARKET, ZCOL={V:'#27e0a3',A:'#ffb020',R:'#ff5d7a'}, ZTXT={V:'VERDE',A:'ÁMBAR',R:'ROJO'};
+const mkF=(d)=>d.slice(8,10)+'/'+d.slice(5,7)+'/'+d.slice(2,4);
+function semRender(){
+const [wd,wsc,z]=MK.semana,L=MK.lect,E=MK.estados,P=MK.pesos;
+['R','A','V'].forEach(k=>document.getElementById('sem'+k).classList.toggle('on',k===z));
+document.getElementById('semExpo').textContent=MK.expo[z]+'%';
+document.getElementById('semExpo').style.color=ZCOL[z];
+document.getElementById('semZone').innerHTML='<span style="color:'+ZCOL[z]+'">● '+ZTXT[z]+'</span>';
+document.getElementById('semScore').innerHTML='Puntuación semanal <b style="color:var(--txt)">'+brNum(wsc,1)+'</b>/100<br>Hoy '+brNum(MK.scoreHoy,0)+'/100 · semana al '+mkF(wd);
+document.getElementById('heroSem').innerHTML='<i style="background:'+ZCOL[z]+';box-shadow:0 0 10px '+ZCOL[z]+'"></i>SEMÁFORO '+ZTXT[z]+' · RV '+MK.expo[z]+'%';
+const ok=(v,t)=>'<span class="'+(v===1?'sem-ok':v===0?'sem-ko':'sem-mid')+'">'+(v===1?'✓ ':v===0?'✗ ':'◐ ')+t+'</span>';
+const rows=[
+['MACD semanal S&P 500','semanal','Señal '+brNum(L.macd,1)+' · MACD '+brNum(L.macdl,1),ok(E.macd,E.macd?'Señal > 0':'Señal < 0'),'macd'],
+['Flujo de capitales','semanal',brNum(L.flujo,2),ok(E.flujo,E.flujo?'> 1':'< 1'),'flujo'],
+['Ratio dólar','semanal','WMA 30 '+(L.rw!=null&&MK.ratio.w.at(-1)<MK.ratio.w.at(-2)?'bajando':'subiendo'),ok(E.ratio,E.ratio?'En largos':'Fuera'),'ratio'],
+['Guía de Coppock','mensual',brNum(L.cop,1)+(L.cst==='OK'?' · sube':' · baja'),ok(E.coppock,L.cst==='OK'?'Sube':L.cst==='NOK'?'Baja < 0':'Baja > 0'),'coppock'],
+['NH − NL vs media 50','diario',brNum(L.hl,0)+' / '+brNum(L.ma,0),ok(E.nhnl,E.nhnl?'Sobre media':'Bajo media'),'nhnl'],
+['McClelland','diario',brNum(L.mcc,1),ok(E.mcc,E.mcc?'> 0':'< 0'),'mcc'],
+['ADn','diario',brNum(L.adn,1),ok(E.adn,L.adn>80?'> 80':L.adn<20?'< 20':'20–80'),'adn']];
+let h='<thead><tr><th class="l">Indicador</th><th class="l">Lectura</th><th class="l">Estado</th><th>Peso</th><th>Aporta</th></tr></thead><tbody>';
+h+=rows.map(r=>'<tr><td class="l"><b>'+r[0]+'</b><span class="tf">'+r[1]+'</span></td><td class="l mono" style="font-size:.78rem">'+r[2]+'</td><td class="l">'+r[3]+'</td><td class="mono">'+P[r[4]]+'</td><td class="mono" style="color:var(--txt)">'+brNum(P[r[4]]*E[r[4]],0)+'</td></tr>').join('');
+const ag=L.ago_rec;
+h+='<tr><td class="l"><b>Agorero</b><span class="tf">diario</span></td><td class="l mono" style="font-size:.78rem">'+(MK.ago.v.at(-1)?'Activado hoy':'Última: '+(MK.ago.ultima?mkF(MK.ago.ultima):'—'))+'</td><td class="l">'+(ag?'<span class="sem-ko">⚠ Activo (últimas '+MK.agoVent+' sesiones)</span>':'<span class="sem-ok">✓ Apagado</span>')+'</td><td class="mono">−'+MK.agoPen+'</td><td class="mono" style="color:var(--txt)">'+(ag?'−'+MK.agoPen:'0')+'</td></tr>';
+h+='</tbody>';
+document.getElementById('semTable').innerHTML=h;
+document.getElementById('semFoot').innerHTML='La puntuación diaria suma los pesos de los filtros favorables (Coppock bajando por encima de 0 cuenta la mitad; ADn entre 20 y 80 también). El semáforo usa la <b>media de la semana</b>: verde ≥ '+MK.umbral[0]+', rojo &lt; '+MK.umbral[1]+', con '+MK.umbral[2]+' puntos de margen para no cambiar de color por ruido.';
+}
+function mkLineCol(vals,up,down){return {borderColor:ctx=>{const i=ctx.p1DataIndex;return vals[i]!=null&&vals[i-1]!=null&&vals[i]<vals[i-1]?down:up;}};}
+function semHist(){
+const W=MK.weeks,S=MK.spx,zon=S.d.map(d=>{let z=null;for(const w of W){if(w[0]<d)z=w[2];else break;}return z;});
+const o=brBase({ticks:{font:{size:10},callback:v=>Number(v).toLocaleString('es-ES')}});
+o.plugins.tooltip.callbacks={label:c=>' S&P 500: '+brNum(c.parsed.y,2)+(zon[c.dataIndex]?' · '+ZTXT[zon[c.dataIndex]]:'')};
+new Chart(document.getElementById('semHist'),{type:'line',data:{labels:S.d.map(mkF),datasets:[{data:S.c,borderWidth:2.2,pointRadius:0,pointHoverRadius:4,tension:.1,
+segment:{borderColor:ctx=>ZCOL[zon[ctx.p1DataIndex]]||'#8fa0b8'}}]},options:o});
+}
+function mkCharts(){
+const M=MK,lab=a=>a.map(mkF);
+/* flujo */
+const oF=brBase();oF.plugins.tooltip.callbacks={label:c=>' Flujo: '+brNum(c.parsed.y,2)};
+new Chart(document.getElementById('mkFlujo'),{type:'bar',data:{labels:lab(M.flujo.d),datasets:[
+{data:M.flujo.v,backgroundColor:M.flujo.v.map(v=>v>1?'rgba(39,224,163,.8)':'rgba(255,93,122,.8)'),categoryPercentage:1,barPercentage:.8},
+{type:'line',data:M.flujo.v.map(()=>1),borderColor:'rgba(255,255,255,.35)',borderWidth:1,borderDash:[4,4],pointRadius:0}]},options:oF});
+const fv=M.flujo.v.at(-1);
+document.getElementById('mkFlujoV').innerHTML=brVal('RSC',brNum(fv,2),fv>1?'var(--green)':'var(--red)')+brTag(fv>1?'FAVORABLE':'DESFAVORABLE',fv>1?'g':'r');
+/* macd */
+const oM=brBase({grid:{color:c=>c.tick&&c.tick.value===0?'rgba(255,255,255,.35)':'rgba(255,255,255,.05)'}});
+oM.plugins.tooltip.callbacks={label:c=>' '+(c.datasetIndex?'Señal':'MACD')+': '+brNum(c.parsed.y,1)};
+new Chart(document.getElementById('mkMacd'),{type:'line',data:{labels:lab(M.macd.d),datasets:[
+{data:M.macd.m,borderColor:'#5aa9ff',borderWidth:1.6,pointRadius:0,tension:.2},
+{data:M.macd.s,borderColor:'#ffa94d',borderWidth:2.2,pointRadius:0,tension:.2}]},options:oM});
+const sg=M.macd.s.at(-1);
+document.getElementById('mkMacdV').innerHTML=brVal('Señal',brNum(sg,1),'#ffa94d')+brTag(sg>0?'EN LARGOS':'FUERA',sg>0?'g':'r');
+/* coppock */
+const oC=brBase({grid:{color:c=>c.tick&&c.tick.value===0?'rgba(255,255,255,.35)':'rgba(255,255,255,.05)'}});
+oC.plugins.tooltip.callbacks={label:c=>' Coppock: '+brNum(c.parsed.y,1)};
+new Chart(document.getElementById('mkCop'),{type:'line',data:{labels:M.cop.d.map(d=>d.slice(5,7)+'/'+d.slice(2,4)),datasets:[
+{data:M.cop.v,borderWidth:2.2,pointRadius:0,tension:.25,segment:mkLineCol(M.cop.v,'#27e0a3','#ff5d7a')}]},options:oC});
+const cv=M.cop.v.at(-1),cp=M.cop.v.at(-2),cst=cv>cp?'SUBE':cv<0?'BAJA < 0':'BAJA > 0';
+document.getElementById('mkCopV').innerHTML=brVal('Coppock',brNum(cv,1),cv>cp?'var(--green)':'var(--red)')+brTag(cst,cv>cp?'g':cv<0?'r':'n');
+/* ratio dolar */
+const oR=brBase();oR.plugins.tooltip.callbacks={label:c=>' '+(c.datasetIndex?'WMA 30':'Ratio')+': '+brNum(c.parsed.y,3)};
+new Chart(document.getElementById('mkRatio'),{type:'line',data:{labels:lab(M.ratio.d),datasets:[
+{data:M.ratio.r,borderColor:'#e8eef7',borderWidth:1.4,pointRadius:0,tension:.15},
+{data:M.ratio.w,borderWidth:2.6,pointRadius:0,tension:.15,segment:mkLineCol(M.ratio.w,'#ff5d7a','#27e0a3')}]},options:oR});
+const rp=M.ratio.p.at(-1),wb=M.ratio.w.at(-1)<M.ratio.w.at(-2);
+document.getElementById('mkRatioV').innerHTML=brVal('WMA',wb?'bajando':'subiendo',wb?'var(--green)':'var(--red)')+brTag(rp?'EN LARGOS':'FUERA',rp?'g':'r');
+/* agorero */
+const oA=brBase({display:false,min:0,max:1});oA.scales.x.ticks.maxTicksLimit=8;
+oA.plugins.tooltip.callbacks={label:c=>c.parsed.y?' Agorero ON':' apagado'};
+new Chart(document.getElementById('mkAgo'),{type:'bar',data:{labels:lab(M.ago.d),datasets:[
+{data:M.ago.v,backgroundColor:'#ff5d7a',categoryPercentage:1,barPercentage:.9}]},options:oA});
+const on=M.ago.v.at(-1)===1;
+document.getElementById('mkAgoV').innerHTML=brVal('Última',M.ago.ultima?mkF(M.ago.ultima):'—','var(--txt)')+brVal('2026',M.ago.n2026+' días','var(--txt)')+brTag(on?'ACTIVADO':'APAGADO',on?'r':'n');
+}
+semRender();semHist();mkCharts();
 /* ====== SCREENER US + SECTORES (datos en vivo de /screener-dashboard/) ====== */
 const SD_SRC='https://miqui1804.github.io/screener-dashboard/';
 const SD_VARS=['DATA_CRECIMIENTO','DATA_VICTOR','DATA_ONEILL','DATA_BANDERAS','DATA_TAZA','DATA_RSC','DATA_RSC2','DATA_COINCIDENCIAS','DATA_SECTORS','DATA_INDUSTRIES'];
