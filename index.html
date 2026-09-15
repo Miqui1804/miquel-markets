@@ -35,6 +35,22 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:66px}
 .brand{font-family:'Sora';font-weight:800;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
+a.brand{color:inherit}
+.brand-ico:empty{display:none}
+.brand-ico svg{display:block;height:34px;width:auto;filter:drop-shadow(0 0 8px var(--logo-glow,transparent))}
+@media(max-width:560px){.brand-ico svg{height:28px}}
+.hero-logo{display:flex;flex-direction:column;align-items:center;gap:10px;margin:0 auto 26px;width:max-content;max-width:100%}
+.mm-logo{display:inline-flex;align-items:center;gap:14px;filter:drop-shadow(0 0 30px var(--logo-glow,transparent))}
+.mm-ico svg{display:block;height:92px;width:auto}
+.mm-txt{display:flex;flex-direction:column;line-height:.95;text-align:left}
+.mm-txt b{font-family:'Sora';font-weight:800;font-size:2.35rem;letter-spacing:-.02em;color:var(--txt)}
+.mm-txt b.m2{color:#9dbbe3}
+.mm-txt small{font-family:'Inter';font-size:.8rem;color:var(--muted);margin-top:7px;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:560px){.mm-ico svg{height:62px}.mm-txt b{font-size:1.6rem}.mm-txt small{font-size:.66rem}}
+.hero-logo-txt{font-family:'JetBrains Mono';font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.contacto{margin-top:10px;font-size:.9rem}
+.contacto a{color:var(--gold);font-weight:600}
+.contacto a:hover{text-decoration:underline}
 .brand span{color:var(--gold)}
 .nav-links{display:flex;gap:26px;font-size:.92rem;color:var(--muted)}
 .nav-links a:hover{color:var(--txt)}
@@ -359,7 +375,7 @@ thead th.s.on{color:var(--gold)}
 
 <header class="nav">
 <div class="wrap nav-in">
-<div class="brand"><span class="dot"></span>Miquel <span>Markets</span></div>
+<a class="brand" href="#salud" title="Salud del mercado"><span class="brand-ico" id="brandIco"></span><span class="dot" id="brandDot"></span>Miquel <span>Markets</span></a>
 <nav class="nav-links">
 <a href="#sistemas">Sistemas</a>
 <a href="#screener">Screener</a>
@@ -376,11 +392,13 @@ thead th.s.on{color:var(--gold)}
 <a href="#screener" onclick="closeMenu()">Screener</a>
 <a href="#sectores" onclick="closeMenu()">Sectores</a>
 <a href="#mercado" onclick="closeMenu()">Mercado</a>
+<a href="#contacto" onclick="closeMenu()">Contacto</a>
 </nav>
 </header>
 
 <section class="hero">
 <div class="wrap">
+<a href="#salud" class="hero-logo reveal" id="heroLogo" hidden><span id="heroLogoMM"></span><span class="hero-logo-txt" id="heroLogoTxt"></span></a>
 <div class="pill reveal"><span class="pulse"></span> Actualizado 12/09/2026</div><a href="#mercado" class="hero-sem reveal" id="heroSem"></a><a href="#salud" class="hero-sem reveal" id="heroSalud"></a>
 <h1 class="reveal">Sistemas cuantitativos que<br><span class="grad">baten al S&amp;P 500</span></h1>
 <p class="sub reveal">Momentum probado sobre 27 años de datos reales, sin sesgo de supervivencia. Sistemas propios desde AmiBroker, screener del universo de acciones US, fuerza relativa por sectores e industrias y un semáforo de exposición a renta variable.</p>
@@ -710,6 +728,7 @@ thead th.s.on{color:var(--gold)}
 <div class="wrap">
 <div class="brand"><span class="dot"></span>Miquel <span style="color:var(--gold)">Markets</span></div>
 <div>Timing · Strategy · Growth</div>
+<div class="contacto" id="contacto">Contacto: <a id="mailLink" href="#contacto">miqui1804trading [arroba] gmail.com</a></div>
 <div style="margin-top:8px;opacity:.7">Sistemas y amplitud desde AmiBroker · Screener y sectores vía stockanalysis.com · Actualizado cada sábado</div>
 <div style="margin-top:10px;font-size:.8rem;opacity:.6">Rentabilidades pasadas no garantizan resultados futuros. Contenido informativo, no es asesoramiento financiero.</div>
 </div>
@@ -839,6 +858,8 @@ studies:sys?[tvMA('MAWeighted',30,'#f5c451')]
 function closeChart(){document.getElementById('tvOverlay').classList.remove('open');document.getElementById('tv_container').innerHTML='';}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeChart();});
 
+/* ====== CONTACTO (el correo se compone al cargar para evitar robots) ====== */
+(function(){const u='miqui1804trading',d='gmail.com',a=document.getElementById('mailLink');if(a){a.href='mailto:'+u+'@'+d;a.textContent=u+'@'+d;}})();
 /* ====== MENU MOVIL ====== */
 function toggleMenu(){
 const b=document.getElementById('navBurger'),m=document.getElementById('navMobile');
@@ -1203,7 +1224,67 @@ document.getElementById('saludGrid').innerHTML=h;
 document.getElementById('saludAsof').textContent='Semana al '+fmt(wd)+(S?' · sentimiento al '+fmt(S.fg.fecha):'');
 document.getElementById('saludTxt').innerHTML='Semáforo en <b>'+ZTXT[z].toLowerCase()+'</b> con exposición del '+MK.expo[z]+'%. Tendencia '+est(ft).toLowerCase()+' ('+brNum(n(tend),1).replace(',0','')+' de '+tend.length+' filtros de precio a favor) y amplitud '+est(fa).toLowerCase()+' ('+brNum(n(ampl),1).replace(',0','')+' de '+ampl.length+'). Agorero '+(ago?'<b>activo</b>':'apagado')+'.'+sTxt+' Resumen descriptivo de los indicadores; no es una recomendación de inversión.';
 }
-semRender();semHist();mkCharts();mkGolden();btPesos();btRender('completo');snRender();saludRender();
+/* ====== LOGO MIQUEL MARKETS (velas vectoriales + toro/oso segun el semaforo) ====== */
+const MMLOGO={
+V:[[14,30,6,26],[26,33,15,19],[19,50,16,46],[46,58,36,40],[40,74,37,70],[70,98,64,93]],
+R:[[86,94,70,74],[74,81,52,56],[56,66,52,63],[63,65,34,38],[38,47,33,44],[44,46,6,10]],
+A:{up:[[20,36,12,32],[32,40,22,26],[26,62,24,58],[58,86,52,82]],dn:[[82,88,60,64],[64,74,58,70],[70,72,36,40],[40,44,14,18]]}
+};
+function mmVelas(c,x0,y0,w,h){
+const G='#2fd18a',Gd='#15885a',R='#ef5361',Rd='#a8283a',lo=Math.min(...c.map(k=>k[2])),hi=Math.max(...c.map(k=>k[1]));
+const Y=v=>y0+h-((v-lo)/(hi-lo))*h,paso=w/c.length,cw=paso*.64;
+return c.map((k,i)=>{const [o,mx,mn,cl]=k,up=cl>=o,cx=x0+paso*i+paso/2;
+const yt=Y(Math.max(o,cl)),yb=Y(Math.min(o,cl)),bh=Math.max(2,yb-yt),dk=up?Gd:Rd;
+return '<line x1="'+cx.toFixed(1)+'" y1="'+Y(mx).toFixed(1)+'" x2="'+cx.toFixed(1)+'" y2="'+Y(mn).toFixed(1)+'" stroke="'+(up?'#27c07e':'#e0495a')+'" stroke-width="'+Math.max(1.3,paso*.11).toFixed(1)+'" stroke-linecap="round"/>'+
+'<rect x="'+(cx-cw/2).toFixed(1)+'" y="'+yt.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="'+Math.min(2,cw*.16).toFixed(1)+'" fill="url(#mm'+(up?'G':'R')+')" stroke="'+dk+'" stroke-width=".9"/>';}).join('');
+}
+function mmFlecha(d,col,id){
+return '<path d="'+d+'" fill="none" stroke="url(#'+id+')" stroke-width="3" stroke-linecap="round" opacity=".92" marker-end="url(#'+id+'M)"/>';
+}
+function mmDefs(){
+return '<defs><linearGradient id="mmG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#46e39f"/><stop offset="1" stop-color="#23b877"/></linearGradient>'+
+'<linearGradient id="mmR" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff6b77"/><stop offset="1" stop-color="#d63a48"/></linearGradient>'+
+'<linearGradient id="mmOro" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#b8892e" stop-opacity=".2"/><stop offset=".45" stop-color="#e0b04c"/><stop offset="1" stop-color="#ffd874"/></linearGradient>'+
+'<linearGradient id="mmGris" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fa0b8" stop-opacity=".2"/><stop offset=".5" stop-color="#c9d3e1"/><stop offset="1" stop-color="#eef2f8"/></linearGradient>'+
+'<marker id="mmOroM" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ffd874"/></marker>'+
+'<marker id="mmGrisM" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#eef2f8"/></marker></defs>';
+}
+/* icono: velas + animal (sin texto). base = ruta de las imagenes */
+function mmIcono(z,base){
+base=base||'';
+if(z==='A'){
+return '<svg viewBox="0 0 170 80" xmlns="http://www.w3.org/2000/svg">'+mmDefs()+
+mmVelas(MMLOGO.A.up,2,14,40,62)+mmVelas(MMLOGO.A.dn,128,14,40,62)+
+'<image href="'+base+'animal-A.webp" x="44" y="6" width="82" height="70" preserveAspectRatio="xMidYMid meet"/></svg>';}
+const c=MMLOGO[z],v=z==='V';
+return '<svg viewBox="0 0 150 80" xmlns="http://www.w3.org/2000/svg">'+mmDefs()+
+(v?mmFlecha('M0 44 C 22 40, 46 24, 66 5','','mmOro'):mmFlecha('M0 4 C 30 2, 60 18, 76 58','','mmGris'))+
+mmVelas(c,2,v?14:10,66,v?64:64)+
+'<image href="'+base+'animal-'+z+'.webp" x="'+(v?80:78)+'" y="'+(v?4:12)+'" width="'+(v?64:70)+'" height="'+(v?72:62)+'" preserveAspectRatio="xMidYMid meet"/></svg>';
+}
+/* logo completo: icono + texto */
+function mmLogo(z,base){
+return '<span class="mm-logo mm-'+z+'"><span class="mm-ico">'+mmIcono(z,base)+'</span><span class="mm-txt"><b>Miquel</b><b class="m2">Markets</b><small>Timing. Strategy. Growth.</small></span></span>';
+}
+/* favicon: solo velas */
+function mmFavicon(z){
+const c=z==='A'?[MMLOGO.A.up[2],MMLOGO.A.up[3],MMLOGO.A.dn[0],MMLOGO.A.dn[2]]:MMLOGO[z].slice(2);
+const s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0c1322"/>'+mmDefs()+mmVelas(c,3,4,26,24)+'</svg>';
+return 'data:image/svg+xml,'+encodeURIComponent(s);
+}
+
+/* ====== LOGO SEGUN EL SEMAFORO (V toro · A toro y oso · R oso) ====== */
+function logoZona(){
+const z=MK.semana[2],GLOW={V:'rgba(39,224,163,.22)',A:'rgba(255,176,32,.16)',R:'rgba(255,93,122,.22)'};
+const TXT={V:'Modo toro · semáforo verde · RV '+MK.expo.V+'%',A:'Toro y oso · semáforo ámbar · RV '+MK.expo.A+'%',R:'Modo oso · semáforo rojo · RV '+MK.expo.R+'%'};
+document.documentElement.style.setProperty('--logo-glow',GLOW[z]);
+document.getElementById('brandIco').innerHTML=mmIcono(z);document.getElementById('brandDot').hidden=true;
+document.getElementById('heroLogoMM').innerHTML=mmLogo(z);
+document.getElementById('heroLogoTxt').innerHTML='<span style="color:'+ZCOL[z]+'">●</span> '+TXT[z];
+document.getElementById('heroLogo').hidden=false;
+const fav=document.querySelector('link[rel="icon"]');if(fav)fav.href=mmFavicon(z);
+}
+semRender();semHist();mkCharts();mkGolden();btPesos();btRender('completo');snRender();saludRender();logoZona();
 /* ====== SCREENER US + SECTORES (datos en vivo de /screener-dashboard/) ====== */
 const SD_SRC='https://miqui1804.github.io/screener-dashboard/';
 const SD_VARS=['DATA_CRECIMIENTO','DATA_VICTOR','DATA_ONEILL','DATA_BANDERAS','DATA_TAZA','DATA_RSC','DATA_RSC2','DATA_COINCIDENCIAS','DATA_SECTORS','DATA_INDUSTRIES'];
