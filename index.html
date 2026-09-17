@@ -711,11 +711,16 @@ thead th.s.on{color:var(--gold)}
 <div class="br-head"><span class="t">Nuevos máximos − nuevos mínimos<small>línea acumulada NYSE y su media de 50</small></span><span class="br-vals" id="brHlVals"></span></div>
 <div class="br-box h3"><canvas id="brHl"></canvas></div>
 </div>
+<div class="br-pane">
+<div class="br-head"><span class="t">Línea AD<small>acumulada, SMA 150 y NYSE Composite para ver divergencias</small></span><span class="br-vals" id="brAdVals"></span></div>
+<div class="br-box h3"><canvas id="brAd"></canvas></div>
+</div>
 </div>
 <div class="br-notes reveal">
 <div><b>ADn</b>Estocástico de 21 sesiones de la línea AD acumulada, suavizado con <code>EMA(7)</code>. Por encima de <span style="color:var(--green)">80</span> la participación está en máximos de su rango reciente; por debajo de <span style="color:var(--red)">20</span>, en mínimos.</div>
 <div><b>McClelland</b><code>EMA(19) − EMA(39)</code> de avances menos descensos diarios. Por encima de cero la amplitud gana impulso; por debajo, lo pierde.</div>
 <div><b>NH − NL</b>Suma acumulada de nuevos máximos menos nuevos mínimos de 52 semanas del NYSE, con su <code>SMA(50)</code> en rojo. Mide si se amplía o se estrecha la base de valores en máximos.</div>
+<div><b>Línea AD</b>Suma acumulada diaria de avances menos descensos del NYSE, con su <code>SMA(150)</code> en rojo, comparada con el NYSE Composite (línea discontinua, eje izquierdo). Cuando el índice sube y la línea AD no acompaña, es una divergencia bajista.</div>
 </div>
 
 <div class="mk-sub reveal" id="sentimiento"><span class="n">03</span> Sentimiento</div>
@@ -985,7 +990,7 @@ const brNum=(v,d)=>v==null?'—':Number(v).toLocaleString('es-ES',{minimumFracti
 function brSlice(){
 const L=BREADTH.d.length,n=Math.min(BR_N[brRango],L),a=L-n,cut=k=>BREADTH[k].slice(a);
 const largo=n>140;
-return {lab:cut('d').map(x=>x.slice(8,10)+'/'+x.slice(5,7)+(largo?'/'+x.slice(2,4):'')),adn:cut('adn'),mcc:cut('mcc'),hl:cut('hl'),ma:cut('ma')};
+return {lab:cut('d').map(x=>x.slice(8,10)+'/'+x.slice(5,7)+(largo?'/'+x.slice(2,4):'')),adn:cut('adn'),mcc:cut('mcc'),hl:cut('hl'),ma:cut('ma'),ad:cut('ad'),adma150:cut('adma150'),nya:cut('nya')};
 }
 function brBase(yExtra){
 return {responsive:true,maintainAspectRatio:false,animation:{duration:550},interaction:{mode:'index',intersect:false},
@@ -1022,6 +1027,15 @@ brCh.push(new Chart(document.getElementById('brHl'),{type:'line',data:{labels:S.
 {data:S.hl,borderColor:'#e8eef7',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true},
 {data:S.ma,borderColor:'#ff5d7a',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true}
 ]},options:oH}));
+/* --- Linea AD (bruta) + SMA150 vs NYSE Composite --- */
+const oD=brBase({ticks:{font:{size:10},callback:v=>Number(v).toLocaleString('es-ES')}});
+oD.scales.y1={position:'left',grid:{display:false},border:{display:false},ticks:{font:{size:10},callback:v=>Number(v).toLocaleString('es-ES')}};
+oD.plugins.tooltip.callbacks={label:c=>' '+(c.datasetIndex===0?'Línea AD':c.datasetIndex===1?'SMA 150':'NYSE Composite')+': '+brNum(c.parsed.y,c.datasetIndex===2?2:0)};
+brCh.push(new Chart(document.getElementById('brAd'),{type:'line',data:{labels:S.lab,datasets:[
+{data:S.ad,borderColor:'#5aa9ff',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true,yAxisID:'y'},
+{data:S.adma150,borderColor:'#ff5d7a',borderWidth:1.8,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true,yAxisID:'y'},
+{data:S.nya,borderColor:'#ffd166',borderWidth:1.5,pointRadius:0,pointHoverRadius:4,tension:.15,fill:false,spanGaps:true,yAxisID:'y1',borderDash:[4,3]}
+]},options:oD}));
 }
 function brResumen(){
 const B=BREADTH,L=B.d.length-1,last=k=>{for(let i=L;i>=0;i--)if(B[k][i]!=null)return B[k][i];return null;};
@@ -1034,6 +1048,8 @@ const cruce=(m>=0)!==(mp>=0)?(m>=0?' · cruza al alza':' · cruza a la baja'):''
 document.getElementById('brMccVals').innerHTML=brVal('McC',brNum(m,1),m>=0?'var(--green)':'var(--red)')+brTag((m>=0?'POSITIVO':'NEGATIVO')+cruce.toUpperCase(),m>=0?'g':'r');
 const h=last('hl'),ma=last('ma');
 document.getElementById('brHlVals').innerHTML=brVal('NH-NL',brNum(h,0),'#e8eef7')+brVal('Media 50',brNum(ma,2),'var(--red)')+(h>=ma?brTag('SOBRE SU MEDIA','g'):brTag('BAJO SU MEDIA','r'));
+const ad=last('ad'),adma=last('adma150');
+document.getElementById('brAdVals').innerHTML=brVal('AD',brNum(ad,0),'#5aa9ff')+brVal('SMA150',brNum(adma,0),'var(--red)')+(ad>=adma?brTag('SOBRE SU MEDIA','g'):brTag('BAJO SU MEDIA','r'));
 }
 document.querySelectorAll('#brRange button').forEach(b=>b.addEventListener('click',()=>{
 if(b.dataset.r===brRango)return;brRango=b.dataset.r;
