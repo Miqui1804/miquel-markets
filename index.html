@@ -714,7 +714,7 @@ thead th.s.on{color:var(--gold)}
 <div class="br-box" style="height:200px;margin-top:16px" id="btYearsBox"><canvas id="btYears"></canvas></div>
 <div class="bt-note" id="btNote"></div>
 <div class="bt-table" style="margin-top:14px"><div class="table-wrap"><table id="btPesos"></table></div></div>
-<div class="bt-note">CAGR y máximo drawdown de cada reparto de pesos en cada periodo. Con el histórico de amplitud del NYSE desde 2005 se probaron más de 150.000 combinaciones (pesos en pasos de 10 y penalización del Agorero de 0 a 40) sobre 2007–2026. Las mejores coincidían en las dos mitades (2007–2016 y 2017–2026): mucho peso al <b>ratio dólar</b> y al <b>McClelland</b> y un <b>Agorero</b> más severo. Las combinaciones ganadoras dejaban a cero el MACD y el cruce dorado; se eligió un reparto redondeado que los mantiene y que apenas empeora al mover 5 puntos de un filtro a otro. Los pesos se eligieron viendo todo el periodo, así que las cifras no son fuera de muestra. En los últimos 14 meses los pesos nuevos rinden menos que los anteriores.</div></div>
+<div class="bt-note">CAGR y máximo drawdown de cada reparto de pesos en cada periodo. Con el histórico de amplitud del NYSE desde 2005 se probaron más de 150.000 combinaciones (pesos en pasos de 10 y penalización del Agorero de 0 a 40) sobre 2007–2026. Las mejores coincidían en las dos mitades (2007–2016 y 2017–2026): mucho peso al <b>ratio dólar</b> y al <b>McClellan</b> y un <b>Agorero</b> más severo. Las combinaciones ganadoras dejaban a cero el MACD y el cruce dorado; se eligió un reparto redondeado que los mantiene y que apenas empeora al mover 5 puntos de un filtro a otro. Los pesos se eligieron viendo todo el periodo, así que las cifras no son fuera de muestra. En los últimos 14 meses los pesos nuevos rinden menos que los anteriores.</div></div>
 </div>
 
 <div class="mk-sub reveal"><span class="n">01</span> Filtros de mercado</div>
@@ -742,7 +742,7 @@ thead th.s.on{color:var(--gold)}
 <div class="br-box h1"><canvas id="brAdn"></canvas></div>
 </div>
 <div class="br-pane">
-<div class="br-head"><span class="t">Oscilador McClelland<small>EMA 19 − EMA 39 de avances netos</small></span><span class="br-vals" id="brMccVals"></span></div>
+<div class="br-head"><span class="t">Oscilador McClellan<small>EMA 19 − EMA 39 de avances netos</small></span><span class="br-vals" id="brMccVals"></span></div>
 <div class="br-box h2"><canvas id="brMcc"></canvas></div>
 </div>
 <div class="br-pane">
@@ -769,7 +769,7 @@ thead th.s.on{color:var(--gold)}
 </div>
 <div class="br-notes reveal">
 <div><b>ADn</b>Estocástico de 21 sesiones de la línea AD acumulada, suavizado con <code>EMA(7)</code>. Por encima de <span style="color:var(--green)">80</span> la participación está en máximos de su rango reciente; por debajo de <span style="color:var(--red)">20</span>, en mínimos.</div>
-<div><b>McClelland</b><code>EMA(19) − EMA(39)</code> de avances menos descensos diarios. Por encima de cero la amplitud gana impulso; por debajo, lo pierde. La línea naranja marca el nivel <b style="color:#ffa94d">−100</b>: cuando el oscilador lo pierde y vuelve a cruzarlo al alza suelen producirse rebotes.</div>
+<div><b>McClellan</b><code>EMA(19) − EMA(39)</code> de avances menos descensos diarios. Por encima de cero la amplitud gana impulso; por debajo, lo pierde. La línea naranja marca el nivel <b style="color:#ffa94d">−100</b>: cuando el oscilador lo pierde y vuelve a cruzarlo al alza suelen producirse rebotes.</div>
 <div><b>% sobre la media</b>Cuántas acciones del índice cotizan por encima de su media de 50 y de 200 sesiones. Por encima del <span style="color:var(--green)">70%</span> la subida es amplia; por debajo del <span style="color:var(--red)">30%</span> el mercado está muy castigado y suelen aparecer suelos. Componentes actuales del índice.</div>
 <div><b>Máximos y mínimos</b>Valores del NYSE que marcan máximo o mínimo de 52 semanas cada día, y su diferencia. Las lecturas extremas de nuevos mínimos acompañan a las capitulaciones; los máximos crecientes confirman las subidas.</div>
 <div><b>NH − NL</b>Suma acumulada de nuevos máximos menos nuevos mínimos de 52 semanas del NYSE, con su <code>SMA(50)</code> en rojo. Mide si se amplía o se estrecha la base de valores en máximos.</div>
@@ -1132,10 +1132,10 @@ brCh.push(new Chart(document.getElementById('brAdn'),{type:'line',data:{labels:S
 {data:S.adn,borderWidth:0,pointRadius:0,tension:.25,spanGaps:true,fill:{target:{value:20},above:'rgba(0,0,0,0)',below:'rgba(255,93,122,.6)'}},
 brLevel(n,80,'rgba(39,224,163,.7)'),brLevel(n,50,'rgba(90,169,255,.55)'),brLevel(n,20,'rgba(255,93,122,.7)')
 ]},options:oA}));
-/* --- McClelland --- */
+/* --- McClellan --- */
 const oM=brBase({grid:{color:c=>c.tick&&c.tick.value===0?'rgba(255,255,255,.35)':'rgba(255,255,255,.05)'}});
-oM.plugins.tooltip.callbacks={label:c=>' McClelland: '+brNum(c.parsed.y,1)};
-oM.plugins.tooltip.callbacks={label:c=>c.datasetIndex?' Nivel −100':' McClelland: '+brNum(c.parsed.y,1)};
+oM.plugins.tooltip.callbacks={label:c=>' McClellan: '+brNum(c.parsed.y,1)};
+oM.plugins.tooltip.callbacks={label:c=>c.datasetIndex?' Nivel −100':' McClellan: '+brNum(c.parsed.y,1)};
 brCh.push(new Chart(document.getElementById('brMcc'),{type:'bar',data:{labels:S.lab,datasets:[
 {data:S.mcc,backgroundColor:S.mcc.map(v=>v>=0?'rgba(39,224,163,.8)':v<=-100?'rgba(255,93,122,1)':'rgba(255,93,122,.55)'),borderWidth:0,categoryPercentage:1,barPercentage:.85},
 Object.assign({type:'line'},brLevel(S.lab.length,-100,'rgba(255,169,77,.8)'),{borderDash:[5,4],borderWidth:1.4})
@@ -1254,7 +1254,7 @@ const rows=[
 ['Ratio dólar','semanal','WMA 30 '+(L.rw!=null&&MK.ratio.w.at(-1)<MK.ratio.w.at(-2)?'bajando':'subiendo'),ok(E.ratio,E.ratio?'En largos':'Fuera'),'ratio'],
 ['Guía de Coppock','mensual',brNum(L.cop,1)+(L.cst==='OK'?' · sube':' · baja'),ok(E.coppock,L.cst==='OK'?'Sube':L.cst==='NOK'?'Baja < 0':'Baja > 0'),'coppock'],
 ['NH − NL vs media 50','diario',brNum(L.hl,0)+' / '+brNum(L.ma,0),ok(E.nhnl,E.nhnl?'Sobre media':'Bajo media'),'nhnl'],
-['McClelland','diario',brNum(L.mcc,1),ok(E.mcc,E.mcc?'> 0':'< 0'),'mcc'],
+['McClellan','diario',brNum(L.mcc,1),ok(E.mcc,E.mcc?'> 0':'< 0'),'mcc'],
 ['ADn','diario',brNum(L.adn,1),ok(E.adn,L.adn>80?'> 80':L.adn<20?'< 20':'20–80'),'adn']];
 let h='<thead><tr><th class="l">Indicador</th><th class="l">Lectura</th><th class="l">Estado</th><th>Peso</th><th>Aporta</th></tr></thead><tbody>';
 h+=rows.map(r=>'<tr><td class="l"><b>'+r[0]+'</b><span class="tf">'+r[1]+'</span></td><td class="l mono" style="font-size:.78rem">'+r[2]+'</td><td class="l">'+r[3]+'</td><td class="mono">'+P[r[4]]+'</td><td class="mono" style="color:var(--txt)">'+brNum(P[r[4]]*E[r[4]],0)+'</td></tr>').join('');
@@ -1425,7 +1425,7 @@ const col=f=>f>=.7?'#27e0a3':f>=.4?'#ffb020':'#ff5d7a',est=f=>f>=.7?'Favorable':
 const n=ks=>ks.reduce((a,k)=>a+(E[k]||0),0);
 const tend=['macd','cruce','ratio','coppock','flujo'],ft=n(tend)/tend.length;
 const ampl=['nhnl','mcc','adn'],fa=n(ampl)/ampl.length;
-const nom={macd:'MACD',cruce:'cruce dorado',ratio:'ratio dólar',coppock:'Coppock',flujo:'flujo',nhnl:'NH−NL',mcc:'McClelland',adn:'ADn'};
+const nom={macd:'MACD',cruce:'cruce dorado',ratio:'ratio dólar',coppock:'Coppock',flujo:'flujo',nhnl:'NH−NL',mcc:'McClellan',adn:'ADn'};
 const lista=ks=>ks.map(k=>(E[k]===1?'✓ ':E[k]===0?'✗ ':'◐ ')+nom[k]).join(' · ');
 const fmt=d=>d.slice(8,10)+'/'+d.slice(5,7)+'/'+d.slice(0,4);
 const it=(href,c,k,v,d,cls)=>'<a class="salud-it'+(cls?' '+cls:'')+'" href="'+href+'"><div class="k"><i style="background:'+c+';box-shadow:0 0 10px '+c+'"></i>'+k+'</div><div class="v" style="color:'+c+'">'+v+'</div><div class="d">'+d+'</div></a>';
