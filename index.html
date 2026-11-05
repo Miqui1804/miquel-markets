@@ -232,6 +232,8 @@ thead th.s.on{color:var(--gold)}
 .hm-chips{display:flex;flex-wrap:wrap;gap:5px;width:100%}
 .hm-chip{font-family:'JetBrains Mono';font-size:.68rem;font-weight:600;color:#fff;padding:4px 8px;border-radius:7px;cursor:pointer;text-shadow:0 1px 1px rgba(0,0,0,.3)}
 .hm-chip:hover{outline:1.5px solid var(--gold)}
+.hm-chips-k{width:100%;font-size:.72rem;color:var(--muted);margin-top:2px}
+.hm-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0;box-shadow:0 0 0 1.5px rgba(255,255,255,.85)}
 .hm-box{position:relative;background:#0a0e15;border-radius:10px;overflow:hidden;user-select:none;-webkit-user-select:none}
 .hm-s{position:absolute;background:#1b1f28}
 .hm-sh{position:absolute;padding:0 5px;font-size:10.5px;font-weight:700;letter-spacing:.03em;color:#e3e8ef;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:15px;cursor:pointer;z-index:1}
@@ -1942,7 +1944,17 @@ const z=p<=2?['MERCADO DÉBIL','r']:p<=8?['MERCADO NEUTRAL','n']:['MERCADO FUERT
 document.getElementById('hmFz').innerHTML='<div><span class="k">Sectores con cierre sobre su media de 200 sesiones</span><span class="v">'+p+'<small> de '+n+'</small></span></div>'+
 '<span class="br-tag '+z[1]+'">'+z[0]+'</span>'+
 '<div class="hm-esc"><span class="r'+(p<=2?' on':'')+'">0 – 2<em>débil</em></span><span class="n'+(p>2&&p<=8?' on':'')+'">3 – 8<em>neutral</em></span><span class="g'+(p>=9?' on':'')+'">9 – '+n+'<em>fuerte</em></span></div>'+
-'<div class="hm-chips">'+S.slice().sort((a,b)=>b.d200-a.d200).map(x=>'<span class="hm-chip" data-s="'+sdEsc(x.name)+'" title="Cierre frente a su media de 200 sesiones" style="background:'+hmColor(x.d200,15)+'">'+sdEsc(x.name)+' '+hmFmt(x.d200,1)+'</span>').join('')+'</div>';
+'<div class="hm-chips" id="hmChips"></div>';
+hmChips();
+}
+/* etiquetas de sectores: rendimiento del periodo elegido; el punto indica si cierran sobre su media de 200 */
+function hmChips(){
+const el=document.getElementById('hmChips');if(!el)return;
+const k=hmPer,S=SECTORES.s.filter(x=>x[k]!=null),dot=x=>x.d200==null?'':'<i class="hm-dot" style="background:'+(x.d200>0?'#27e0a3':'#ff5d7a')+'"></i>';
+el.innerHTML='<div class="hm-chips-k">Rendimiento de cada sector a <b style="color:var(--txt)">'+HM_TXT[k]+'</b> · '+
+'<i class="hm-dot" style="background:#27e0a3"></i>sobre su media de 200 · <i class="hm-dot" style="background:#ff5d7a"></i>por debajo</div>'+
+S.slice().sort((a,b)=>b[k]-a[k]).map(x=>'<span class="hm-chip" data-s="'+sdEsc(x.name)+'" title="'+(x.d200!=null?'Cierre frente a su media de 200 sesiones: '+hmFmt(x.d200,1):'')+'" style="background:'+
+hmColor(x[k],HM_ESC[k])+'">'+dot(x)+sdEsc(x.name)+' '+hmFmt(x[k],1)+'</span>').join('');
 }
 function hmAbre(sec,ind){
 let v='DATA_INDUSTRIES',nm=ind;
@@ -1955,7 +1967,7 @@ const box=document.getElementById('hmBox'),sbox=document.getElementById('smBox')
 hmFuerza();hmDibuja();
 /* los dos selectores de periodo van sincronizados */
 document.querySelectorAll('.hm-rng button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.k===hmPer)return;hmPer=b.dataset.k;
-document.querySelectorAll('.hm-rng button').forEach(x=>x.classList.toggle('on',x.dataset.k===hmPer));hmDibuja();}));
+document.querySelectorAll('.hm-rng button').forEach(x=>x.classList.toggle('on',x.dataset.k===hmPer));hmDibuja();hmChips();}));
 document.getElementById('hmFz').addEventListener('click',e=>{const c=e.target.closest('.hm-chip');if(c)hmAbre(c.dataset.s,null);});
 sbox.addEventListener('click',e=>{const sh=e.target.closest('.hm-sh'),st=e.target.closest('.sm-t');
 if(sh)return hmAbre(sh.dataset.s,null);if(st)hmAbre(st.dataset.s,st.dataset.i);});
