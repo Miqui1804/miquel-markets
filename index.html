@@ -6,8 +6,12 @@
 <title>Miquel Markets — Sistemas, screener y sectores</title>
 <meta name="description" content="Sistemas cuantitativos de momentum (Octomomentum y Fantastic 4), screener de acciones US y fuerza relativa por sectores e industrias." />
 <meta name="theme-color" content="#070b14" />
+<link rel="canonical" href="https://miqui1804.github.io/miquel-markets/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Miquel Markets" />
+<meta property="og:site_name" content="Miquel Markets" />
+<meta property="og:url" content="https://miqui1804.github.io/miquel-markets/" />
+<meta property="og:locale" content="es_ES" />
 <meta property="og:description" content="Sistemas de momentum, screener de acciones US y fuerza relativa por sectores e industrias." />
 <meta name="twitter:card" content="summary" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070b14'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f5c451'/%3E%3C/svg%3E" />
@@ -15,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://s3.tradingview.com/tv.js"></script>
+<script src="https://s3.tradingview.com/tv.js" async></script>
 <style>
 :root{
 --bg:#070b14;--bg-2:#0c1322;--panel:#0f1828;--panel-2:#121d30;
@@ -261,8 +265,9 @@ thead th.s.on{color:var(--gold)}
 .hm-leg{display:flex;border-radius:6px;overflow:hidden}
 .hm-leg span{font-family:'JetBrains Mono';font-size:.68rem;color:#fff;padding:5px 0;width:46px;text-align:center}
 @media(max-width:560px){.hm-card{padding:16px 10px 14px}.hm-fz{padding:12px}.hm-leg span{width:38px;font-size:.62rem}.hm-esc{min-width:100%}}
-.si-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-@media(max-width:940px){.si-grid{grid-template-columns:1fr}}
+.si-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:1240px){.si-grid{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:1241px){.si-grid .si-perf{padding:9px 10px!important}}
 .si-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .si-head .t{font-family:'Sora';font-weight:700;font-size:1.02rem}
 .si-head .c{font-family:'JetBrains Mono';font-size:.74rem;color:var(--muted)}
@@ -480,9 +485,20 @@ background:radial-gradient(circle at 35% 30%,#ff8fa3,#e3173f 55%,#8a0f27);box-sh
 .bt-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;align-items:start}
 @media(max-width:900px){.bt-grid{grid-template-columns:1fr}}
 .bt-note{font-size:.76rem;color:var(--muted);line-height:1.55;margin-top:10px}
+/* ====== mejoras 10/11/2026: accesibilidad y pie ====== */
+html{scroll-padding-top:64px;scrollbar-color:#2b3a55 #0c1322}
+.skip{position:fixed;left:12px;top:-70px;z-index:300;background:var(--gold);color:#1a1404;font-weight:700;font-size:.9rem;padding:10px 16px;border-radius:10px;transition:top .15s}
+.skip:focus{top:10px}
+.noscript{margin:0;padding:14px 24px;text-align:center;background:var(--gold-soft);color:var(--gold);font-size:.92rem}
+.tv-close{min-width:40px;min-height:40px;border-radius:10px}
+footer .foot-src{margin-top:8px;color:var(--muted)}
+footer .aviso{max-width:760px;margin:14px auto 0;font-size:.8rem;line-height:1.55;color:var(--muted)}
+footer .aviso b{color:var(--txt);font-weight:600}
 </style>
 </head>
 <body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<noscript><p class="noscript">Esta web necesita JavaScript para mostrar los datos y los gráficos.</p></noscript>
 <div id="scrollbar"></div>
 
 <header class="nav">
@@ -522,6 +538,7 @@ background:radial-gradient(circle at 35% 30%,#ff8fa3,#e3173f 55%,#8a0f27);box-sh
 </nav>
 </header>
 
+<main id="contenido">
 <section class="hero">
 <div class="wrap">
 <a href="#salud" class="hero-logo reveal" id="heroLogo" hidden><span id="heroLogoMM"></span><span class="hero-logo-txt" id="heroLogoTxt"></span></a>
@@ -972,17 +989,18 @@ background:radial-gradient(circle at 35% 30%,#ff8fa3,#e3173f 55%,#8a0f27);box-sh
 </div>
 </div>
 </section>
+</main>
 
 <div id="sdOverlay" class="tv-overlay" onclick="if(event.target===this)sdCloseGroup()">
 <div class="tv-modal sd-modal">
-<div class="tv-head"><span class="t" id="sdGmTitle">Grupo</span><button class="tv-close" onclick="sdCloseGroup()">&times;</button></div>
+<div class="tv-head"><span class="t" id="sdGmTitle">Grupo</span><button class="tv-close" aria-label="Cerrar" onclick="sdCloseGroup()">&times;</button></div>
 <div class="tv-body" id="sdGmBody"></div>
 </div>
 </div>
 
 <div id="tvOverlay" class="tv-overlay" onclick="if(event.target===this)closeChart()">
 <div class="tv-modal">
-<div class="tv-head"><span class="t" id="tvTitle">Ticker</span><button class="tv-close" onclick="closeChart()">&times;</button></div>
+<div class="tv-head"><span class="t" id="tvTitle">Ticker</span><button class="tv-close" aria-label="Cerrar" onclick="closeChart()">&times;</button></div>
 <div id="tv_container" class="tv-body"></div>
 </div>
 </div>
@@ -992,8 +1010,9 @@ background:radial-gradient(circle at 35% 30%,#ff8fa3,#e3173f 55%,#8a0f27);box-sh
 <div class="brand"><span class="dot"></span>Miquel <span style="color:var(--gold)">Markets</span></div>
 <div>Timing · Strategy · Growth</div>
 <div class="contacto" id="contacto">Contacto: <a id="mailLink" href="#contacto">miqui1804trading [arroba] gmail.com</a></div>
-<div style="margin-top:8px;opacity:.7">Sistemas y amplitud desde AmiBroker · Screener y sectores vía stockanalysis.com · Actualizado cada sábado</div>
-<div style="margin-top:10px;font-size:.8rem;opacity:.6">Rentabilidades pasadas no garantizan resultados futuros. Contenido informativo, no es asesoramiento financiero.</div>
+<div class="foot-src">Sistemas y amplitud desde AmiBroker · Screener y sectores vía stockanalysis.com</div>
+<div class="foot-src">Sistemas, screener, sectores y semáforo: cada sábado · Amplitud y sentimiento: cada día de mercado</div>
+<div class="aviso"><b>Aviso.</b> Contenido informativo y educativo: no es asesoramiento financiero ni una recomendación de inversión. Los resultados de los sistemas proceden de backtests (simulaciones sobre datos históricos) y las rentabilidades pasadas no garantizan resultados futuros. Invertir en bolsa conlleva riesgo de pérdida.</div>
 </div>
 </footer>
 
@@ -1830,7 +1849,10 @@ function logoZona(){
 const z=MK.semana[2],GLOW={V:'rgba(39,224,163,.22)',A:'rgba(255,176,32,.16)',R:'rgba(255,93,122,.22)'};
 const TXT={V:'Modo toro · semáforo verde · RV '+MK.expo.V+'%',A:'Toro y oso · semáforo ámbar · RV '+MK.expo.A+'%',R:'Modo oso · semáforo rojo · RV '+MK.expo.R+'%'};
 document.documentElement.style.setProperty('--logo-glow',GLOW[z]);
-const pf=document.getElementById('pillFecha');if(pf)pf.innerHTML='<span class="pulse"></span> Actualizado '+MK.asof.split('-').reverse().join('/');
+const fDia=s=>s.split('-').reverse().join('/'),ult=[MK.asof,BREADTH.d[BREADTH.d.length-1],MA_BREADTH.asof].filter(Boolean).sort().pop();
+const fTit=ult>MK.asof?'Amplitud y sentimiento al '+fDia(ult)+' · semáforo, sectores y sistemas al '+fDia(MK.asof):'Datos al '+fDia(ult);
+const pf=document.getElementById('pillFecha');if(pf){pf.innerHTML='<span class="pulse"></span> Actualizado '+fDia(ult);pf.title=fTit;}
+const nd=document.querySelector('.nav-date');if(nd){nd.textContent='Datos '+fDia(ult);nd.title=fTit;}
 document.getElementById('brandIco').innerHTML=mmIcono(z);document.getElementById('brandDot').hidden=true;
 document.getElementById('heroLogoMM').innerHTML=mmLogo(z);
 document.getElementById('heroLogoTxt').innerHTML='<span style="color:'+ZCOL[z]+'">●</span> '+TXT[z];
@@ -2218,6 +2240,16 @@ SD_VARS.forEach(v=>{const m=txt.match(new RegExp('const\\s+'+v+'\\s*=\\s*(\\[[\\
 if(m){try{SD_DATA[v]=JSON.parse(m[1]);}catch(err){}}});
 sdRender();
 }).catch(()=>{sdRender();});
+})();
+/* ====== enlace directo a cada sistema y estado accesible de las pestanas ====== */
+(function(){
+const KS=['octo','f4','rot','comb','cob'],btn=k=>document.getElementById('btn-'+k);
+const sync=()=>KS.forEach(k=>{const b=btn(k);if(b)b.setAttribute('aria-pressed',b.classList.contains('active'));});
+KS.forEach(k=>{const b=btn(k);if(b)b.addEventListener('click',()=>{sync();try{history.replaceState(null,'','#sistemas-'+k);}catch(e){}});});
+const ir=al_cargar=>{const m=/^#sistemas-([a-z0-9]+)$/.exec(location.hash);if(!m||!KS.includes(m[1])||!btn(m[1]))return;
+show(m[1]);sync();const s=document.getElementById('sistemas');
+if(s)setTimeout(()=>s.scrollIntoView({behavior:al_cargar===true?'instant':'smooth'}),80);};
+addEventListener('hashchange',ir);ir(true);sync();
 })();
 </script>
 </body>
