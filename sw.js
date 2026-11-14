@@ -9,6 +9,7 @@ const VERSION = 'v1';
 const PAGINAS = 'mm-paginas-' + VERSION;
 const ESTATICOS = 'mm-estaticos-' + VERSION;
 const INICIO = new URL('./', self.location).href;
+const RUTA = new URL(INICIO).pathname;
 const PRECARGA = [
   'manifest.webmanifest',
   'animal-V.webp',
@@ -46,7 +47,8 @@ function redPrimero(req, clave) {
       if (res && res.ok) cache.put(clave || req, res.clone());
       return res;
     });
-    const respaldo = () => cache.match(clave || req, { ignoreSearch: true }).then((r) => r || cache.match(INICIO));
+    // La copia tiene que ser de esa misma dirección: nunca se devuelve la portada en lugar de otro recurso
+    const respaldo = () => cache.match(clave || req, { ignoreSearch: true });
     let temporizador;
     const lenta = new Promise((ok) => {
       temporizador = setTimeout(() => respaldo().then((r) => r && ok(r)), ESPERA_RED);
@@ -81,9 +83,11 @@ self.addEventListener('fetch', (e) => {
   const mismoOrigen = url.origin === self.location.origin;
   const enAmbito = mismoOrigen && req.url.startsWith(INICIO);
 
-  // La web: siempre la versión más reciente si hay red (una sola copia, sin #ancla ni ?query)
-  if (req.mode === 'navigate' && enAmbito) {
-    e.respondWith(redPrimero(req, INICIO));
+  // La web: siempre la versión más reciente si hay red (una sola copia, sin #ancla ni ?query).
+  // Solo la portada: abrir en el navegador otro archivo del sitio (una imagen, el manifest...)
+  // no pasa por aquí, para que nunca se guarde como si fuera la web.
+  if (req.mode === 'navigate') {
+    if (enAmbito && (url.pathname === RUTA || url.pathname === RUTA + 'index.html')) e.respondWith(redPrimero(req, INICIO));
     return;
   }
   // Datos del screener (otra web del mismo dominio): red primero
