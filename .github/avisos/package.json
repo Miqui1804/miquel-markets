@@ -1,0 +1,9 @@
+{
+  "name": "miquel-markets-avisos",
+  "private": true,
+  "type": "module",
+  "description": "Comprueba la web de Miquel Markets y avisa por Telegram",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}
