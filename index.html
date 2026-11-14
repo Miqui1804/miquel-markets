@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-title" content="Miquel Markets" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<script>/* app nativa: sin botón de donaciones desde el primer momento, no al terminar de cargar */if(/MiquelMarketsApp/.test(navigator.userAgent))document.documentElement.classList.add('mm-app');</script>
 <link rel="canonical" href="https://miqui1804.github.io/miquel-markets/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Miquel Markets" />
@@ -505,10 +506,13 @@ footer .aviso b{color:var(--txt);font-weight:600}
 html{scroll-padding-top:calc(64px + env(safe-area-inset-top))}
 header.nav{padding-top:env(safe-area-inset-top)}
 #scrollbar{top:env(safe-area-inset-top)}
-.wrap{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+header .wrap{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+main,footer{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
 footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
 .tv-overlay{padding:max(20px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
-@media(max-width:820px){.nav-mobile.open{max-height:400px}}
+@media(max-width:820px){.nav-mobile.open{max-height:400px}.nav-mobile a{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}}
+/* móvil en horizontal con el menú completo: sin la fecha, la cabecera cabe entre las zonas seguras de los lados */
+@media(min-width:821px) and (max-width:960px) and (max-height:500px){.nav-date{display:none}}
 .nav-mobile a.app-inst{color:var(--gold);font-weight:600}
 .mm-app .don-wrap{display:none}
 .app-sheet{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:center;background:rgba(3,6,12,.72);backdrop-filter:blur(6px);padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
@@ -2320,22 +2324,38 @@ addEventListener('appinstalled',function(){diferido=null;if(inst)inst.hidden=tru
 window.mmInstalar=function(e){
 if(e)e.preventDefault();
 if(typeof closeMenu==='function')closeMenu();
-if(diferido){var p=diferido;diferido=null;p.prompt();if(p.userChoice)p.userChoice.then(function(r){if(r&&r.outcome==='accepted'&&inst)inst.hidden=true;});}
+if(diferido){var p=diferido;diferido=null;if(inst&&!ios)inst.hidden=true;p.prompt();if(p.userChoice)p.userChoice.then(function(r){if(r&&r.outcome==='accepted'&&inst)inst.hidden=true;});}
 else if(sheet){sheet.hidden=false;var b=sheet.querySelector('button');if(b)b.focus();}
 return false;
 };
-window.mmCerrarInstalar=function(){if(sheet)sheet.hidden=true;};
-document.addEventListener('keydown',function(e){if(e.key==='Escape')mmCerrarInstalar();});
+window.mmCerrarInstalar=function(){
+if(!sheet||sheet.hidden)return;
+sheet.hidden=true;
+var b=document.getElementById('navBurger');if(b)b.focus();
+};
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape')mmCerrarInstalar();
+else if(e.key==='Tab'&&sheet&&!sheet.hidden){e.preventDefault();var b=sheet.querySelector('button');if(b)b.focus();}
+});
 
-/* app instalada o nativa: al volver a abrirla, recarga solo si hay datos nuevos publicados */
+/* app instalada o nativa: al volver a abrirla, recarga solo si hay datos nuevos publicados.
+   Compara la fecha de la web publicada con la de la página que se está viendo, que puede ser la copia
+   guardada sin conexión. document.lastModified va en hora local: un desfase de múltiplos exactos de
+   15 min es un cambio de hora o de zona horaria, no una publicación nueva. Por si acaso, no lo intenta
+   más de 3 veces por cada publicación. */
 if(instalada&&window.fetch){
-var url=location.href.split('#')[0],firma=null,oculta=0;
-var leer=function(){return fetch(url,{method:'HEAD',cache:'no-store'}).then(function(r){return r.ok?(r.headers.get('etag')||r.headers.get('last-modified')):null;});};
-leer().then(function(f){firma=f;}).catch(function(){});
+var url=location.href.split('#')[0],lm=/(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+)/.exec(document.lastModified),oculta=0;
+var vista=lm?new Date(+lm[3],lm[1]-1,+lm[2],+lm[4],+lm[5],+lm[6]).getTime():0;
+var leer=function(){return fetch(url,{method:'HEAD',cache:'no-store'}).then(function(r){return r.ok?r.headers.get('last-modified'):null;});};
 document.addEventListener('visibilitychange',function(){
 if(document.hidden){oculta=Date.now();return;}
 if(!oculta||Date.now()-oculta<120000)return;
-leer().then(function(f){if(f&&firma&&f!==firma)location.reload();else if(f)firma=f;}).catch(function(){});
+leer().then(function(f){
+var dif=Date.parse(f||'')-vista,n=0,v;
+if(!vista||!(dif>=60000)||dif%900000===0)return;
+try{v=(sessionStorage.getItem('mmRecarga')||'').split('|');if(v[0]===f)n=+v[1]||0;sessionStorage.setItem('mmRecarga',f+'|'+(n+1));}catch(e){}
+if(n<3)location.reload();
+}).catch(function(){});
 });
 }
 
