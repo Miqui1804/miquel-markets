@@ -1,0 +1,25 @@
+{
+  "appId": "io.github.miqui1804.miquelmarkets",
+  "appName": "Miquel Markets",
+  "webDir": "www",
+  "backgroundColor": "#070b14",
+  "appendUserAgent": "MiquelMarketsApp/1.0",
+  "server": {
+    "url": "https://miqui1804.github.io/miquel-markets/",
+    "errorPath": "offline.html"
+  },
+  "ios": {
+    "contentInset": "never",
+    "scrollEnabled": true
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SystemBars": {
+      "style": "DARK",
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover"
+    }
+  }
+}

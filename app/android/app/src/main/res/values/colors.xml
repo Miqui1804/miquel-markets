@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores de marca de Miquel Markets (mismos que la web) -->
+    <color name="colorPrimary">#070b14</color>
+    <color name="colorPrimaryDark">#070b14</color>
+    <color name="colorAccent">#f5c451</color>
+    <color name="mm_bg">#070b14</color>
+</resources>

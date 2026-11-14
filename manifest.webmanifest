@@ -1,0 +1,27 @@
+{
+  "id": "/miquel-markets/",
+  "name": "Miquel Markets",
+  "short_name": "Miquel Markets",
+  "description": "Sistemas cuantitativos de momentum, screener de acciones US, fuerza relativa por sectores y salud del mercado.",
+  "lang": "es",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070b14",
+  "theme_color": "#070b14",
+  "categories": ["finance", "business"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Sistemas", "short_name": "Sistemas", "description": "Octomomentum, Fantastic 4, rotación y cartera combinada", "url": "./#sistemas", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Screener", "short_name": "Screener", "description": "Screeners sobre el universo de acciones US", "url": "./#screener", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Sectores", "short_name": "Sectores", "description": "Fuerza relativa por sector e industria", "url": "./#sectores", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Mercado", "short_name": "Mercado", "description": "Semáforo, amplitud y sentimiento", "url": "./#mercado", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ]
+}
