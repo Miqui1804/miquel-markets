@@ -12,7 +12,7 @@ Hay dos formas de tenerla en el móvil:
 | Coste | Gratis | Apple: 99 $/año · Google: 25 $ una vez |
 | Necesita Mac | No | Solo para publicar en iOS |
 | Datos | Siempre los últimos | Siempre los últimos |
-| Sin conexión | Muestra la última versión vista | Pantalla «Sin conexión» con botón *Reintentar* |
+| Sin conexión | Muestra la última versión vista | iPhone: pantalla «Sin conexión» con botón *Reintentar*. Android: la última versión vista (la pantalla «Sin conexión» solo sale si aún no se había abierto con internet) |
 
 ---
 
@@ -47,17 +47,23 @@ También se puede lanzar a mano: **Actions → App móvil → Run workflow**.
 ### Publicar en Google Play
 
 1. Crea la cuenta de desarrollador en Google Play Console (25 $, pago único).
-2. Crea **una sola vez** la clave de subida y guárdala en un lugar seguro (si se pierde, hay que pedir a Google que la cambie):
+2. Crea **una sola vez** la clave de subida y guárdala en un lugar seguro (si se pierde, hay que pedir a Google que la cambie).
+   Hazlo en una carpeta **fuera del repositorio**: es público y la clave no debe subirse nunca.
+   `keytool` viene con Java (JDK) y con Android Studio.
    ```bash
    keytool -genkeypair -v -keystore miquel-markets-upload.keystore -alias upload \
      -keyalg RSA -keysize 2048 -validity 10000
    base64 -w0 miquel-markets-upload.keystore > keystore.txt   # en macOS: base64 -i miquel-markets-upload.keystore -o keystore.txt
    ```
+   En Windows, el comando `keytool` se escribe en una sola línea (sin la `\`) y el segundo paso, en PowerShell, es:
+   ```powershell
+   [Convert]::ToBase64String([IO.File]::ReadAllBytes("$PWD\miquel-markets-upload.keystore")) | Set-Content keystore.txt
+   ```
 3. En GitHub → **Settings → Secrets and variables → Actions**, añade:
    - `ANDROID_KEYSTORE_BASE64`: el contenido de `keystore.txt`
    - `ANDROID_KEYSTORE_PASSWORD`: la contraseña del keystore
    - `ANDROID_KEY_ALIAS`: `upload`
-   - `ANDROID_KEY_PASSWORD`: la contraseña de la clave
+   - `ANDROID_KEY_PASSWORD`: la contraseña de la clave (las versiones actuales de `keytool` solo piden una contraseña: es **la misma** que la del keystore)
 4. Lanza **Actions → App móvil → Run workflow**. Además del APK saldrá `miquel-markets-android-aab`
    con el archivo `app-release.aab` firmado. El número de versión sube solo en cada ejecución.
 5. En Play Console: crea la app, sube el `.aab` (primero en *Prueba interna*) y completa la ficha:
@@ -76,7 +82,8 @@ También se puede lanzar a mano: **Actions → App móvil → Run workflow**.
    npx cap open ios
    ```
 3. En Xcode: target **App** → *Signing & Capabilities* → elige tu **Team**.
-4. **Product → Archive → Distribute App → App Store Connect**, y desde App Store Connect envíala a revisión (o a TestFlight para probarla).
+4. Arriba, en el selector de dispositivo, elige **Any iOS Device (arm64)** (con un simulador elegido, *Archive* sale desactivado).
+5. **Product → Archive → Distribute App → App Store Connect**, y desde App Store Connect envíala a revisión (o a TestFlight para probarla).
 
 Ten en cuenta que Apple revisa con lupa las apps que son «una web dentro de una app» (norma 4.2).
 Esta tiene icono, arranque y pantalla sin conexión propios y se adapta a la *notch*, pero lo que más ayuda
@@ -86,7 +93,8 @@ hay señales nuevas. Es el siguiente paso recomendable.
 ### Qué hace la app nativa
 
 - Carga `https://miqui1804.github.io/miquel-markets/` (`capacitor.config.json` → `server.url`).
-- Sin conexión muestra `www/offline.html` con un botón *Reintentar*.
+- Sin conexión muestra `www/offline.html` con un botón *Reintentar*. En Android, si ya se había abierto antes con internet,
+  muestra en su lugar los datos de la última visita (igual que la web instalable).
 - Se identifica en la web con `MiquelMarketsApp` en el *user agent*; la web añade la clase `mm-app` y
   **oculta el botón de donaciones**, porque Apple y Google no permiten pagos externos de este tipo dentro de apps.
 - Los enlaces externos (PayPal, TradingView, correo…) se abren fuera de la app.

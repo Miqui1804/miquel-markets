@@ -36,7 +36,10 @@ small{display:block;margin-top:14px;color:var(--muted);font-size:.8rem;min-heigh
 <script>
 var URL_APP='https://miqui1804.github.io/miquel-markets/';
 var btn=document.getElementById('retry'),msg=document.getElementById('msg');
-function go(){msg.textContent='Conectando…';btn.disabled=true;location.replace(URL_APP);setTimeout(function(){btn.disabled=false;msg.textContent='Sigue sin haber conexión. Inténtalo de nuevo en un momento.';},8000);}
+var SIGUE='Sigue sin haber conexión. Inténtalo de nuevo en un momento.',CLAVE='mmReintento';
+/* Si el reintento falla, la app vuelve a cargar esta página desde cero: se avisa de que sigue sin conexión */
+try{if(Date.now()-(+sessionStorage.getItem(CLAVE)||0)<15000)msg.textContent=SIGUE;sessionStorage.removeItem(CLAVE);}catch(e){}
+function go(){try{sessionStorage.setItem(CLAVE,Date.now());}catch(e){}msg.textContent='Conectando…';btn.disabled=true;location.replace(URL_APP);setTimeout(function(){btn.disabled=false;msg.textContent=SIGUE;},8000);}
 btn.addEventListener('click',go);
 window.addEventListener('online',go);
 </script>
