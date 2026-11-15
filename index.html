@@ -2,10 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Miquel Markets — Sistemas, screener y sectores</title>
 <meta name="description" content="Sistemas cuantitativos de momentum (Octomomentum y Fantastic 4), screener de acciones US y fuerza relativa por sectores e industrias." />
 <meta name="theme-color" content="#070b14" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Miquel Markets" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<script>/* app nativa: sin botón de donaciones desde el primer momento, no al terminar de cargar */if(/MiquelMarketsApp/.test(navigator.userAgent))document.documentElement.classList.add('mm-app');</script>
 <link rel="canonical" href="https://miqui1804.github.io/miquel-markets/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Miquel Markets" />
@@ -495,6 +502,28 @@ html{scroll-padding-top:64px;scrollbar-color:#2b3a55 #0c1322}
 footer .foot-src{margin-top:8px;color:var(--muted)}
 footer .aviso{max-width:760px;margin:14px auto 0;font-size:.8rem;line-height:1.55;color:var(--muted)}
 footer .aviso b{color:var(--txt);font-weight:600}
+/* ====== App (iOS / Android): zonas seguras, modo app e instalación ====== */
+html{scroll-padding-top:calc(64px + env(safe-area-inset-top))}
+header.nav{padding-top:env(safe-area-inset-top)}
+#scrollbar{top:env(safe-area-inset-top)}
+header .wrap{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+main,footer{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
+.tv-overlay{padding:max(20px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+@media(max-width:820px){.nav-mobile.open{max-height:400px}.nav-mobile a{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}}
+/* móvil en horizontal con el menú completo: sin la fecha, la cabecera cabe entre las zonas seguras de los lados */
+@media(min-width:821px) and (max-width:960px) and (max-height:500px){.nav-date{display:none}}
+.nav-mobile a.app-inst{color:var(--gold);font-weight:600}
+.mm-app .don-wrap{display:none}
+.app-sheet{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:center;background:rgba(3,6,12,.72);backdrop-filter:blur(6px);padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.app-sheet[hidden]{display:none}
+.app-sheet-in{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--line-strong);border-radius:18px;padding:22px 20px 18px;box-shadow:var(--shadow)}
+.app-sheet h2{font-family:'Sora';font-size:1.1rem;font-weight:700;margin-bottom:6px}
+.app-sheet p{color:var(--muted);font-size:.9rem}
+.app-sheet ol{margin:14px 0 4px 20px;font-size:.92rem;display:grid;gap:8px}
+.app-sheet ol b{color:var(--txt)}
+.app-sheet .ico-comp{display:inline-block;vertical-align:-3px;width:18px;height:18px;color:var(--blue)}
+.app-sheet button{margin-top:16px;width:100%;min-height:46px;border:0;border-radius:12px;background:var(--gold);color:#1a1404;font:inherit;font-weight:700;cursor:pointer}
 </style>
 </head>
 <body>
@@ -536,6 +565,7 @@ footer .aviso b{color:var(--txt);font-weight:600}
 <a href="#sectores" onclick="closeMenu()">Sectores</a>
 <a href="#mercado" onclick="closeMenu()">Mercado</a>
 <a href="#contacto" onclick="closeMenu()">Contacto</a>
+<a href="#instalar" class="app-inst" id="appInst" hidden onclick="return mmInstalar(event)">📲 Instalar app</a>
 </nav>
 </header>
 
@@ -2255,6 +2285,93 @@ const ir=al_cargar=>{const m=/^#sistemas-([a-z0-9]+)$/.exec(location.hash);if(!m
 show(m[1]);sync();const s=document.getElementById('sistemas');
 if(s)setTimeout(()=>s.scrollIntoView({behavior:al_cargar===true?'instant':'smooth'}),80);};
 addEventListener('hashchange',ir);ir(true);sync();
+})();
+</script>
+<div class="app-sheet" id="appSheet" role="dialog" aria-modal="true" aria-labelledby="appSheetT" hidden onclick="if(event.target===this)mmCerrarInstalar()">
+<div class="app-sheet-in">
+<h2 id="appSheetT">Instala Miquel Markets</h2>
+<p>Tendrás la app en la pantalla de inicio, a pantalla completa y con los datos de la última visita aunque no haya conexión.</p>
+<ol>
+<li>Pulsa <b>Compartir</b> <svg class="ico-comp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> en Safari (si no lo ves, abre antes el menú <b>···</b>).</li>
+<li>Elige <b>Añadir a pantalla de inicio</b>.</li>
+<li>Pulsa <b>Añadir</b>.</li>
+</ol>
+<button type="button" onclick="mmCerrarInstalar()">Entendido</button>
+</div>
+</div>
+<script>
+/* ====== App: instalación (PWA), modo app nativa (iOS/Android) y uso sin conexión ====== */
+(function(){
+var d=document.documentElement,ua=navigator.userAgent||'',C=window.Capacitor;
+var nativa=/MiquelMarketsApp/.test(ua);
+var instalada=nativa||navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
+var ios=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+if(nativa)d.classList.add('mm-app');
+if(instalada)d.classList.add('mm-instalada');
+
+/* service worker: la web funciona sin conexión con los datos de la última visita */
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
+addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+}
+
+/* botón «Instalar app» del menú móvil */
+var inst=document.getElementById('appInst'),sheet=document.getElementById('appSheet'),diferido=null;
+if(!instalada){
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();diferido=e;if(inst)inst.hidden=false;});
+if(ios&&inst)inst.hidden=false;
+}
+addEventListener('appinstalled',function(){diferido=null;if(inst)inst.hidden=true;});
+window.mmInstalar=function(e){
+if(e)e.preventDefault();
+if(typeof closeMenu==='function')closeMenu();
+if(diferido){var p=diferido;diferido=null;if(inst&&!ios)inst.hidden=true;p.prompt();if(p.userChoice)p.userChoice.then(function(r){if(r&&r.outcome==='accepted'&&inst)inst.hidden=true;});}
+else if(sheet){sheet.hidden=false;var b=sheet.querySelector('button');if(b)b.focus();}
+return false;
+};
+window.mmCerrarInstalar=function(){
+if(!sheet||sheet.hidden)return;
+sheet.hidden=true;
+var b=document.getElementById('navBurger');if(b)b.focus();
+};
+document.addEventListener('keydown',function(e){
+if(e.key==='Escape')mmCerrarInstalar();
+else if(e.key==='Tab'&&sheet&&!sheet.hidden){e.preventDefault();var b=sheet.querySelector('button');if(b)b.focus();}
+});
+
+/* app instalada o nativa: al volver a abrirla, recarga solo si hay datos nuevos publicados.
+   Compara la fecha de la web publicada con la de la página que se está viendo, que puede ser la copia
+   guardada sin conexión. document.lastModified va en hora local: un desfase de múltiplos exactos de
+   15 min es un cambio de hora o de zona horaria, no una publicación nueva. Por si acaso, no lo intenta
+   más de 3 veces por cada publicación. */
+if(instalada&&window.fetch){
+var url=location.href.split('#')[0],lm=/(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+)/.exec(document.lastModified),oculta=0;
+var vista=lm?new Date(+lm[3],lm[1]-1,+lm[2],+lm[4],+lm[5],+lm[6]).getTime():0;
+var leer=function(){return fetch(url,{method:'HEAD',cache:'no-store'}).then(function(r){return r.ok?r.headers.get('last-modified'):null;});};
+document.addEventListener('visibilitychange',function(){
+if(document.hidden){oculta=Date.now();return;}
+if(!oculta||Date.now()-oculta<120000)return;
+leer().then(function(f){
+var dif=Date.parse(f||'')-vista,n=0,v;
+if(!vista||!(dif>=60000)||dif%900000===0)return;
+try{v=(sessionStorage.getItem('mmRecarga')||'').split('|');if(v[0]===f)n=+v[1]||0;sessionStorage.setItem('mmRecarga',f+'|'+(n+1));}catch(e){}
+if(n<3)location.reload();
+}).catch(function(){});
+});
+}
+
+/* app nativa de Android: botón atrás (cierra ventanas abiertas, vuelve atrás o minimiza) */
+if(nativa&&C&&C.addListener&&C.getPlatform&&C.getPlatform()==='android'){
+C.addListener('App','backButton',function(ev){
+if(document.querySelector('#tvOverlay.open,#sdOverlay.open,#navMobile.open')||(sheet&&!sheet.hidden)){
+if(typeof closeMenu==='function')closeMenu();
+mmCerrarInstalar();
+document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
+return;
+}
+if(ev&&ev.canGoBack)history.back();
+else if(C.nativePromise)C.nativePromise('App','minimizeApp',{}).catch(function(){});
+});
+}
 })();
 </script>
 </body>

@@ -1,0 +1,22 @@
+{
+  "name": "miquel-markets-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App nativa de iOS y Android de Miquel Markets (Capacitor)",
+  "scripts": {
+    "sync": "cap sync",
+    "android": "cap open android",
+    "ios": "cap open ios",
+    "icons": "capacitor-assets generate --iconBackgroundColor '#070b14' --iconBackgroundColorDark '#070b14' --splashBackgroundColor '#070b14' --splashBackgroundColorDark '#070b14'"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/ios": "^8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.2"
+  }
+}

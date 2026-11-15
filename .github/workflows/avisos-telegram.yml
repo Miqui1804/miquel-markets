@@ -1,0 +1,104 @@
+# Avisos por Telegram (ver README.md):
+#  - cada vez que se actualiza la web en main: comprueba que carga bien y avisa del resultado;
+#  - cada mañana de lunes a sábado: avisa si los datos no son del último día de mercado;
+#  - si falla la compilación de la app en main;
+#  - a mano (Run workflow) o desde un agente: envía el texto que se le pase.
+# En los pull requests solo comprueba la web, sin enviar nada.
+name: Avisos por Telegram
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'sw.js'
+      - 'manifest.webmanifest'
+      - '.github/avisos/**'
+      - '.github/workflows/avisos-telegram.yml'
+  schedule:
+    # 10:23 UTC = 11:23 en invierno y 12:23 en verano (hora peninsular). Cambia la hora aquí si hace falta.
+    - cron: '23 10 * * 1-6'
+  workflow_run:
+    workflows: ['App móvil']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mensaje:
+        description: 'Texto a enviar por Telegram (vacío = mensaje de prueba)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  aviso:
+    name: Comprobar la web y avisar
+    # De «App móvil» solo interesan los fallos en main
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: .github/avisos
+    env:
+      ENLACE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .github/avisos/package-lock.json
+
+      - name: Navegador para comprobar la web
+        if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'schedule'
+        run: |
+          npm ci
+          npx playwright install --with-deps --only-shell chromium
+
+      - name: Pull request · comprobar la web (sin enviar nada)
+        if: github.event_name == 'pull_request'
+        env:
+          SIN_ENVIAR: '1'
+          TITULO: ${{ github.event.pull_request.title }}
+        run: node avisos.mjs comprobar
+
+      - name: Actualización · comprobar la web y avisar
+        if: github.event_name == 'push'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TITULO: ${{ github.event.head_commit.message }}
+        run: node avisos.mjs comprobar
+
+      - name: Cada mañana · ¿están los datos al día?
+        if: github.event_name == 'schedule'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node avisos.mjs caducidad
+
+      - name: App · avisar de que ha fallado la compilación
+        if: github.event_name == 'workflow_run'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MENSAJE: |-
+            ❌ Miquel Markets: ha fallado la compilación de la app
+            Detalle: ${{ github.event.workflow_run.html_url }}
+        run: node avisos.mjs mensaje
+
+      - name: Mensaje a mano o de un agente
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MENSAJE: ${{ inputs.mensaje }}
+        run: node avisos.mjs mensaje
