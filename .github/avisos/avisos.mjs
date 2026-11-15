@@ -164,18 +164,57 @@ function resumenFechas(web) {
 }
 
 /* ---------- Telegram ---------- */
+/* Quita espacios, saltos de línea y comillas que se cuelan al copiar y pegar un secret */
+const limpiar = (v) => (v || '').trim().replace(/^["'`]+|["'`]+$/g, '').trim();
+const FORMA_TOKEN = /^\d{5,}:[A-Za-z0-9_-]{30,}$/;
+
+/* Explica qué le pasa a cada secret sin escribir nunca su valor (los registros de Actions son públicos) */
+function revisarSecrets(token, chat) {
+  const pistas = [];
+  if (!FORMA_TOKEN.test(token)) {
+    const por =
+      /^-?\d+$/.test(token) ? 'son solo números: parece tu Id, no el token (¿secrets intercambiados?)'
+      : token.startsWith('@') ? 'empieza por @: es un nombre de usuario, no el token'
+      : /\s/.test(token) ? 'contiene espacios o varias líneas: se ha copiado texto de más'
+      : !token.includes(':') ? 'le faltan los dos puntos'
+      : 'no tiene la forma esperada';
+    pistas.push(`TELEGRAM_BOT_TOKEN no tiene forma de token (${por}). Debe ser solo el token de @BotFather, del tipo 123456789:AAxx…, sin nada más.`);
+  }
+  if (FORMA_TOKEN.test(chat)) {
+    pistas.push('TELEGRAM_CHAT_ID contiene un token: debe ser tu Id numérico (¿secrets intercambiados?).');
+  } else if (/^@.*bot$/i.test(chat)) {
+    pistas.push('TELEGRAM_CHAT_ID es el nombre de un bot: un bot no puede escribirse a sí mismo. Debe ser tu Id numérico, el que te da @userinfobot.');
+  } else if (!/^-?\d+$/.test(chat) && !chat.startsWith('@')) {
+    pistas.push('TELEGRAM_CHAT_ID no es un número: debe ser tu Id numérico, el que te da @userinfobot.');
+  }
+  return pistas;
+}
+
+function explicarRechazo(estado, detalle) {
+  const d = (detalle || '').toLowerCase();
+  if (estado === 404) return 'El token está mal escrito: revisa el secret TELEGRAM_BOT_TOKEN.';
+  if (estado === 401) return 'El token no es válido o está revocado: copia el token actual de @BotFather en TELEGRAM_BOT_TOKEN.';
+  if (d.includes('chat not found')) return 'Telegram no encuentra ese chat: TELEGRAM_CHAT_ID debe ser tu Id numérico y tienes que haber pulsado Iniciar en tu bot.';
+  if (d.includes("can't send messages to bots")) return 'TELEGRAM_CHAT_ID es el Id de un bot: debe ser tu Id personal.';
+  if (estado === 403) return 'El bot no puede escribirte: abre tu bot en Telegram y pulsa Iniciar.';
+  return '';
+}
+
 async function enviar(texto) {
   console.log('----- mensaje -----\n' + texto + '\n-------------------');
   if (env.SIN_ENVIAR === '1') {
     console.log('SIN_ENVIAR=1: no se envía.');
     return true;
   }
-  const token = env.TELEGRAM_BOT_TOKEN;
-  const chat = env.TELEGRAM_CHAT_ID;
+  const token = limpiar(env.TELEGRAM_BOT_TOKEN).replace(/^bot(?=\d)/i, '');
+  const chat = limpiar(env.TELEGRAM_CHAT_ID);
   if (!token || !chat) {
     console.log('Avisos sin configurar: faltan los secrets TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID. No se envía nada.');
     return true;
   }
+  const pistas = revisarSecrets(token, chat);
+  for (const p of pistas) console.error('Configuración: ' + p);
+  if (!FORMA_TOKEN.test(token)) return false; // sin un token con forma de token no hay a dónde llamar
   try {
     const r = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: 'POST',
@@ -185,6 +224,8 @@ async function enviar(texto) {
     const j = await r.json().catch(() => ({}));
     if (!r.ok || !j.ok) {
       console.error(`Telegram ha rechazado el mensaje (${r.status}): ${j.description || 'sin detalle'}`);
+      const ayuda = explicarRechazo(r.status, j.description);
+      if (ayuda) console.error(ayuda);
       return false;
     }
     console.log('Mensaje enviado por Telegram.');
