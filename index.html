@@ -559,6 +559,12 @@ html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top
 @keyframes toroEntra{from{opacity:0;transform:translateX(10px)}}
 .mm-anim .mm-ico svg path.mm-trazo{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:trazo 1.1s ease-out .6s forwards}
 @keyframes trazo{to{stroke-dashoffset:0}}
+.mm-toro{transform-box:fill-box;transform-origin:35% 95%;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.hero-logo:hover .mm-toro{transform:translateX(-4px) rotate(-5deg)}
+.mm-anim .mm-ico svg rect.mm-brillo{transform-box:view-box;transform-origin:0 0;animation:brilloToro 6s ease-in-out 2.4s infinite;opacity:0}
+@keyframes brilloToro{0%{transform:translateX(-30px) skewX(-18deg);opacity:0}4%{opacity:1}22%{transform:translateX(95px) skewX(-18deg);opacity:1}26%,100%{transform:translateX(95px) skewX(-18deg);opacity:0}}
+.mm-pulso{stroke-dasharray:9 var(--l);stroke-dashoffset:9;animation:pulsoFlecha 4s ease-in 2.1s infinite;opacity:0}
+@keyframes pulsoFlecha{0%{stroke-dashoffset:9;opacity:0}3%{opacity:1}34%{stroke-dashoffset:calc(var(--l) * -1);opacity:1}38%,100%{stroke-dashoffset:calc(var(--l) * -1);opacity:0}}
 .hero-nav a{position:relative;overflow:hidden}
 .hero-nav a::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.07) 50%,transparent 70%);transform:translateX(-100%);transition:transform .7s ease;pointer-events:none}
 .hero-nav a:hover::after{transform:translateX(100%)}
@@ -567,6 +573,7 @@ html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top
 .cinta{overflow-x:auto}.cinta-pista{animation:none}
 .hero::before,.hero::after{animation:none}
 .mm-anim .mm-ico svg *{animation:none!important;stroke-dashoffset:0!important}
+.mm-brillo,.mm-pulso{display:none}.mm-toro{transition:none}
 .hero-nav a::after{display:none}
 }
 </style>
@@ -2460,6 +2467,22 @@ var l=p.getTotalLength?Math.ceil(p.getTotalLength()):0;if(!l)return;
 var m=p.getAttribute('marker-end');p.removeAttribute('marker-end');p.classList.add('mm-trazo');p.style.setProperty('--l',l);
 setTimeout(function(){p.setAttribute('marker-end',m);},1650);});
 if(n)logo.classList.add('mm-anim');
+var NS='http://www.w3.org/2000/svg',mk=function(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;};
+var defs=svg.querySelector('defs')||svg.insertBefore(mk('defs',{}),svg.firstChild);
+var vb=(svg.getAttribute('viewBox')||'0 0 150 80').split(/\s+/);
+/* destello que recorre la silueta del toro (o del oso): la propia imagen hace de máscara */
+svg.querySelectorAll('image').forEach(function(img,k){
+var g=mk('g',{'class':'mm-toro'});img.parentNode.insertBefore(g,img);g.appendChild(img);
+var m=mk('mask',{id:'mmBrilloM'+k,maskUnits:'userSpaceOnUse',x:vb[0],y:vb[1],width:vb[2],height:vb[3]});m.appendChild(img.cloneNode());defs.appendChild(m);
+if(k===0){var lg=mk('linearGradient',{id:'mmBrilloG',x1:'0',y1:'0',x2:'1',y2:'0'});
+[['0','#fff','0'],['.5','#fff','.85'],['1','#fff','0']].forEach(function(s){lg.appendChild(mk('stop',{offset:s[0],'stop-color':s[1],'stop-opacity':s[2]}));});defs.appendChild(lg);}
+var x=+img.getAttribute('x')||0,y=+img.getAttribute('y')||0,h=+img.getAttribute('height')||80;
+var gm=mk('g',{mask:'url(#mmBrilloM'+k+')'});
+gm.appendChild(mk('rect',{'class':'mm-brillo',x:x,y:y,width:22,height:h,fill:'url(#mmBrilloG)'}));g.appendChild(gm);});
+/* pulso de luz que recorre la flecha */
+svg.querySelectorAll('path.mm-trazo').forEach(function(p){
+var q=mk('path',{d:p.getAttribute('d'),fill:'none',stroke:'#fff4cc','stroke-width':'2.4','stroke-linecap':'round','class':'mm-pulso'});
+q.style.setProperty('--l',p.style.getPropertyValue('--l'));p.parentNode.insertBefore(q,p.nextSibling);});
 }
 }catch(e){}
 
