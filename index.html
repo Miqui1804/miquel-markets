@@ -366,6 +366,8 @@ thead th.s.on{color:var(--gold)}
 @media(max-width:560px){.br-pane{padding:16px 14px 8px}}
 .mk-sub{font-family:'Sora';font-weight:800;font-size:1.25rem;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
 .mk-sub .n{font-family:'JetBrains Mono';font-size:.72rem;color:var(--gold);letter-spacing:.1em}
+/* #amplitud, #sentimiento y #salud son .reveal: hasta que aparecen llevan translateY(26px), el salto a la ancla se calcula con ese desplazamiento y el destino acababa unos 30 px tapado por la cabecera. El margen lo compensa solo mientras no se han mostrado. #salud es una tarjeta alta: su scale(.985) se hace desde arriba para no sumar otro desplazamiento que depende de su altura. */
+@media(prefers-reduced-motion:no-preference){.mk-sub.reveal:not(.in),#salud.reveal:not(.in){scroll-margin-top:26px}#salud.reveal{transform-origin:50% 0}}
 .salud{padding:22px 22px 18px;margin-bottom:16px}
 .salud-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
 .salud-head .t{font-family:'Sora';font-weight:800;font-size:1.15rem}
@@ -517,6 +519,8 @@ footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
 @media(max-width:820px){.nav-mobile.open{max-height:400px}.nav-mobile a{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}}
 /* móvil en horizontal con el menú completo: sin la fecha, la cabecera cabe entre las zonas seguras de los lados */
 @media(min-width:821px) and (max-width:960px) and (max-height:500px){.nav-date{display:none}}
+/* menú completo con poco ancho (821–880 px, p. ej. iPad en vertical): con la fecha y «Apoyar» la cabecera necesita 875 px; en la app no hay «Apoyar» y sí cabe */
+@media(min-width:821px) and (max-width:880px){html:not(.mm-app) .nav-date{display:none}}
 .nav-mobile a.app-inst{color:var(--gold);font-weight:600}
 .mm-app .don-wrap{display:none}
 .app-sheet{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:center;background:rgba(3,6,12,.72);backdrop-filter:blur(6px);padding:16px max(16px,env(safe-area-inset-right)) calc(16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
@@ -973,7 +977,6 @@ html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top
 <div class="bt-note" id="btNote"></div>
 <div class="bt-table" style="margin-top:14px"><div class="table-wrap"><table id="btPesos"></table></div></div>
 <div class="bt-note">CAGR y máximo drawdown de cada reparto de pesos en cada periodo. Con el histórico de amplitud del NYSE desde 2005 se probaron más de 150.000 combinaciones (pesos en pasos de 10 y penalización del Agorero de 0 a 40) sobre 2007–2026. Las mejores coincidían en las dos mitades (2007–2016 y 2017–2026): mucho peso al <b>ratio dólar</b> y al <b>McClellan</b> y un <b>Agorero</b> más severo. Las combinaciones ganadoras dejaban a cero el MACD y el cruce dorado; se eligió un reparto redondeado que los mantiene y que apenas empeora al mover 5 puntos de un filtro a otro. Los pesos se eligieron viendo todo el periodo, así que las cifras no son fuera de muestra. En los últimos 14 meses los pesos nuevos rinden menos que los anteriores.</div></div>
-</div>
 
 <div class="mk-sub reveal"><span class="n">01</span> Filtros de mercado</div>
 <p class="block-sub reveal">Tus fórmulas de AmiBroker calculadas sobre el S&amp;P 500.</p>
