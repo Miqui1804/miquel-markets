@@ -529,7 +529,7 @@ footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
 .app-sheet .ico-comp{display:inline-block;vertical-align:-3px;width:18px;height:18px;color:var(--blue)}
 .app-sheet button{margin-top:16px;width:100%;min-height:46px;border:0;border-radius:12px;background:var(--gold);color:#1a1404;font:inherit;font-weight:700;cursor:pointer}
 /* ====== Animaciones: cinta de cotizaciones, fondo de la portada, logo y cifras ====== */
-.cinta{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(245,196,81,.06),rgba(90,169,255,.06));-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.cinta{position:relative;overflow:hidden;border-top:1px solid var(--line);background:linear-gradient(90deg,rgba(245,196,81,.06),rgba(90,169,255,.06));-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .cinta-pista{display:flex;width:max-content;animation:cintaMov var(--dur,60s) linear infinite}
 .cinta:hover .cinta-pista,.cinta:focus-within .cinta-pista{animation-play-state:paused}
 .cinta-grupo{display:flex;align-items:center;gap:26px;padding:9px 13px}
@@ -540,6 +540,9 @@ footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
 .cinta-it .up{color:var(--green)}.cinta-it .dn{color:var(--red)}.cinta-it .ent{color:var(--gold)}
 .cinta-it .pt{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
 @keyframes cintaMov{to{transform:translateX(-50%)}}
+@media(max-width:560px){.cinta-grupo{gap:20px;padding:7px 11px}.cinta-it{font-size:.7rem}}
+/* la cinta va dentro de la cabecera fija: los saltos a cada sección dejan sitio también para ella */
+html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top))}
 .hero{position:relative;isolation:isolate;overflow:hidden}
 .hero::before,.hero::after{content:'';position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
 .hero::before{width:560px;height:560px;left:-180px;top:-160px;background:radial-gradient(circle,rgba(245,196,81,.16),transparent 66%);animation:orbeA 19s ease-in-out infinite alternate}
@@ -2430,12 +2433,14 @@ var est=d[5]===2?'<span class="ent">entra</span>':d[5]===1?'<span class="dn">sal
 its.push('<button type="button" class="cinta-it" data-tk="'+esc(d[0])+'"><span class="s">'+etq+'</span><b>'+esc(d[0])+'</b>$'+esc(d[3])+' '+est+'</button>');});};
 if(typeof POS_OCTO!=='undefined')pos('OCTO',POS_OCTO);
 if(typeof POS_F4!=='undefined')pos('F4',POS_F4);
-var main=$('contenido');
-if(its.length>3&&main){
+var cab=document.querySelector('header.nav');
+if(its.length>3&&cab){
 var grupo='<div class="cinta-grupo">'+its.join('')+'</div>';
 var c=document.createElement('div');c.className='cinta';c.setAttribute('role','region');c.setAttribute('aria-label','Resumen de mercado y posiciones');
 c.innerHTML='<div class="cinta-pista">'+grupo+grupo.replace('class="cinta-grupo"','class="cinta-grupo" aria-hidden="true"')+'</div>';
-main.insertBefore(c,main.firstChild);
+cab.appendChild(c);
+var mide=function(){document.documentElement.style.setProperty('--cinta-h',c.offsetHeight+'px');};mide();
+if('ResizeObserver' in window)new ResizeObserver(mide).observe(c);else addEventListener('resize',mide);
 var copia=c.querySelectorAll('.cinta-grupo')[1];if(copia)copia.querySelectorAll('a,button').forEach(function(e){e.tabIndex=-1;});
 var ancho=c.querySelector('.cinta-grupo').offsetWidth;if(ancho)c.style.setProperty('--dur',Math.max(25,Math.round(ancho/45))+'s');
 c.addEventListener('click',function(e){var b=e.target.closest('[data-tk]');if(b&&typeof openChart==='function')openChart(b.getAttribute('data-tk'),'sys');});
