@@ -84,6 +84,8 @@ async function leerWeb() {
   const navegador = await chromium.launch();
   try {
     const ctx = await navegador.newContext({ viewport: { width: 1280, height: 900 }, locale: 'es-ES', serviceWorkers: 'block' });
+    // La comprobación automática no debe contar como visita en las estadísticas de Savri
+    await ctx.route(/savri\.io/, (r) => r.abort());
     if (env.CHART_JS_LOCAL) {
       await ctx.route(/chart\.umd/, (r) => r.fulfill({ path: env.CHART_JS_LOCAL, contentType: 'text/javascript' }));
     }
