@@ -674,13 +674,13 @@ footer{padding-bottom:calc(38px + env(safe-area-inset-bottom))}
 </div>
 
 <div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-warn">4 entradas el lunes</span></div>
-<p class="block-sub">Resultado del backtest de AmiBroker. El <b>botón del pánico</b> se ha desactivado: tras la venta total del lunes 09/11 la cartera estuvo esta semana en liquidez, y el lunes 16/11 en apertura entran las cuatro primeras del ranking: <b>VTRS</b>, <b>BBY</b>, <b>WST</b> y <b>SWKS</b>. Precio del screener al cierre del 13/11/2026. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
+<p class="block-sub">Resultado del backtest de AmiBroker. El <b>botón del pánico</b> se ha desactivado: tras la venta total del lunes 09/11 la cartera estuvo esta semana en liquidez, y el lunes 16/11 en apertura entraron <b>WST</b>, <b>VTRS</b>, <b>BBY</b> y <b>HUM</b> (Humana). SWKS, cuarta del ranking, no entró. Precio de entrada en la apertura del 16/11/2026. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
 <div class="table-wrap"><table id="posF4"></table></div>
 
-<div class="status-bar"><div class="ico">✓</div><div class="txt">Botón del pánico desactivado. Lunes 16/11 en apertura entran las <b>4</b> posiciones y la cartera vuelve a estar completa <b>4/4</b>.</div></div>
+<div class="status-bar"><div class="ico">✓</div><div class="txt">Botón del pánico desactivado. El lunes 16/11 en apertura entraron las <b>4</b> posiciones y la cartera vuelve a estar completa <b>4/4</b>.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
-<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana entran las cuatro primeras (<b>VTRS</b>, <b>BBY</b>, <b>WST</b> y <b>SWKS</b>) porque la cartera estaba en liquidez. Gráficos semanales con WMA(30).</p>
+<p class="block-sub">Ranking del universo por RSC Mansfield (explorer, Filter=1). <b style="color:var(--gold)">No es la lista de compras</b>: el sistema aplica además sus propios criterios de entrada. Esta semana entraron tres de las cuatro primeras (<b>VTRS</b>, <b>BBY</b> y <b>WST</b>) y, en lugar de SWKS, <b>HUM</b>, que no aparece en este ranking. Gráficos semanales con WMA(30).</p>
 <div class="table-wrap"><table id="candF4"></table></div>
 </div>
 <!-- ===== ROTACION ESTACIONAL ===== -->
@@ -1059,10 +1059,10 @@ const POS_OCTO=[
 ["SWKS","13/11/2026","88.59","88.59",0.00,2],["ACN","13/11/2026","250.77","250.77",0.00,2],
 ["HAS","13/11/2026","120.55","120.55",0.00,2],["ULTA","13/11/2026","661.53","661.53",0.00,2],
 ["VTRS","13/11/2026","20.81","20.81",0.00,2],["IDXX","13/11/2026","706.35","706.35",0.00,2]];
-/* Fantastic 4: 13/11/2026 — boton del panico desactivado; el lunes 16/11 entran las 4 primeras del ranking (precio del screener al 13/11) */
+/* Fantastic 4: 16/11/2026 — entraron en apertura WST, VTRS, BBY y HUM; SWKS no entro (backtest de AmiBroker) */
 const POS_F4=[
-["VTRS","13/11/2026","20.81","20.81",0.00,2],["BBY","13/11/2026","103.14","103.14",0.00,2],
-["WST","13/11/2026","416.86","416.86",0.00,2],["SWKS","13/11/2026","89.94","89.94",0.00,2]];
+["WST","16/11/2026","416.46","417.58",0.27],["VTRS","16/11/2026","20.95","20.74",-1.00],
+["BBY","16/11/2026","104.35","103.28",-1.03],["HUM","16/11/2026","459.99","459.95",-0.01]];
 const CAND_OCTO=[
 ["MRNA",1,"Moderna","223.37","161.87","32.83"],["EPAM",1,"EPAM Systems","164.21","143.04","29.18"],
 ["SWKS",1,"Skyworks Solutions","88.59","134.66","13.00"],["ACN",1,"Accenture","250.77","132.26","21.30"],
@@ -1109,7 +1109,7 @@ const NOMBRES={MRVL:'Marvell Technology',APA:'APA Corporation',STX:'Seagate Tech
 KR:'Kroger',ISRG:'Intuitive Surgical',KEYS:'Keysight Technologies',CSGP:'CoStar Group',
 LYB:'LyondellBasell Industries',OKTA:'Okta',NTAP:'NetApp',HAS:'Hasbro',HPE:'Hewlett Packard Enterprise',
 MRNA:'Moderna',EPAM:'EPAM Systems',SWKS:'Skyworks Solutions',ACN:'Accenture',ULTA:'Ulta Beauty',VTRS:'Viatris',
-IDXX:'IDEXX Laboratories',BBY:'Best Buy',WST:'West Pharmaceutical Services'};
+IDXX:'IDEXX Laboratories',BBY:'Best Buy',WST:'West Pharmaceutical Services',HUM:'Humana'};
 function nombreTk(d){if(d[6])return d[6];if(NOMBRES[d[0]])return NOMBRES[d[0]];const c=CAND_OCTO.concat(CAND_F4).find(x=>x[0]===d[0]);return c?c[2]:'';}
 function renderPos(id,data){
 const h='<thead><tr><th>Ticker</th><th>Nombre</th><th>Entrada</th><th>P. entrada</th><th>P. actual</th><th>% Resultado</th><th>Señal</th></tr></thead>';
