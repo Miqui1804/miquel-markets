@@ -672,10 +672,10 @@ html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top
 </div>
 
 <div class="block-head"><h3>Cartera actual — posiciones abiertas</h3><span class="badge-status badge-warn">8 entradas el lunes</span></div>
-<p class="block-sub">Resultado del backtest de AmiBroker. El <b>botón del pánico</b> se ha desactivado: tras la venta total del lunes 09/11 la cartera estuvo esta semana en liquidez, y el lunes 16/11 en apertura entran <b>MRNA</b>, <b>EPAM</b>, <b>SWKS</b>, <b>ACN</b>, <b>HAS</b>, <b>ULTA</b>, <b>VTRS</b> e <b>IDXX</b>. Precio de la señal al cierre del 13/11/2026. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
+<p class="block-sub">Resultado del backtest de AmiBroker. El <b>botón del pánico</b> se ha desactivado: tras la venta total del lunes 09/11 la cartera estuvo esta semana en liquidez, y el lunes 16/11 en apertura entraron <b>MRNA</b>, <b>EPAM</b>, <b>SWKS</b>, <b>ACN</b>, <b>HAS</b>, <b>ULTA</b>, <b>VTRS</b> e <b>IDXX</b>. Precio de entrada en la apertura del 16/11/2026. Haz clic en un ticker para ver su gráfico semanal con WMA(30).</p>
 <div class="table-wrap"><table id="posOcto"></table></div>
 
-<div class="status-bar"><div class="ico">✓</div><div class="txt">Botón del pánico desactivado. Lunes 16/11 en apertura entran las <b>8</b> posiciones y la cartera vuelve a estar completa <b>8/8</b>.</div></div>
+<div class="status-bar"><div class="ico">✓</div><div class="txt">Botón del pánico desactivado. El lunes 16/11 en apertura entraron las <b>8</b> posiciones y la cartera vuelve a estar completa <b>8/8</b>.</div></div>
 
 <div class="block-head"><h3>Screener — candidatos con señal de compra</h3></div>
 <p class="block-sub">Generado por el screener de AmiBroker sobre la fórmula Octomomentum (último cierre semanal), ordenado por ROC. Gráficos semanales con WMA(30). Las <b style="color:var(--gold)">TOP 8</b> son las que el sistema compraría si hubiera huecos. Se excluyen valores que no cumplen todos los criterios de entrada.</p>
@@ -1090,12 +1090,12 @@ html{scroll-padding-top:calc(64px + var(--cinta-h,0px) + env(safe-area-inset-top
 
 <script>
 /* ====== DATOS REALES ====== */
-/* Octomomentum: 13/11/2026 — boton del panico desactivado; el lunes 16/11 entran 8 posiciones (precio de la senal al cierre del 13/11) */
+/* Octomomentum: 16/11/2026 — entraron en apertura las 8 posiciones (backtest de AmiBroker) */
 const POS_OCTO=[
-["MRNA","13/11/2026","223.37","223.37",0.00,2],["EPAM","13/11/2026","164.21","164.21",0.00,2],
-["SWKS","13/11/2026","88.59","88.59",0.00,2],["ACN","13/11/2026","250.77","250.77",0.00,2],
-["HAS","13/11/2026","120.55","120.55",0.00,2],["ULTA","13/11/2026","661.53","661.53",0.00,2],
-["VTRS","13/11/2026","20.81","20.81",0.00,2],["IDXX","13/11/2026","706.35","706.35",0.00,2]];
+["MRNA","16/11/2026","216.74","216.64",-0.05],["EPAM","16/11/2026","164.62","164.30",-0.19],
+["SWKS","16/11/2026","88.68","88.59",-0.10],["ACN","16/11/2026","253.99","250.17",-1.50],
+["HAS","16/11/2026","121.15","119.92",-1.02],["ULTA","16/11/2026","666.98","652.97",-2.10],
+["VTRS","16/11/2026","20.95","20.74",-1.00],["IDXX","16/11/2026","705.00","705.65",0.09]];
 /* Fantastic 4: 16/11/2026 — entraron en apertura WST, VTRS, BBY y HUM; SWKS no entro (backtest de AmiBroker) */
 const POS_F4=[
 ["WST","16/11/2026","416.46","417.58",0.27],["VTRS","16/11/2026","20.95","20.74",-1.00],
