@@ -366,8 +366,8 @@ thead th.s.on{color:var(--gold)}
 @media(max-width:560px){.br-pane{padding:16px 14px 8px}}
 .mk-sub{font-family:'Sora';font-weight:800;font-size:1.25rem;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
 .mk-sub .n{font-family:'JetBrains Mono';font-size:.72rem;color:var(--gold);letter-spacing:.1em}
-/* #amplitud y #sentimiento son títulos .reveal: hasta que aparecen llevan translateY(26px), el salto a la ancla se calcula con ese desplazamiento y el título acababa 26 px tapado por la cabecera. El margen lo compensa solo mientras no se han mostrado. */
-@media(prefers-reduced-motion:no-preference){.mk-sub.reveal:not(.in){scroll-margin-top:26px}}
+/* #amplitud, #sentimiento y #salud son .reveal: hasta que aparecen llevan translateY(26px), el salto a la ancla se calcula con ese desplazamiento y el destino acababa unos 30 px tapado por la cabecera. El margen lo compensa solo mientras no se han mostrado. #salud es una tarjeta alta: su scale(.985) se hace desde arriba para no sumar otro desplazamiento que depende de su altura. */
+@media(prefers-reduced-motion:no-preference){.mk-sub.reveal:not(.in),#salud.reveal:not(.in){scroll-margin-top:26px}#salud.reveal{transform-origin:50% 0}}
 .salud{padding:22px 22px 18px;margin-bottom:16px}
 .salud-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
 .salud-head .t{font-family:'Sora';font-weight:800;font-size:1.15rem}
