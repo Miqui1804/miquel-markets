@@ -1237,6 +1237,14 @@ scales:{x:{grid:{display:false},border:{display:false},ticks:{maxTicksLimit:10,a
 y:{type:'logarithmic',grid:{color:'rgba(255,255,255,.05)'},border:{display:false},ticks:{callback:v=>{const n=Math.round(Number(v));return [50000,100000,200000,500000,1000000,2000000].includes(n)?(n>=1e6?rotN(n/1e6,0)+' M':rotN(n/1000)+'k'):'';}}}}}});
 }
 rotRender();
+/* Rotacion fuera de mercado (sin posicion, p. ej. tras saltar el stop): punto rojo en su pestana e insignia en rojo */
+(function rotFuera(){
+const R=ROTACION,b=document.getElementById('btn-rot');if(!b||R.actual)return;
+const u=R.ultimaOp,stop=!!(u&&u.motivo!=='Rotación'),P=R.prox;
+const t=(stop?'Saltó el stop del 8% en '+u.tk+' el '+rotF(u.sal)+'. ':'')+'En liquidez hasta la próxima rotación'+(P&&P.fecha?' ('+rotF(P.fecha)+', '+P.tk+')':'');
+if(!b.querySelector('.pdot'))b.insertAdjacentHTML('beforeend','<span class="pdot" title="'+t+'"></span>');
+const bd=document.getElementById('rotBadge');if(bd){bd.textContent=stop?'En liquidez · stop 8%':'En liquidez';bd.className='badge-status badge-alert';bd.title=t;}
+})();
 
 /* ====== TRADINGVIEW (velas semanales + WMA 30) ====== */
 function tvMA(kind,len,color){return {id:kind+'@tv-basicstudies',inputs:{length:len},overrides:{'Plot.color':color,'Plot.linewidth':2}};}
