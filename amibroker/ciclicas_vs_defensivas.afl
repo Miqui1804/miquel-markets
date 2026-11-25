@@ -1,0 +1,258 @@
+// =====================================================================
+//  Cyclical vs. Defensive Sector Ratio (Equal-Weight)
+//  Regimen ciclico / defensivo + sistema sobre SPY (V1 Pura / V2 Filtro)
+// ---------------------------------------------------------------------
+//  Cestas:   Ciclicas [XLI, XLF, XLB]  |  Defensivas [XLU, XLP, XLV]
+//
+//  Ratio C/D: indice equiponderado de ciclicas / indice equiponderado de
+//             defensivas. Cada indice compone la media de los rendimientos
+//             diarios de sus 3 ETFs (rebalanceo diario a partes iguales).
+//
+//  Regimen (con banda de confirmacion, por defecto 3%):
+//     DEFENSIVO si Ratio < SMA200 * (1 - 3%)
+//     CICLICO   si Ratio > SMA200 * (1 + 3%)
+//     Dentro de la banda se mantiene el regimen anterior.
+//
+//  V1 (Pura):   compra en regimen ciclico, venta a liquidez en defensivo.
+//  V2 (Filtro): V1 + stop del 8% desde la entrada (intradia). Tras saltar
+//               el stop no se vuelve a entrar hasta la siguiente senal
+//               ciclica nueva (cambio de defensivo a ciclico).
+//               En defensivo pasa a liquidez el % de "Modo Defensivo"
+//               (100% = todo a liquidez; 50% = se queda la mitad invertida).
+//
+//  Senal al cierre, ejecucion en la apertura de la sesion siguiente.
+//  Backtest desde el 03/01/2000: los ETFs sectoriales cotizan desde el
+//  22/12/1998 y la SMA200 necesita 200 sesiones.
+//
+//  Uso: grafico de SPY. Analysis: Apply to = Current, simbolo SPY,
+//  periodicidad diaria. Necesita XLI, XLF, XLB, XLU, XLP y XLV en la base
+//  de datos.
+//
+//  El nivel absoluto del ratio depende de la fecha en que arranca el
+//  calculo (aqui vale 100 el 22/12/1998), pero la relacion ratio/SMA200,
+//  y por tanto el regimen, no. Comprobado contra la captura del video:
+//  20/11/2026 ratio/SMA200 = 0,912 y regimen DEFENSIVO; zona defensiva
+//  de 2025 del 03/04 al 09/05.
+//
+//  Referencia (replica en Python con precios de Yahoo ajustados por
+//  splits, sin dividendos, 10.000 $, 5 $ por orden, liquidez al 0%,
+//  03/01/2000 - 24/11/2026):
+//                      CAGR    MaxDD    Operaciones
+//     V1 (Pura)        2,3%    -58,8%   28
+//     V2 (Filtro)      2,6%    -39,5%   28 (6 por stop)
+//     SPY (mantener)   6,1%    -56,5%
+//  Desde 2010: V1 6,1% / -23,3%, V2 4,0% / -23,4%, SPY 11,6% / -34,1%.
+//  Invertido el 57% del tiempo.
+// =====================================================================
+
+SetBarsRequired( sbrAll, sbrAll );   // el ratio se acumula desde la primera barra
+
+_SECTION_BEGIN( "Parametros" );
+Version  = ParamList( "Version", "V1 (Pura)|V2 (Filtro)", 1 );
+EsV2     = Version == "V2 (Filtro)";
+PerSMA   = Param( "Periodo SMA del ratio", 200, 20, 400, 10 );
+BandaPct = Param( "Banda de confirmacion %", 3, 0, 10, 0.5 );
+StopPct  = Param( "Stop V2 %", 8, 1, 30, 0.5 );
+ModoDef  = Param( "Modo Defensivo: % a liquidez (V2)", 100, 0, 100, 5 );
+FechaIni = ParamDate( "Inicio del backtest", "2000-01-03" );
+_SECTION_END();
+
+// ---------------------------------------------------------------------
+//  Ratio ciclicas / defensivas (equiponderado)
+// ---------------------------------------------------------------------
+function RetDiario( simbolo )
+{
+    p = Foreign( simbolo, "C" );
+    return Nz( p / Ref( p, -1 ) - 1 );
+}
+
+rCic = ( RetDiario( "XLI" ) + RetDiario( "XLF" ) + RetDiario( "XLB" ) ) / 3;
+rDef = ( RetDiario( "XLU" ) + RetDiario( "XLP" ) + RetDiario( "XLV" ) ) / 3;
+
+dn     = DateNum();
+Valido = dn >= 981222;   // 22/12/1998, primer dia de los ETFs sectoriales
+
+Ratio = IIf( Valido, 100 * exp( Cum( ln( 1 + rCic ) ) - Cum( ln( 1 + rDef ) ) ), Null );
+SMAr  = MA( Ratio, PerSMA );
+
+// ---------------------------------------------------------------------
+//  Regimen con banda de confirmacion
+// ---------------------------------------------------------------------
+Listo  = NOT IsNull( SMAr );
+LimInf = SMAr * ( 1 - BandaPct / 100 );
+LimSup = SMAr * ( 1 + BandaPct / 100 );
+DefOn  = Listo AND Ratio < LimInf;
+CicOn  = Listo AND Ratio > LimSup;
+
+Defensivo = Listo AND Flip( DefOn, CicOn );
+Ciclico   = Listo AND NOT Defensivo;
+
+CambioDef = Defensivo AND NOT Ref( Defensivo, -1 );
+CambioCic = Ciclico AND Ref( Defensivo, -1 );
+
+AsigHoy = IIf( Ciclico, 100, IIf( EsV2, 100 - ModoDef, 0 ) );   // % en SPY segun regimen
+
+// ---------------------------------------------------------------------
+//  Backtest (bucle: exposicion nominal, stop y bloqueo tras stop)
+// ---------------------------------------------------------------------
+SetOption( "InitialEquity", 10000 );
+SetOption( "MaxOpenPositions", 1 );
+SetOption( "AllowPositionShrinking", True );
+SetOption( "CommissionMode", 2 );      // $ por orden
+SetOption( "CommissionAmount", 5 );
+SetTradeDelays( 0, 0, 0, 0 );          // el bucle ya pone cada orden en su sesion de ejecucion
+RoundLotSize = 1;
+
+Buy       = Close * 0;
+Sell      = Close * 0;
+Short     = Close * 0;
+Cover     = Close * 0;
+BuyPrice  = Open;
+SellPrice = Open;
+Tam       = Close * 0 + 100;
+ModoTam   = Close * 0 + spsPercentOfEquity;
+ExpoArr   = Close * 0;
+StopArr   = Close * 0;        // 1 en las sesiones en que salta el stop
+
+CicV   = IIf( Ciclico, 1, 0 );
+ListoV = IIf( Listo, 1, 0 );
+pctDef = 100 - ModoDef;
+
+expo      = 0;        // % invertido (nominal)
+bloqueo   = False;    // tras un stop, fuera hasta nueva senal ciclica
+nivelStop = 0;
+
+for( i = 2; i < BarCount; i++ )
+{
+    opero = False;
+
+    // 1) Apertura: se ejecuta lo decidido al cierre de la sesion anterior
+    if( dn[ i - 1 ] >= FechaIni AND ListoV[ i - 1 ] == 1 )
+    {
+        nuevaCic = CicV[ i - 1 ] == 1 AND CicV[ i - 2 ] == 0;
+
+        if( bloqueo AND nuevaCic )
+            bloqueo = False;
+
+        if( EsV2 )
+        {
+            if( bloqueo )
+                objetivo = 0;
+            else
+                if( CicV[ i - 1 ] == 1 )
+                    objetivo = 100;
+                else
+                    objetivo = pctDef;
+        }
+        else
+            objetivo = CicV[ i - 1 ] * 100;
+
+        if( objetivo != expo )
+        {
+            if( expo == 0 )
+            {
+                Buy[ i ]     = 1;
+                Tam[ i ]     = objetivo;
+                ModoTam[ i ] = spsPercentOfEquity;
+                nivelStop    = Open[ i ] * ( 1 - StopPct / 100 );
+            }
+            else
+                if( objetivo == 0 )
+                {
+                    Sell[ i ] = 1;
+                }
+                else
+                    if( objetivo > expo )
+                    {
+                        Buy[ i ]     = sigScaleIn;
+                        Tam[ i ]     = objetivo - expo;
+                        ModoTam[ i ] = spsPercentOfEquity;
+                        nivelStop    = Open[ i ] * ( 1 - StopPct / 100 );
+                    }
+                    else
+                    {
+                        Buy[ i ]     = sigScaleOut;
+                        Tam[ i ]     = 100 * ( expo - objetivo ) / expo;
+                        ModoTam[ i ] = spsPercentOfPosition;
+                    }
+
+            expo  = objetivo;
+            opero = True;
+        }
+    }
+
+    // 2) Stop intradia (solo V2), no en la sesion en que se ha operado
+    if( EsV2 AND expo > 0 AND NOT opero AND Low[ i ] <= nivelStop )
+    {
+        Sell[ i ]      = 1;
+        SellPrice[ i ] = Min( Open[ i ], nivelStop );
+        StopArr[ i ]   = 1;
+        expo           = 0;
+        bloqueo        = True;
+    }
+
+    ExpoArr[ i ] = expo;
+}
+
+SetPositionSize( Tam, ModoTam );
+
+// ---------------------------------------------------------------------
+//  Grafico
+// ---------------------------------------------------------------------
+SetChartOptions( 0, chartShowDates );
+
+Plot( Defensivo, "Regimen Defensivo", ColorRGB( 255, 190, 190 ),
+      styleArea | styleOwnScale | styleNoLabel, 0, 1, 0, -1 );
+Plot( Ratio, "Cyclical / Defensive", colorBlack, styleLine | styleThick );
+Plot( SMAr, "SMA " + NumToStr( PerSMA, 1.0 ), colorRed, styleLine );
+
+if( BandaPct > 0 )
+{
+    Plot( LimInf, "Banda -" + NumToStr( BandaPct, 1.1 ) + "%", ColorRGB( 220, 120, 120 ), styleDashed | styleNoLabel );
+    Plot( LimSup, "Banda +" + NumToStr( BandaPct, 1.1 ) + "%", ColorRGB( 120, 170, 120 ), styleDashed | styleNoLabel );
+}
+
+PlotShapes( IIf( CambioCic, shapeUpArrow, shapeNone ), colorGreen, 0, LimInf, -12 );
+PlotShapes( IIf( CambioDef, shapeDownArrow, shapeNone ), colorRed, 0, LimSup, -12 );
+
+RegTxt  = WriteIf( Defensivo, "DEFENSIVO (Alerta)", WriteIf( Ciclico, "CICLICO (Expansion)", "SIN DATOS" ) );
+RegSig  = WriteIf( Defensivo, "[-]", "[+]" );
+RegCol  = IIf( Defensivo, colorDarkRed, colorDarkGreen );
+DistPct = 100 * ( Ratio / SMAr - 1 );
+Asig    = SelectedValue( AsigHoy );
+
+Title = "{{NAME}} - {{DATE}} | Ratio C/D: " + NumToStr( Ratio, 1.2 ) +
+        " | SMA" + NumToStr( PerSMA, 1.0 ) + ": " + NumToStr( SMAr, 1.2 ) +
+        " (" + NumToStr( DistPct, 1.1 ) + "%)" +
+        " | Regimen: " + RegTxt +
+        " | Modo Defensivo: " + NumToStr( ModoDef, 1.0 ) + "%\n" +
+        EncodeColor( colorDarkBlue ) + "Cyclical vs. Defensive Sector Ratio (Equal-Weight)\n" +
+        EncodeColor( colorGrey50 ) +
+        "* Backtest desde 2000: ETFs sectoriales cotizan desde 22/12/1998 + " + NumToStr( PerSMA, 1.0 ) + " barras para la SMA\n" +
+        "V1 (Pura): Compra en Regimen Ciclico / Venta a liquidez en Regimen Defensivo\n" +
+        "V2 (Filtro): Stop " + NumToStr( StopPct, 1.0 ) + "% | En Defensivo: pasar al " +
+        NumToStr( ModoDef, 1.0 ) + "% en liquidez\n" +
+        "Cestas: Ciclicas [XLI, XLF, XLB] | Defensivas [XLU, XLP, XLV] | Banda " +
+        NumToStr( BandaPct, 1.1 ) + "% | Activa: " + Version + "\n" +
+        EncodeColor( SelectedValue( RegCol ) ) + RegSig + " Regimen: " + RegTxt +
+        " | Asignacion configurada: " + NumToStr( Asig, 1.0 ) + "% (" +
+        NumToStr( 100 - Asig, 1.0 ) + "% Tesoreria)";
+
+// ---------------------------------------------------------------------
+//  Alertas
+// ---------------------------------------------------------------------
+AlertIf( CambioDef, "", "Ratio C/D: cambio a regimen DEFENSIVO", 2 );
+AlertIf( CambioCic, "", "Ratio C/D: cambio a regimen CICLICO", 1 );
+
+// ---------------------------------------------------------------------
+//  Exploracion (estado del ultimo cierre)
+// ---------------------------------------------------------------------
+Filter = Status( "lastbarinrange" );
+AddColumn( Ratio, "Ratio C/D", 1.2 );
+AddColumn( SMAr, "SMA" + NumToStr( PerSMA, 1.0 ), 1.2 );
+AddColumn( DistPct, "Dist. SMA %", 1.2 );
+AddTextColumn( WriteIf( Defensivo, "DEFENSIVO", "CICLICO" ), "Regimen", 1,
+               colorWhite, IIf( Defensivo, colorDarkRed, colorDarkGreen ) );
+AddColumn( BarsSince( CambioDef OR CambioCic ), "Sesiones en el regimen", 1.0 );
+AddColumn( AsigHoy, "Asignacion %", 1.0 );
+AddColumn( ExpoArr, "Exposicion backtest %", 1.0 );
